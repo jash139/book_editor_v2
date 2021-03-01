@@ -4,6 +4,9 @@ import { IconButton, makeStyles } from "@material-ui/core";
 import themeColors from "../../constants/themeColors";
 
 const useStyles = makeStyles(theme => ({
+    root: {
+        color: themeColors.red,
+    },
     line1: {
         backgroundColor: themeColors.black,
         borderRadius: "2rem",
@@ -31,7 +34,7 @@ const useStyles = makeStyles(theme => ({
 function MenuButton() {
     const classes = useStyles();
     return (
-        <IconButton>
+        <IconButton className={classes.root}>
             <div className={classes.logo}>
                 <div className={classes.line1} />
                 <div className={classes.line2} />

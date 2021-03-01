@@ -9,6 +9,7 @@ import themeColors from "../../constants/themeColors";
 const useStyles = makeStyles(theme => ({
     header: {
         background: "transparent",
+        backdropFilter: "blur(0.3rem)",
         position: "sticky",
         top: 0,
         zIndex: 5,

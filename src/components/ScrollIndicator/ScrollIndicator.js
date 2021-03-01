@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
     scrollIndicator: {
         display: "flex",
         alignItems: "center",
-        transform: "rotate(-90deg) translate(-50%, -50%)",
+        transform: "rotate(-90deg) translate(0, -50%)",
         "&:hover": {
             cursor: "pointer",
         },

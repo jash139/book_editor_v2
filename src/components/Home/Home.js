@@ -10,11 +10,13 @@ import Quotation from "../Quotation/Quotation";
 
 const useStyles = makeStyles(theme => ({
     root: {
-        display: "flex",
-        flexDirection: "column",
         position: "relative",
     },
     content: {
+        minHeight: "75vh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
         margin: "auto",
         position: "relative",
         width: "90%",
@@ -38,6 +40,7 @@ const useStyles = makeStyles(theme => ({
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
+        marginBottom: "5rem",
     },
     heading: {
         color: themeColors.grey,
@@ -69,7 +72,7 @@ const useStyles = makeStyles(theme => ({
     },
     footer: {
         display: "flex",
-        alignItems: "center",
+        alignItems: "flex-end",
         justifyContent: "space-between",
     },
 }));
@@ -77,26 +80,28 @@ const useStyles = makeStyles(theme => ({
 function Home() {
     const classes = useStyles();
     return (
-        <div className={classes.root}>
-            <HomeNavBar />
-            <HomeIllustration />
-            <div className={classes.content}>
-                <div className={classes.indicatorSection}>
-                    <h2 className={classes.activeIndicator}>01 / <span className={classes.indicator}>03</span></h2>
-                </div>
-                <div className={classes.middleSection}>
-                    <div>
-                        <h2 className={classes.heading}>Share<br /><span className={classes.stories}>Stories</span><br />or find what others have to say</h2>
-                        <Button variant="outlined" className={classes.exploreButton}>Explore</Button>
+        <React.Fragment>
+            <div className={classes.root}>
+                <HomeNavBar />
+                <HomeIllustration />
+                <div className={classes.content}>
+                    <div className={classes.indicatorSection}>
+                        <h2 className={classes.activeIndicator}>01 / <span className={classes.indicator}>03</span></h2>
                     </div>
-                    <div className={classes.line} />
-                </div>
-                <div className={classes.footer}>
-                    <ScrollIndicator />
-                    <Quotation />
+                    <div className={classes.middleSection}>
+                        <div>
+                            <h2 className={classes.heading}>Share<br /><span className={classes.stories}>Stories</span><br />or find what others have to say</h2>
+                            <Button variant="outlined" className={classes.exploreButton}>Explore</Button>
+                        </div>
+                        <div className={classes.line} />
+                    </div>
+                    <div className={classes.footer}>
+                        <ScrollIndicator />
+                        <Quotation />
+                    </div>
                 </div>
             </div>
-        </div>
+        </React.Fragment>
     );
 }
 
