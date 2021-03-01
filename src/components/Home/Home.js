@@ -79,28 +79,26 @@ const useStyles = makeStyles(theme => ({
 function Home() {
     const classes = useStyles();
     return (
-        <React.Fragment>
-            <div className={classes.root}>
-                <HomeNavBar />
-                <HomeIllustration />
-                <div className={classes.content}>
-                    <div className={classes.indicatorSection}>
-                        <h2 className={classes.activeIndicator}>01 / <span className={classes.indicator}>03</span></h2>
+        <div className={classes.root}>
+            <HomeNavBar />
+            <HomeIllustration />
+            <div className={classes.content}>
+                <div className={classes.indicatorSection}>
+                    <h2 className={classes.activeIndicator}>01 / <span className={classes.indicator}>03</span></h2>
+                </div>
+                <div className={classes.middleSection}>
+                    <div>
+                        <h2 className={classes.heading}>Share<br /><span className={classes.stories}>Stories</span><br />or find what others have to say</h2>
+                        <Button variant="outlined" className={classes.exploreButton}>Explore</Button>
                     </div>
-                    <div className={classes.middleSection}>
-                        <div>
-                            <h2 className={classes.heading}>Share<br /><span className={classes.stories}>Stories</span><br />or find what others have to say</h2>
-                            <Button variant="outlined" className={classes.exploreButton}>Explore</Button>
-                        </div>
-                        <div className={classes.line} />
-                    </div>
-                    <div className={classes.footer}>
-                        <ScrollIndicator />
-                        <Quotation />
-                    </div>
+                    <div className={classes.line} />
+                </div>
+                <div className={classes.footer}>
+                    <ScrollIndicator />
+                    <Quotation />
                 </div>
             </div>
-        </React.Fragment>
+        </div>
     );
 }
 

@@ -1,127 +1,98 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { Avatar, Button, Grid, IconButton, makeStyles, useMediaQuery, useTheme } from "@material-ui/core";
-import CustomAvatar from "../SVGs/CustomAvatar";
+import { Button, makeStyles } from "@material-ui/core";
+
+import ProfileNavBar from "../ProfileNavBar/ProfileNavBar";
 
 import themeColors from "../../constants/themeColors";
 
-import BookEdLogo from "../SVGs/BookEdLogo";
-import EnterIcon from "../Icons/EnterIcon";
-import BigHeading from "../BigHeading/BigHeading";
-import CustomProfileTabs from "../CustomProfileTabs/CustomProfileTabs";
-import { useHistory } from "react-router-dom";
-
-import { useAuth } from "../../contexts/AuthContext";
-
 const useStyles = makeStyles(theme => ({
-    nav: {
+    profile: {
         display: "flex",
+        flexDirection: "row",
         alignItems: "center",
-        marginTop: "1rem",
-        maxWidth: "1500px",
+        justifyContent: "space-around",
+        minHeight: "80vh",
         margin: "auto",
-    },
-    logo: {
-        fontFamily: "'Cormorant', serif",
-        fontSize: "3rem",
-        fontWeight: 300,
-        margin: 0,
-        "&:hover": {
-            cursor: "pointer",
+        width: "90%",
+        [theme.breakpoints.down("sm")]: {
+            flexDirection: "column",
+            justifyContent: "center",
         },
     },
-    buttons: {
-        marginLeft: "auto",
-    },
-    logoutButton: {
-        borderRadius: 0,
-        border: "1.5px solid " + themeColors.black,
-        fontFamily: "'Cormorant', serif",
-        fontSize: "1.2rem",
-        fontWeight: 600,
-        padding: "0.2px 0",
-        textTransform: "none",
-        width: "8rem",
-    },
-
-    content: {
-        padding: "0 1rem",
-    },
-
-    avatar: {
-        borderRadius: "20rem",
-        height: "14rem",
-        width: "14rem",
-    },
-    userDetails: {
+    details: {
         display: "flex",
-        flexDirection: "column",
-        [theme.breakpoints.down("md")]: {
+        flexDirection: "row",
+        [theme.breakpoints.down("sm")]: {
+            flexDirection: "column",
             alignItems: "center",
+            justifyContent: "center",
         },
-        [theme.breakpoints.up("md")]: {
-            paddingLeft: "4rem",
+    },
+    picDiv: {
+        marginRight: "4rem",
+        position: "relative",
+        [theme.breakpoints.down("sm")]: {
+            margin: "2rem 0",
         },
+    },
+    profilPic: {
+        height: "17.3rem",
+        width: "12rem",
+    },
+    picBorder: {
+        border: "5px solid " + themeColors.red,
+        height: "17.3rem",
+        width: "12rem",
+        position: "absolute",
+        top: "0.5rem",
+        left: "0.5rem",
     },
     name: {
-        color: themeColors.darkSkin,
-        fontFamily: "'Cormorant', serif",
-        fontSize: "3.5rem",
+        color: themeColors.red,
+        fontFamily: "'Playfair Display', serif",
+        fontSize: "2.5rem",
+    },
+    editButton: {
+        border: "2px solid " + themeColors.red,
+        color: themeColors.red,
+        fontFamily: "'Poppins', sans-serif",
+        fontWeight: 600,
+        fontSize: "0.8rem",
+        padding: "0.2rem 2rem",
+        textTransform: "none",
+    },
+    about: {
+        borderRight: "5px solid " + themeColors.red,
+        borderBottom: "5px solid " + themeColors.red,
+        maxWidth: 250,
+        margin: "2rem",
+        padding: "0 2rem 2rem 0",
+        position: "relative",
         [theme.breakpoints.down("sm")]: {
-            fontSize: "2.5rem",
+            maxWidth: 500,
+            margin: "2rem 1rem",
         },
-        letterSpacing: "4px",
-        margin: 0,
-        marginTop: "3rem",
-        [theme.breakpoints.down("md")]: {
-            textAlign: "center",
-        },
-        textTransform: "uppercase",
     },
-    userNumbers: {
-        display: "flex",
-        justifyContent: "space-between",
-        maxWidth: "450px",
-    },
-    numberDiv: {
-
-    },
-    numberHeading: {
-        color: themeColors.greenishGrey,
-        fontFamily: "'Poppins', sans-serif",
-        fontSize: "1.1rem",
-        fontWeight: 600,
+    aboutHeading: {
+        color: themeColors.red,
+        fontFamily: "'Playfair Display', serif",
+        fontSize: "2.5rem",
         letterSpacing: "3px",
-        margin: 0,
-        marginTop: "1rem",
+        opacity: 0.25,
+        marginTop: 0,
+        marginLeft: "-2rem",
+        textTransform: "lowercase",
     },
-    number: {
-        color: themeColors.darkGrey,
-        fontFamily: "'Poppins', sans-serif",
-        fontSize: "1.3rem",
-        fontWeight: 600,
-        letterSpacing: "3px",
-        margin: 0,
-        textAlign: "center",
+    aboutUser: {
+        color: themeColors.black,
+        lineHeight: 1.7,
     },
-    verticalDivider: {
-        backgroundColor: themeColors.lightGrey,
-        height: "100%",
-        margin: "1rem 2px",
-        width: "1.5px",
-    },
-
 }));
 
 function Profile(props) {
     const classes = useStyles();
-    const theme = useTheme();
-    const history = useHistory();
-    const { logout } = useAuth();
-    const lgViewport = useMediaQuery(theme.breakpoints.up("md"));
-
-
     const userDetails = Object.keys(props.userDetails).length > 0 ? props.userDetails : {
         name: "",
         followers: [],
@@ -130,77 +101,29 @@ function Profile(props) {
         about: "",
         profilePicture: "",
     };
-
-
-    async function handleLogOut() {
-        try {
-            await logout();
-            history.push("/");
-        } catch {
-            // add snackbar
-            // handleSnackBarClick();
-        }
-    }
-
-    const profilePicture = (
-        userDetails.profilePicture === "" ? <CustomAvatar /> : <Avatar className={classes.avatar} src={userDetails.profilePicture} alt={userDetails.name} />
-    );
-
-    const redirectHome = () => {
-        history.push("/");
-    };
-
     return (
         <React.Fragment>
-            <div className={classes.nav}>
-                <h1 className={classes.logo} onClick={redirectHome}>B<span><BookEdLogo /></span>kEd</h1>
-                <div className={classes.buttons}>
-                    {
-                        lgViewport ?
-                            <Button variant="outlined" className={classes.logoutButton} onClick={handleLogOut}>Logout</Button>
-                            :
-                            <IconButton onClick={handleLogOut}>
-                                <EnterIcon />
-                            </IconButton>
-                    }
-
+            <ProfileNavBar />
+            <div className={classes.profile}>
+                <div className={classes.details}>
+                    <div className={classes.picDiv}>
+                        <img className={classes.profilPic} src="https://images.unsplash.com/photo-1516368694098-47836cebec97?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=646&q=80" alt="" />
+                        <div className={classes.picBorder} />
+                    </div>
+                    <div className={classes.userDetails}>
+                        <h1 className={classes.name}>Umbrella Girl</h1>
+                        <Button variant="outlined" className={classes.editButton}>Edit Details</Button>
+                    </div>
+                </div>
+                <div className={classes.about}>
+                    <h2 className={classes.aboutHeading}>About</h2>
+                    <p className={classes.aboutUser}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod t t amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing elit duis tristique sollicitudin nibh sit. Vulputate ut pharetra sit amet. Massa sed elementum tempus egestas sed sed risus.</p>
                 </div>
             </div>
-
-            <div className={classes.content}>
-                <BigHeading heading="Profile" />
-                <Grid container>
-                    <Grid item xs={12} md={4} container justify={lgViewport ? "flex-end" : "center"}>
-                        {profilePicture}
-                    </Grid>
-                    <Grid item xs={12} md={8} className={classes.userDetails}>
-                        <h2 className={classes.name}>{userDetails.name}</h2>
-                        <div className={classes.userNumbers}>
-                            <div className={classes.numberDiv}>
-                                <h2 className={classes.numberHeading}>Followers</h2>
-                                <h3 className={classes.number}>{userDetails.followers.length}</h3>
-                            </div>
-                            <div className={classes.verticalDivider} />
-
-                            <div className={classes.numberDiv}>
-                                <h2 className={classes.numberHeading}>Following</h2>
-                                <h3 className={classes.number}>{userDetails.following.length}</h3>
-                            </div>
-                            <div className={classes.verticalDivider} />
-
-                            <div className={classes.numberDiv}>
-                                <h2 className={classes.numberHeading}>My Work</h2>
-                                <h3 className={classes.number}>{userDetails.work.length}</h3>
-                            </div>
-                        </div>
-                    </Grid>
-                </Grid>
-            </div>
-            <CustomProfileTabs userDetails={userDetails} />
-
         </React.Fragment>
     );
 }
+
 const mapStateToProps = state => ({
     userDetails: state.getUserDetails
 });
