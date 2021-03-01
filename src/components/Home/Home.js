@@ -27,7 +27,6 @@ const useStyles = makeStyles(theme => ({
         fontWeight: 500,
         display: "flex",
         justifyContent: "flex-end",
-        margin: 0,
     },
     activeIndicator: {
         color: themeColors.black,
@@ -40,7 +39,7 @@ const useStyles = makeStyles(theme => ({
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        marginBottom: "5rem",
+        marginBottom: "8rem",
     },
     heading: {
         color: themeColors.grey,
@@ -60,13 +59,13 @@ const useStyles = makeStyles(theme => ({
         fontFamily: "'Poppins', sans-serif",
         fontWeight: 600,
         fontSize: "1rem",
-        padding: "0.2rem 3rem",
+        padding: "0.2rem 4rem",
         textTransform: "none",
     },
     line: {
         backgroundColor: themeColors.red,
         borderRadius: "2rem",
-        height: "8rem",
+        height: "6rem",
         marginRight: "0.8rem",
         width: "5px",
     },

@@ -32,6 +32,26 @@ const useStyles = makeStyles(theme => ({
         fontWeight: 400,
         margin: 0,
     },
+    ul: {
+        display: "flex",
+        justifyContent: "space-around",
+        listStyleType: "none",
+        margin: 0,
+        padding: 0,
+        [theme.breakpoints.down("xs")]: {
+            display: "none",
+        },
+    },
+    anchor: {
+        display: "block",
+        color: themeColors.grey,
+        fontFamily: "'Poppins', sans-serif",
+        fontSize: "0.8rem",
+        fontWeight: 600,
+        margin: "0 1.5rem",
+        textTransform: "uppercase",
+        textDecoration: "none",
+    },
 }));
 
 function HomeNavBar() {
@@ -40,6 +60,11 @@ function HomeNavBar() {
         <header className={classes.header}>
             <nav className={classes.nav}>
                 <h1 className={classes.logo}>B<span><BookEdLogo /></span>kEd</h1>
+                <ul className={classes.ul}>
+                    <li><a datapage="home" href="#home" className={classes.anchor}>Home</a></li>
+                    <li><a datapage="about" href="#about" className={classes.anchor}>About</a></li>
+                    <li><a datapage="contact" href="#contact" className={classes.anchor}>Contact</a></li>
+                </ul>
                 <MenuButton />
             </nav>
         </header>
