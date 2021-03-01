@@ -48,7 +48,7 @@ const useStyles = makeStyles(theme => ({
         fontFamily: "'Poppins', sans-serif",
         fontSize: "0.8rem",
         fontWeight: 600,
-        margin: "0 1.5rem",
+        marginRight: "3rem",
         textTransform: "uppercase",
         textDecoration: "none",
     },
