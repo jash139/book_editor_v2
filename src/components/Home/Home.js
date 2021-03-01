@@ -1,212 +1,103 @@
 import React from "react";
-import { connect } from "react-redux";
+import { Button, makeStyles } from "@material-ui/core";
 
-import { useHistory } from "react-router-dom";
-
-import { Button, IconButton, makeStyles, useMediaQuery, useTheme } from "@material-ui/core";
-
-import BookEdLogo from "../SVGs/BookEdLogo";
-import EnterIcon from "../Icons/EnterIcon";
-import Heading from "../Heading/Heading";
-import RegisterModal from "../RegisterModal/RegisterModal";
-import ProfileButton from "../ProfileButton/ProfileButton";
+import HomeNavBar from "../HomeNavBar/HomeNavBar";
 
 import themeColors from "../../constants/themeColors";
-import getQuotes from "../../constants/getQuotes";
-import homeContent from "../../constants/homeContent";
-
-import toggleRegisterModalState from "../../actions/toggleRegisterModalState";
-import { useAuth } from "../../contexts/AuthContext";
+import HomeIllustration from "../HomeIllustration/HomeIllustration";
+import ScrollIndicator from "../ScrollIndicator/ScrollIndicator";
+import Quotation from "../Quotation/Quotation";
 
 const useStyles = makeStyles(theme => ({
-    homeNav: {
-        display: "flex",
-        alignItems: "center",
-        marginTop: "1rem",
-        maxWidth: "1500px",
-        margin: "auto",
-    },
-    logo: {
-        fontFamily: "'Cormorant', serif",
-        fontSize: "3rem",
-        fontWeight: 300,
-        margin: 0,
-    },
-    buttons: {
-        marginLeft: "auto",
-    },
-    loginButton: {
-        borderRadius: 0,
-        border: "1.5px solid " + themeColors.black,
-        fontFamily: "'Cormorant', serif",
-        fontSize: "1.2rem",
-        fontWeight: 600,
-        marginRight: "2rem",
-        padding: "0.2px 0",
-        textTransform: "none",
-        width: "8rem",
-    },
-    signUpButton: {
-        backgroundColor: themeColors.lightSkin,
-        borderRadius: 0,
-        boxShadow: "none",
-        fontFamily: "'Cormorant', serif",
-        fontSize: "1.2rem",
-        fontWeight: 600,
-        padding: "0.1rem 0",
-        textTransform: "none",
-        width: "8rem",
-        "&:hover": {
-            backgroundColor: themeColors.lightSkin,
-            boxShadow: "none",
-        }
-    },
-
-    homeContent: {
-    },
-    heroSection: {
+    root: {
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
+        position: "relative",
+    },
+    content: {
+        margin: "auto",
+        position: "relative",
+        width: "90%",
+    },
+    indicatorSection: {
+        fontFamily: "'Poppins', sans-serif",
+        fontSize: "1rem",
+        fontWeight: 500,
+        display: "flex",
+        justifyContent: "flex-end",
+        margin: 0,
+    },
+    activeIndicator: {
+        color: themeColors.black,
+        transform: "rotate(90deg) translate(0, -40%)",
+    },
+    indicator: {
+        color: themeColors.grey,
+    },
+    middleSection: {
+        display: "flex",
         alignItems: "center",
-        minHeight: "90vh",
+        justifyContent: "space-between",
     },
     heading: {
-        color: themeColors.darkGrey,
-        fontFamily: "'Cormorant', serif",
-        fontSize: "3rem",
-        [theme.breakpoints.up("sm")]: {
-            fontSize: "5rem",
-        },
-        fontWeight: 600,
-        letterSpacing: "2px",
-        textAlign: "center",
+        color: themeColors.grey,
+        fontFamily: "'Poppins', sans-serif",
+        fontSize: "2rem",
+        fontWeight: 300,
     },
-    storiesHeading: {
-        color: themeColors.black,
+    stories: {
+        color: themeColors.red,
+        fontWeight: 700,
+        fontSize: "3rem",
+        textTransform: "uppercase",
     },
     exploreButton: {
-        backgroundColor: themeColors.lightSkin,
-        borderRadius: 0,
-        boxShadow: "none",
-        fontFamily: "'Cormorant', serif",
-        fontSize: "2rem",
+        border: "2px solid " + themeColors.red,
+        color: themeColors.red,
+        fontFamily: "'Poppins', sans-serif",
         fontWeight: 600,
-        margin: "2rem 0",
-        padding: "0.1rem 0",
+        fontSize: "1rem",
+        padding: "0.2rem 3rem",
         textTransform: "none",
-        width: "15rem",
-        "&:hover": {
-            backgroundColor: themeColors.lightSkin,
-            boxShadow: "none",
-        }
     },
-
-    quotationSection: {
-        backgroundColor: themeColors.bgDark,
+    line: {
+        backgroundColor: themeColors.red,
+        borderRadius: "2rem",
+        height: "8rem",
+        marginRight: "0.8rem",
+        width: "5px",
     },
-    quotationContent: {
-        maxWidth: "900px",
-        margin: "auto",
-        padding: "6rem 2rem",
-        textAlign: "center",
+    footer: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
     },
-    quotation: {
-        fontFamily: "'Poppins', sans-serif",
-        fontSize: "1.2rem",
-        fontStyle: "italic",
-        fontWeight: 300,
-        letterSpacing: "1px",
-        margin: 0,
-    },
-    author: {
-        fontFamily: "'Poppins', sans-serif",
-        fontWeight: 500,
-        letterSpacing: "1px",
-        margin: 0,
-        marginTop: "0.5rem",
-    },
-
-    aboutSection: {
-        maxWidth: "900px",
-        margin: "auto",
-        padding: "5rem 2rem",
-        textAlign: "center",
-    },
-    aboutUs: {
-        fontFamily: "'Cormorant', serif",
-        fontSize: "1.8rem",
-        fontWeight: 400,
-        lineHeight: 1.5,
-    },
-
-
-    contactSection: {
-        backgroundColor: themeColors.bgDark,
-        padding: "5rem 2rem",
-    },
-
 }));
 
-function Home(props) {
+function Home() {
     const classes = useStyles();
-    const history = useHistory();
-    const theme = useTheme();
-    const { currentUser } = useAuth();
-    const lgViewport = useMediaQuery(theme.breakpoints.up("md"));
-
-    const quotation = getQuotes();
-
-    const handleOpenExplorePage = () => {
-        history.push("/explore");
-    }
-
     return (
-        <React.Fragment>
-            <div className={classes.homeNav}>
-                <h1 className={classes.logo}>B<span><BookEdLogo /></span>kEd</h1>
-                <div className={classes.buttons}>
-                    {
-                        currentUser ?
-                            <ProfileButton />
-                            :
-                            lgViewport ?
-                                <React.Fragment>
-                                    <Button variant="outlined" className={classes.loginButton} onClick={() => props.toggleRegisterModalState("OPEN")} >Login</Button>
-                                    <Button variant="contained" className={classes.signUpButton} onClick={() => props.toggleRegisterModalState("OPEN")} >Sign up</Button>
-                                </React.Fragment>
-                                :
-                                <IconButton onClick={() => props.toggleRegisterModalState("OPEN")} >
-                                    <EnterIcon />
-                                </IconButton>
-                    }
-
+        <div className={classes.root}>
+            <HomeNavBar />
+            <HomeIllustration />
+            <div className={classes.content}>
+                <div className={classes.indicatorSection}>
+                    <h2 className={classes.activeIndicator}>01 / <span className={classes.indicator}>03</span></h2>
                 </div>
-            </div>
-            <div className={classes.homeContent}>
-                <RegisterModal />
-                <div className={classes.heroSection}>
-                    <h1 className={classes.heading}>SHARE <span className={classes.storiesHeading}>STORIES</span> OR <br />FIND WHAT OTHERS <br />HAVE TO SAY</h1>
-                    <Button variant="contained" className={classes.exploreButton} onClick={handleOpenExplorePage}>Explore</Button>
-                </div>
-                <div className={classes.quotationSection}>
-                    <div className={classes.quotationContent}>
-                        <h2 className={classes.quotation}>"{quotation.quote}"</h2>
-                        <h3 className={classes.author}>-{quotation.author}</h3>
+                <div className={classes.middleSection}>
+                    <div>
+                        <h2 className={classes.heading}>Share<br /><span className={classes.stories}>Stories</span><br />or find what others have to say</h2>
+                        <Button variant="outlined" className={classes.exploreButton}>Explore</Button>
                     </div>
+                    <div className={classes.line} />
                 </div>
-                <div className={classes.aboutSection}>
-                    <Heading heading="About us" />
-                    <h3 className={classes.aboutUs}>{homeContent.aboutUs}</h3>
-                </div>
-                <div className={classes.contactSection}>
-                    <Heading heading="Contact" />
+                <div className={classes.footer}>
+                    <ScrollIndicator />
+                    <Quotation />
                 </div>
             </div>
-        </React.Fragment>
+        </div>
     );
 }
 
-const mapStateToProps = state => ({});
-
-export default connect(mapStateToProps, { toggleRegisterModalState })(Home);
+export default Home;
