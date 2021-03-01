@@ -1,0 +1,20 @@
+/* Custom Css for Editorjs editor */
+
+.ce-block__content {
+    max-width: 100%;
+    padding: 1rem;
+}
+
+.ce-toolbar {
+    display: none !important;
+}
+
+.ce-inline-tool {
+    color: #676058;
+    font-family: 'Poppins', sans-serif;
+    padding: "5rem";
+}
+
+.ce-inline-tool--active {
+    color: #93674C;
+}
