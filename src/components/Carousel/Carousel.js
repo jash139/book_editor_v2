@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
         paddingTop: "0",
         justifyContent: "space-around",
         overflow: "hidden",
-        maxWidth: "1500px",
+        maxWidth: "90%",
         margin: "auto",
     },
     gridList: {

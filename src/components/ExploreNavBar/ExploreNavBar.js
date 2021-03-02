@@ -1,0 +1,77 @@
+import React from "react";
+import { Button, makeStyles } from "@material-ui/core";
+
+import BookEdLogo from "../SVGs/BookEdLogo";
+
+import themeColors from "../../constants/themeColors";
+
+const useStyles = makeStyles(theme => ({
+    header: {
+        background: "transparent",
+        backdropFilter: "blur(0.3rem)",
+        position: "sticky",
+        top: 0,
+        zIndex: 5,
+    },
+    nav: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        margin: "auto",
+        minHeight: "20vh",
+        [theme.breakpoints.down("sm")]: {
+            minHeight: "10vh",
+        },
+        width: "90%",
+    },
+    logo: {
+        color: themeColors.red,
+        fontFamily: "'Playfair Display', serif",
+        fontSize: "2rem",
+        fontWeight: 400,
+        margin: 0,
+    },
+    ul: {
+        display: "flex",
+        justifyContent: "space-around",
+        listStyleType: "none",
+        margin: 0,
+        padding: 0,
+        [theme.breakpoints.down("xs")]: {
+            display: "none",
+        },
+    },
+    anchor: {
+        display: "block",
+        color: themeColors.grey,
+        fontFamily: "'Poppins', sans-serif",
+        fontSize: "0.8rem",
+        fontWeight: 600,
+        marginRight: "3rem",
+        textTransform: "uppercase",
+        textDecoration: "none",
+    },
+    logoutButton: {
+        border: "2px solid " + themeColors.black,
+        color: themeColors.black,
+        fontFamily: "'Poppins', sans-serif",
+        fontWeight: 600,
+        fontSize: "0.8rem",
+        padding: "0.2rem 1.5rem",
+        textTransform: "none",
+    },
+}));
+
+function ExploreNavBar() {
+    const classes = useStyles();
+    return (
+        <header className={classes.header}>
+            <nav className={classes.nav}>
+                <h1 className={classes.logo}>B<span><BookEdLogo /></span>kEd</h1>
+                <Button variant="outlined" className={classes.logoutButton}>Logout</Button>
+            </nav>
+        </header>
+    );
+}
+
+export default ExploreNavBar;
