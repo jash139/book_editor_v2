@@ -8,88 +8,71 @@ import trimString from "../../constants/trimString";
 
 const bookCoverColor = coverColors();
 
-const useStyles = makeStyles({
-    bookCard: {
+const useStyles = makeStyles(theme => ({
+    root: {
         display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        height: "16rem",
-        margin: "2rem 4rem 3rem 2rem",
+        alignItems: "center",
+        margin: "1rem 3rem 1rem",
+        width: "16rem",
+    },
+    coverDiv: {
+        marginRight: "1.5rem",
         position: "relative",
-        minWidth: "16rem",
-        maxWidth: "16rem",
     },
-    bookCover: {
-        backgroundColor: bookCoverColor.backgroundColor,
-        borderRadius: "1px 0 0 1px",
-        boxShadow: themeColors.boxShadow,
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        height: "16rem",
-        width: "11rem",
+    cover: {
+        height: "14.5rem",
+        width: "10rem",
+    },
+    coverBorder: {
+        border: "4px solid " + themeColors.red,
+        height: "14.5rem",
+        width: "10rem",
         position: "absolute",
-        right: 0,
+        top: "0.4rem",
+        left: "0.4rem",
     },
-    coverFilter: {
-        backgroundColor: "#d09465",
-        backgroundImage: "url('https://www.transparenttextures.com/patterns/cream-paper.png')",
-        borderRadius: "1px 0 0 1px",
-        opacity: 0.3,
-        position: "absolute",
-        right: 0,
-        height: "16rem",
-        width: "11rem",
-    },
-    coverLine: {
-        backgroundImage: "linear-gradient(to right, rgba(0, 0, 0, 0.05),  rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.05))",
-        height: "16rem",
-        position: "absolute",
-        right: "10.5rem",
-        width: "4px",
-    },
-
-
     bookDetails: {
-        maxWidth: "12rem",
         zIndex: 5,
     },
-
-    bookTitle: {
-        fontFamily: "'Cormorant', serif",
-        fontSize: "2.5rem",
+    name: {
+        color: themeColors.black,
+        fontFamily: "'Playfair Display', serif",
+        fontSize: "2rem",
         fontWeight: 300,
         letterSpacing: "2px",
-        lineHeight: 1,
-        margin: 0,
-        textTransform: "uppercase",
     },
-    read: {
+    viewDiv: {
         display: "flex",
         alignItems: "center",
         marginTop: "1rem",
+        marginLeft: "-6rem",
         "&:hover": {
             cursor: "pointer",
         },
     },
+    bubble: {
+        backgroundColor: themeColors.red,
+        borderRadius: "2rem",
+        height: "10px",
+        width: "10px",
+    },
     line: {
-        backgroundColor: themeColors.black,
-        height: "0.5px",
-        marginRight: "0.5rem",
-        width: "4rem",
+        backgroundColor: themeColors.red,
+        height: "2px",
+        marginRight: "1rem",
+        width: "7rem",
         transition: "width 0.3s",
     },
-    viewButton: {
+    view: {
+        color: themeColors.red,
         fontFamily: "'Poppins', sans-serif",
-        fontSize: "1rem",
-        fontWeight: 300,
-        letterSpacing: "5px",
+        fontSize: "0.8rem",
+        fontWeight: 600,
+        letterSpacing: "4px",
         margin: 0,
         textTransform: "uppercase",
-
     },
-
-});
+}));
 
 function BookCard(props) {
     const classes = useStyles();
@@ -99,13 +82,13 @@ function BookCard(props) {
     const reduceLineWidth = () => {
         if (id) {
             const viewBookLine = document.getElementById(id);
-            viewBookLine.style.width = "1rem";
+            viewBookLine.style.width = "5rem";
         }
     };
     const restoreLineWidth = () => {
         if (id) {
             const viewBookLine = document.getElementById(id);
-            viewBookLine.style.width = "4rem";
+            viewBookLine.style.width = "7rem";
         }
     };
 
@@ -114,23 +97,21 @@ function BookCard(props) {
     };
 
     return (
-        <div className={classes.bookCard}>
-
-            <img className={classes.bookCover} src="https://images.unsplash.com/photo-1611071512738-6dd137f8ff29?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="cover" />
-            <div className={classes.coverFilter} />
-            <div className={classes.coverLine} />
-
+        <div className={classes.root}>
+            <div className={classes.coverDiv}>
+                <img className={classes.cover} src="https://images.unsplash.com/photo-1516368694098-47836cebec97?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=646&q=80" alt="" />
+                <div className={classes.coverBorder} />
+            </div>
             <div className={classes.bookDetails}>
-                <h1 className={classes.bookTitle}>{trimString("The Da Vinci Code", 25)}</h1>
-                <div className={classes.read} onMouseOver={reduceLineWidth} onMouseOut={restoreLineWidth} onClick={handleViewBook}>
+                <h2 className={classes.name}>{trimString("Harry Potter", 25)}</h2>
+                <div className={classes.viewDiv} onMouseOver={reduceLineWidth} onMouseOut={restoreLineWidth} onClick={handleViewBook}>
 
                     {/* change this to individual unique ids when using carousel */}
-
+                    <div className={classes.bubble} />
                     <div className={classes.line} id={id} />
-                    <h2 className={classes.viewButton}>View</h2>
+                    <h3 className={classes.view}>View</h3>
                 </div>
             </div>
-
         </div>
     );
 }
