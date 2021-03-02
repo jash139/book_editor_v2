@@ -1,7 +1,7 @@
 import React from "react";
 
-import ArrowBackIosRoundedIcon from '@material-ui/icons/ArrowBackIosRounded';
-import ArrowForwardIosRoundedIcon from '@material-ui/icons/ArrowForwardIosRounded';
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 
 import { makeStyles } from "@material-ui/core/styles";
 import GridList from "@material-ui/core/GridList";
@@ -15,12 +15,17 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         alignItems: "center",
     },
-    arrowIcon: {
-        color: themeColors.darkSkin,
-        fontSize: "2.5rem",
-        [theme.breakpoints.down("md")]: {
-            fontSize: "2rem",
+    scrollIcon: {
+        backgroundColor: themeColors.red,
+        margin: "0 1rem",
+        padding: "0.3rem",
+        "&:hover": {
+            backgroundColor: themeColors.red,
         },
+    },
+    icon: {
+        color: "white",
+        fontSize: "2rem",
     },
     root: {
         display: "flex",
@@ -65,8 +70,8 @@ function Carousel(props) {
 
     return (
         <div className={classes.carousel}>
-            <IconButton onClick={() => handleScroll("left")}>
-                <ArrowBackIosRoundedIcon className={classes.arrowIcon} />
+            <IconButton className={classes.scrollIcon} onClick={() => handleScroll("left")}>
+                <ChevronLeftIcon className={classes.icon} />
             </IconButton>
 
             {/* change this id to be unique */}
@@ -76,8 +81,8 @@ function Carousel(props) {
                     {bookCards}
                 </GridList>
             </div>
-            <IconButton onClick={() => handleScroll("right")}>
-                <ArrowForwardIosRoundedIcon className={classes.arrowIcon} />
+            <IconButton className={classes.scrollIcon} onClick={() => handleScroll("right")}>
+                <ChevronRightIcon className={classes.icon} />
             </IconButton>
         </div>
     );

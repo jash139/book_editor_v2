@@ -8,7 +8,6 @@ import BigHeading from "../BigHeading/BigHeading";
 import Heading from "../Heading/Heading";
 import Carousel from "../Carousel/Carousel";
 import GenreSelectionTabs from "../GenreSelectionTabs/GenreSelectionTabs";
-import TestComponent from "../Testcomponent/TestComponent";
 
 import themeColors from "../../constants/themeColors";
 import genres from "../../constants/genres";
@@ -79,8 +78,7 @@ function Explore() {
         genres.map((genre, id) =>
             <div className={id % 2 === 0 ? classes.carouselDark : classes.carouselLight} key={genre}>
                 <Heading heading={genre} />
-                {/* <Carousel id={"carousel-" + genre} /> */}
-                <TestComponent id={"carousel-" + genre} />
+                <Carousel id={"carousel-" + genre} />
             </div>
         )
     );
@@ -89,7 +87,6 @@ function Explore() {
         <div className={classes.carouselDark}>
             <Heading heading={selectedGenre.genre} />
             <Carousel id={"carousel-" + selectedGenre.genre} />
-            <TestComponent id={"carousel-" + selectedGenre.genre} />
         </div>
     );
 
