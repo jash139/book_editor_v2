@@ -1,26 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import ClearIcon from '@material-ui/icons/Clear';
+import ClearIcon from "@material-ui/icons/Clear";
 
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import { IconButton } from '@material-ui/core';
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import { IconButton } from "@material-ui/core";
 
-import themeColors from '../../constants/themeColors';
-import genres from '../../constants/genres';
+import themeColors from "../../constants/themeColors";
+import genres from "../../constants/genres";
 
 const GenreTabs = withStyles({
     indicator: {
-        backgroundColor: "transparent",
-        display: "hidden",
+        backgroundColor: themeColors.red,
         justifyContent: "center",
         "& > span": {
             borderRadius: "1rem",
             maxWidth: 50,
             width: "100%",
-            backgroundColor: "transparent",
+            backgroundColor: themeColors.red,
         },
     },
 })((props) => <Tabs {...props} TabIndicatorProps={{ children: <span /> }} />);
@@ -29,26 +28,20 @@ const GenreTab = withStyles((theme) => ({
     root: {
         backgroundColor: "white",
         borderRadius: 0,
-        borderBottom: "2px solid transparent",
-        color: themeColors.black,
+        color: themeColors.grey,
         fontFamily: "'Poppins', sans-serif",
         fontSize: "0.8rem",
-        fontWeight: 300,
-        letterSpacing: "5px",
-        margin: "0 0.5rem",
+        fontWeight: 600,
         "&:hover": {
             color: themeColors.black,
             opacity: 1,
         },
         "&$selected": {
             backgroundColor: "white",
-            color: themeColors.darkSkin,
-            borderBottom: "2px solid " + themeColors.darkSkin,
+            color: themeColors.red,
         },
         "&:focus": {
             backgroundColor: "white",
-            color: themeColors.darkSkin,
-            borderBottom: "2px solid " + themeColors.darkSkin,
         },
     },
     selected: {},
@@ -59,19 +52,16 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         flexGrow: 1,
         margin: "auto",
-        marginTop: "5rem",
-        maxWidth: "1500px",
-        padding: "0 1rem",
+        marginTop: "3rem",
+        maxWidth: "90%",
     },
     clearButton: {
         borderRadius: 0,
-        color: themeColors.greenishGrey,
+        border: "2px solid " + themeColors.red,
+        color: themeColors.red,
         margin: "auto",
         height: "2rem",
         width: "2rem",
-        "&:hover": {
-            backgroundColor: "white",
-        },
     },
 }));
 
