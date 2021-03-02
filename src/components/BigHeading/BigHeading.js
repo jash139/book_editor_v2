@@ -2,20 +2,17 @@ import React from "react";
 
 import { makeStyles } from "@material-ui/core";
 
+import themeColors from "../../constants/themeColors";
+
 const useStyles = makeStyles(theme => ({
     bigHeading: {
-        fontFamily: "'Cormorant', serif",
-        fontSize: "5rem",
+        color: themeColors.grey,
+        fontFamily: "'Playfair Display', serif",
+        fontSize: "3.5rem",
         fontWeight: 600,
-        letterSpacing: "1rem",
-        [theme.breakpoints.down("md")]: {
-            fontSize: "3.5rem",
-            letterSpacing: "0.5rem",
-        },
-        margin: "2.5rem 0",
-        opacity: "30%",
+        margin: "0.5rem 0",
+        opacity: 0.25,
         textAlign: "center",
-        textTransform: "uppercase",
     },
 }));
 
