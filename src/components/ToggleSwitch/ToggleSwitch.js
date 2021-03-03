@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import Switch from "react-switch";
 
 import toggleReadMode from "../../actions/toggleReadMode";
 
-import Switch from "react-switch";
 import themeColors from "../../constants/themeColors";
 
 import DaySVG from "../SVGs/DaySVG";
@@ -24,12 +24,12 @@ function ToggleSwitch(props) {
             <Switch
                 onChange={handleChange}
                 checked={switchChecked}
-                boxShadow="0 5px 5px rgba(0, 0, 0, 0.2)"
+                boxShadow="none"
                 activeBoxShadow="none"
                 height={30}
                 width={57.5}
-                offColor={themeColors.lightGrey}
-                onColor={themeColors.darkGrey}
+                offColor={themeColors.grey}
+                onColor={themeColors.black}
                 uncheckedIcon={<div style={{ padding: "0.1rem" }}><DaySVG /></div>}
                 checkedIcon={<div style={{ padding: "0.15rem 0 0 0.1rem" }}><NightSVG /></div>}
             />

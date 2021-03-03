@@ -6,7 +6,6 @@ import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Grid, TextField } from '@material-ui/core';
 
-import BackIcon from '../Icons/BackIcon';
 import themeColors from '../../constants/themeColors';
 
 import BigHeading from '../BigHeading/BigHeading';
@@ -148,7 +147,6 @@ function Write() {
                 <Grid item xs={12}>
                     <div className={classes.navBar}>
                         <IconButton>
-                            <BackIcon />
                         </IconButton>
                         <Button variant="outlined" className={classes.outlineButton}>Logout</Button>
                     </div>

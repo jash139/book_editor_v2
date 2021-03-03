@@ -13,7 +13,6 @@ import IconButton from '@material-ui/core/IconButton';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Button, Grid, useMediaQuery } from '@material-ui/core';
 
-import BackIcon from '../Icons/BackIcon';
 import themeColors from '../../constants/themeColors';
 
 import BigHeading from '../BigHeading/BigHeading';
@@ -259,7 +258,6 @@ function NewChapter(props) {
                     <Grid item xs={12}>
                         <div className={classes.navBar}>
                             <IconButton>
-                                <BackIcon />
                             </IconButton>
                             <Button variant="outlined" className={classes.outlineButton}>Logout</Button>
                         </div>
