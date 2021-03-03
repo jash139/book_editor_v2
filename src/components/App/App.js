@@ -32,7 +32,6 @@ function App() {
           <Route exact path="/profile" component={Profile} />
 
           <Route exact path="/test" component={TestComponent} />
-          <Route exact path="/profilebutton" component={ProfileButton} />
 
           {/* Add ^^ book id in the path  */}
 

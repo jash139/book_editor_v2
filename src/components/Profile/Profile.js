@@ -49,10 +49,41 @@ const useStyles = makeStyles(theme => ({
         top: "0.5rem",
         left: "0.5rem",
     },
+    userDetails: {
+        [theme.breakpoints.down("sm")]: {
+            display: "flex",
+            flexDirection: "column",
+        },
+    },
     name: {
         color: themeColors.red,
         fontFamily: "'Playfair Display', serif",
         fontSize: "2.5rem",
+    },
+    numbers: {
+        display: "flex",
+        justifyContent: "space-between",
+        marginBottom: "2rem",
+    },
+    column: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+    },
+    numberHeading: {
+        color: themeColors.grey,
+        fontFamily: "'Poppins', sans-serif",
+        fontSize: "0.8rem",
+        fontWeight: 600,
+        marginBottom: 0,
+        textTransform: "uppercase",
+    },
+    number: {
+        color: themeColors.black,
+        fontFamily: "'Poppins', sans-serif",
+        fontSize: "0.9rem",
+        fontWeight: 600,
+        marginTop: "0.5rem",
     },
     editButton: {
         border: "2px solid " + themeColors.red,
@@ -66,13 +97,13 @@ const useStyles = makeStyles(theme => ({
     about: {
         borderRight: "5px solid " + themeColors.red,
         borderBottom: "5px solid " + themeColors.red,
-        maxWidth: 250,
+        maxWidth: 300,
         margin: "2rem",
         padding: "0 2rem 2rem 0",
         position: "relative",
         [theme.breakpoints.down("sm")]: {
             maxWidth: 500,
-            margin: "2rem 1rem",
+            margin: "5rem 0 2rem 2rem",
         },
     },
     aboutHeading: {
@@ -112,6 +143,20 @@ function Profile(props) {
                     </div>
                     <div className={classes.userDetails}>
                         <h1 className={classes.name}>Umbrella Girl</h1>
+                        <div className={classes.numbers}>
+                            <div className={classes.column}>
+                                <h5 className={classes.numberHeading}>Followers</h5>
+                                <p className={classes.number}>240</p>
+                            </div>
+                            <div className={classes.column}>
+                                <h5 className={classes.numberHeading}>Following</h5>
+                                <p className={classes.number}>150</p>
+                            </div>
+                            <div className={classes.column}>
+                                <h5 className={classes.numberHeading}>Work</h5>
+                                <p className={classes.number}>13</p>
+                            </div>
+                        </div>
                         <Button variant="outlined" className={classes.editButton}>Edit Details</Button>
                     </div>
                 </div>
