@@ -1,12 +1,14 @@
 import React from "react";
+import { useHistory } from "react-router";
+
 import { Button, makeStyles } from "@material-ui/core";
 
 import HomeNavBar from "../HomeNavBar/HomeNavBar";
-
-import themeColors from "../../constants/themeColors";
 import HomeIllustration from "../HomeIllustration/HomeIllustration";
 import ScrollIndicator from "../ScrollIndicator/ScrollIndicator";
 import Quotation from "../Quotation/Quotation";
+
+import themeColors from "../../constants/themeColors";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -78,6 +80,12 @@ const useStyles = makeStyles(theme => ({
 
 function Home() {
     const classes = useStyles();
+    const history = useHistory();
+
+    const handleExplore = () => {
+        history.push("/explore");
+    };
+
     return (
         <div className={classes.root}>
             <HomeNavBar />
@@ -89,7 +97,7 @@ function Home() {
                 <div className={classes.middleSection}>
                     <div>
                         <h2 className={classes.heading}>Share<br /><span className={classes.stories}>Stories</span><br />or find what others have to say</h2>
-                        <Button variant="outlined" className={classes.exploreButton}>Explore</Button>
+                        <Button variant="outlined" className={classes.exploreButton} onClick={handleExplore}>Explore</Button>
                     </div>
                     <div className={classes.line} />
                 </div>
