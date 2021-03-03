@@ -1,8 +1,8 @@
 import React from "react";
 import { IconButton, makeStyles } from "@material-ui/core";
-import AddRoundedIcon from '@material-ui/icons/AddRounded';
 
-import BookEdLogo from "../SVGs/BookEdLogo";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import AddRoundedIcon from "@material-ui/icons/AddRounded";
 
 import themeColors from "../../constants/themeColors";
 
@@ -25,12 +25,12 @@ const useStyles = makeStyles(theme => ({
         },
         width: "90%",
     },
-    logo: {
+    backButton: {
+        padding: "0.3rem",
+    },
+    backIcon: {
         color: themeColors.red,
-        fontFamily: "'Playfair Display', serif",
         fontSize: "2rem",
-        fontWeight: 400,
-        margin: 0,
     },
     addButton: {
         backgroundColor: themeColors.red,
@@ -50,7 +50,9 @@ function ViewBookNavBar() {
     return (
         <header className={classes.header}>
             <nav className={classes.nav}>
-                <h1 className={classes.logo}>B<span><BookEdLogo /></span>kEd</h1>
+                <IconButton className={classes.backButton}>
+                    <ArrowBackIcon className={classes.backIcon} />
+                </IconButton>
                 <IconButton className={classes.addButton}>
                     <AddRoundedIcon className={classes.addIcon} />
                 </IconButton>
