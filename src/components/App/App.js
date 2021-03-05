@@ -1,6 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
+import { AuthProvider } from "../../contexts/AuthContext";
+
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Home from "../Home/Home";
 import ViewBook from "../ViewBook/ViewBook";
@@ -11,8 +13,6 @@ import Profile from "../Profile/Profile";
 import Write from "../Write/Write";
 
 import TestComponent from "../Testcomponent/TestComponent";
-import ProfileButton from "../ProfileButton/ProfileButton";
-import { AuthProvider } from "../../contexts/AuthContext";
 
 function App() {
   return (

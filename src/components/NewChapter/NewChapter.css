@@ -5,16 +5,19 @@
     padding: 1rem;
 }
 
+.ce-toolbar__content {
+    max-width: 100%;
+}
 .ce-toolbar {
     display: none !important;
 }
 
 .ce-inline-tool {
-    color: #676058;
+    color: #565656;
     font-family: 'Poppins', sans-serif;
     padding: "5rem";
 }
 
 .ce-inline-tool--active {
-    color: #93674C;
+    color: #DF1C0F;
 }

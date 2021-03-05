@@ -1,81 +1,46 @@
-import React from 'react';
+import React, { useRef, useState } from "react";
+import { connect } from "react-redux";
+import EditorJS from "react-editor-js";
 
 import "./NewChapter.css";
 
-import EditorJS from '@editorjs/editorjs';
+import StarRateIcon from "@material-ui/icons/StarRate";
+import ChevronRightRoundedIcon from "@material-ui/icons/ChevronRightRounded";
 
-import AddRoundedIcon from '@material-ui/icons/AddRounded';
-import ChevronRightRoundedIcon from '@material-ui/icons/ChevronRightRounded';
+import Drawer from "@material-ui/core/Drawer";
+import Hidden from "@material-ui/core/Hidden";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { Button, TextField, useMediaQuery } from "@material-ui/core";
 
-import Drawer from '@material-ui/core/Drawer';
-import Hidden from '@material-ui/core/Hidden';
-import IconButton from '@material-ui/core/IconButton';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { Button, Grid, useMediaQuery } from '@material-ui/core';
+import NewChapterNavBar from "../NewChapterNavBar/NewChapterNavBar";
 
-import themeColors from '../../constants/themeColors';
-
-import BigHeading from '../BigHeading/BigHeading';
-import BookCover from '../BookCover/BookCover';
+import themeColors from "../../constants/themeColors";
 
 const drawerWidth = 260;
 
-const editor = new EditorJS({
-    placeholder: "Once upon a time . . ."
-});
-
 const useStyles = makeStyles((theme) => ({
-
+    root: {
+        display: "flex",
+        margin: "auto",
+        width: "90%",
+    },
     rightToggleDiv: {
+        backgroundColor: "rgba(0, 0, 0, 0.1)",
+        borderRadius: "0 2rem 2rem 0",
         position: "absolute",
         top: "50%",
         left: 0,
-        backgroundColor: themeColors.darkSkin,
-        opacity: 0.6,
         width: "2rem",
         height: "4rem",
-        borderRadius: "0 2rem 2rem 0",
         "&:hover": {
             cursor: "pointer",
         },
     },
     rightIcon: {
-        color: themeColors.bg,
+        color: themeColors.red,
         fontSize: "2.5rem",
         paddingTop: "0.75rem",
         marginLeft: "-0.5rem",
-    },
-
-
-    newChapter: {
-        display: "flex",
-        margin: "auto",
-        maxWidth: "1500px",
-        padding: "0 1rem",
-    },
-    navBar: {
-        display: "flex",
-        alignItems: "center",
-        paddingTop: "1rem",
-    },
-    outlineButton: {
-        borderRadius: 0,
-        border: "1.5px solid " + themeColors.black,
-        fontFamily: "'Cormorant', serif",
-        fontSize: "1.2rem",
-        fontWeight: 600,
-        marginLeft: "auto",
-        padding: "0.2px 0",
-        textTransform: "none",
-        width: "8rem",
-    },
-
-
-    themeSwitch: {
-        marginLeft: "auto",
-    },
-    root: {
-        display: 'flex',
     },
     drawer: {
         [theme.breakpoints.up('sm')]: {
@@ -87,9 +52,9 @@ const useStyles = makeStyles((theme) => ({
     drawerPaper: {
         position: "relative",
         color: themeColors.black,
-        backgroundColor: themeColors.bg,
+        backgroundColor: "transparent",
         [theme.breakpoints.up("sm")]: {
-            height: "85vh",
+            height: "80vh",
         },
         overflowY: "auto",
         width: drawerWidth,
@@ -104,57 +69,92 @@ const useStyles = makeStyles((theme) => ({
             borderRadius: "1rem",
         }
     },
-
-    author: {
-        fontFamily: "'Cormorant', serif",
-        fontSize: "1.6rem",
-        fontWeight: 500,
-        letterSpacing: "1px",
-        marginBottom: "0.8rem",
+    coverDiv: {
+        position: "relative",
+        margin: "3rem 0",
     },
-    divider: {
-        backgroundColor: themeColors.darkGrey,
-        height: "0.1rem",
+    cover: {
+        height: "13.35rem",
         width: "10rem",
     },
-    title: {
-        fontFamily: "'Cormorant', serif",
-        fontSize: "2.5rem",
-        fontWeight: 300,
-        letterSpacing: "3px",
-        margin: "0.5rem 0 1rem",
-        marginTop: "0.5rem",
-        textTransform: "uppercase",
+    coverBorder: {
+        border: "4px solid " + themeColors.red,
+        height: "13.35rem",
+        width: "10rem",
+        position: "absolute",
+        top: "0.5rem",
+        left: "0.5rem",
     },
-    chaptersHeading: {
-        fontFamily: "'Cormorant', serif",
-        fontSize: "1.5rem",
+    bookName: {
+        color: themeColors.red,
+        fontFamily: "'Playfair Display', serif",
+        fontSize: "1.8rem",
+        margin: "0 0 0.5rem",
     },
-    addChapterIcon: {
+    author: {
         color: themeColors.black,
+        fontFamily: "'Poppins', sans-serif",
+        fontSize: "1.1rem",
+        fontWeight: 600,
+        margin: "0.5rem 0 2rem",
     },
-
-
-
+    separator1: {
+        backgroundColor: themeColors.grey,
+        height: "1px",
+        width: "8rem",
+    },
+    separator2: {
+        backgroundColor: themeColors.grey,
+        height: "1px",
+        margin: "0.3rem 0",
+        width: "4rem",
+    },
+    ratingDiv: {
+        display: "flex",
+        alignItems: "center",
+    },
+    rating: {
+        color: themeColors.black,
+        fontFamily: "'Playfair Display', serif",
+        fontSize: "0.9rem",
+        fontWeight: 600,
+        margin: 0,
+    },
+    rateIcon: {
+        color: themeColors.red,
+    },
+    genre: {
+        color: themeColors.black,
+        fontFamily: "'Playfair Display', serif",
+        fontSize: "0.9rem",
+        fontWeight: 600,
+        margin: 0,
+    },
     content: {
         flexGrow: 1,
-        padding: "0 0 1rem 1rem",
-    },
-
-    chapterHeading: {
-        color: themeColors.darkSkin,
-        fontFamily: "'Cormorant', serif",
-        fontSize: "2rem",
-        fontWeight: 600,
-        marginTop: 0,
-    },
-
-    editor: {
-        backgroundColor: themeColors.bgDark,
-        border: "1.5px solid " + themeColors.lightGrey,
-        fontFamily: "'Cormorant', serif",
-        fontSize: "1.2rem",
+        padding: "0 1rem",
         height: "80vh",
+        overflowY: "auto",
+        '&::-webkit-scrollbar': {
+            width: "1.5rem",
+        },
+        '&::-webkit-scrollbar-thumb': {
+            border: "0.5rem solid rgba(0, 0, 0, 0)",
+            backgroundClip: "padding-box",
+            width: "0.5rem",
+            background: "rgba(0, 0, 0, 0.15)",
+            borderRadius: "1rem",
+        }
+    },
+    editor: {
+        borderRadius: 3,
+        border: "1px solid " + themeColors.black,
+        color: themeColors.black,
+        fontFamily: "'Poppins', sans-serif",
+        fontSize: "1rem",
+        fontWeight: 400,
+        lineHeight: 2,
+        height: "60vh",
         overflowY: "scroll",
         width: "100%",
         '&::-webkit-scrollbar': {
@@ -168,153 +168,175 @@ const useStyles = makeStyles((theme) => ({
             borderRadius: "1rem",
         }
     },
-
-    resetButton: {
-        borderRadius: 0,
-        border: "1px solid " + themeColors.black,
+    chapterNameTextField: {
+        "& .MuiOutlinedInput-root": {
+            textAlign: "center",
+            "& fieldset": {
+                border: "1px solid " + themeColors.grey,
+            },
+            "&:hover fieldset": {
+                border: "1px solid " + themeColors.black,
+            },
+            "&.Mui-focused fieldset": {
+                border: "1px solid " + themeColors.black,
+            },
+        },
+    },
+    chapterNameinput: {
+        color: themeColors.red,
+        fontFamily: "'Playfair Display', serif",
+        fontSize: "1.5rem",
+        margin: "1.5rem 0",
+    },
+    action: {
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "flex-end",
+    },
+    reset: {
+        border: "2px solid " + themeColors.black,
         color: themeColors.black,
-        fontFamily: "'Cormorant', serif",
-        fontSize: "1.2rem",
+        fontFamily: "'Poppins', sans-serif",
         fontWeight: 600,
-        margin: "1.5rem 1rem 1rem 0",
+        fontSize: "0.8rem",
+        marginRight: "1rem",
+        padding: "0.2rem 1.5rem",
+        width: "6rem",
         textTransform: "none",
-        width: "6.5rem",
     },
-    saveButton: {
-        backgroundColor: themeColors.lightSkin,
-        borderRadius: 0,
-        boxShadow: "none",
-        fontFamily: "'Cormorant', serif",
-        fontSize: "1.2rem",
+    save: {
+        border: "2px solid " + themeColors.red,
+        color: themeColors.red,
+        fontFamily: "'Poppins', sans-serif",
         fontWeight: 600,
-        margin: "1.5rem 0 1rem 1rem",
+        fontSize: "0.8rem",
+        padding: "0.2rem 1.5rem",
+        width: "6rem",
         textTransform: "none",
-        width: "6.5rem",
-        "&:hover": {
-            backgroundColor: themeColors.lightSkin,
-            boxShadow: "none",
-        }
     },
-
 }));
 
 function NewChapter(props) {
+    const instanceRef = useRef(null);
+    let data;
+    const [chapter, setChapter] = useState();
+
+    async function handleSave() {
+        const savedData = await instanceRef.current.save()
+    }
+
     const { window } = props;
+
     const classes = useStyles();
     const theme = useTheme();
     const lgView = useMediaQuery(theme.breakpoints.up("sm"));
 
-    const [mobileOpen, setMobileOpen] = React.useState(false);
+    const [mobileOpen, setMobileOpen] = useState(false);
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
 
-
-    const handleNewChapter = () => {
-        handleSaveChapter(); // save the chapter and add new one
-    };
-
-    const handleSaveChapter = () => {
-        editor.save().then((outputData) => {
-            const content = outputData.blocks;
-            const chapter = {
-                bookId: "Test book Id",
-                title: "title",
-                content,
-                chapterNumber: 1
-            };
-            console.log(process.env.REACT_APP_BACKEND_HOST_URL);
-            console.log(chapter);
-            console.log("Chapter content: ", content)
-        }).catch((error) => {
-            console.log("Saving failed: ", error)
-        });
-    };
-
     const drawer = (
-        <div style={{ marginLeft: "1rem" }}>
-            <BookCover />
-            <h2 className={classes.author}>J. K. Rowling</h2>
-            <div className={classes.divider} />
-            <h1 className={classes.title}>Harry Potter</h1>
-            <h3 className={classes.chaptersHeading}>Chapters<IconButton onClick={handleNewChapter}><AddRoundedIcon className={classes.addChapterIcon} /></IconButton></h3>
+        <div style={{ margin: lgView ? 0 : "0 2rem" }}>
+            <div className={classes.coverDiv}>
+                <img className={classes.cover} src="https://images.unsplash.com/photo-1545239351-cefa43af60f3?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mjl8fGJvb2slMjBjb3ZlcnxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="" />
+                <div className={classes.coverBorder} />
+            </div>
+            <h1 className={classes.bookName}>Coffee a Day</h1>
+            <div className={classes.separator1} />
+            <h2 className={classes.author}>J. K. Bowling</h2>
+            <div className={classes.ratingDiv}>
+                <h3 className={classes.rating}>8.5 / 10</h3>
+                <StarRateIcon className={classes.rateIcon} />
+            </div>
+            <div className={classes.separator2} />
+            <h3 className={classes.genre}>Fiction</h3>
         </div>
     );
+
+    const handleChange = (event) => {
+
+    };
 
     const container = window !== undefined ? () => window().document.body : undefined;
 
     return (
         <React.Fragment>
+            <NewChapterNavBar />
             {
                 !lgView && !mobileOpen &&
                 <div className={classes.rightToggleDiv} onClick={handleDrawerToggle}>
                     <ChevronRightRoundedIcon className={classes.rightIcon} />
                 </div>
             }
-
-            <div className={classes.newChapter}>
-                <Grid container>
-                    <Grid item xs={12}>
-                        <div className={classes.navBar}>
-                            <IconButton>
-                            </IconButton>
-                            <Button variant="outlined" className={classes.outlineButton}>Logout</Button>
-                        </div>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <BigHeading heading="Write" />
-                    </Grid>
-                    <Grid item>
-                        <nav className={classes.drawer}>
-                            <Hidden smUp implementation="css">
-                                <Drawer
-                                    container={container}
-                                    variant="temporary"
-                                    anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-                                    open={mobileOpen}
-                                    onClose={handleDrawerToggle}
-                                    classes={{
-                                        paper: classes.drawerPaper,
-                                    }}
-                                    ModalProps={{
-                                        keepMounted: true,
-                                    }}
-                                >
-                                    {drawer}
-                                </Drawer>
-                            </Hidden>
-                            <Hidden xsDown implementation="css">
-                                <Drawer
-                                    classes={{
-                                        paper: classes.drawerPaper,
-                                    }}
-                                    variant="permanent"
-                                    open
-                                >
-                                    {drawer}
-                                </Drawer>
-                            </Hidden>
-                        </nav>
-                    </Grid>
-                    <Grid item xs>
-                        <main className={classes.content}>
-                            <h2 className={classes.chapterHeading}>Chapter 3: Lorem ipsum</h2>
-
-                            <div id="editorjs" className={classes.editor} />
-
-                            <Grid container justify="flex-end">
-                                <Button variant="outlined" className={classes.resetButton}>Reset</Button>
-                                <Button variant="contained" className={classes.saveButton} onClick={handleSaveChapter}>Save</Button>
-                            </Grid>
-
-                        </main>
-                    </Grid>
-                </Grid>
-
+            <div className={classes.root}>
+                <nav className={classes.drawer}>
+                    <Hidden smUp implementation="css">
+                        <Drawer
+                            container={container}
+                            variant="temporary"
+                            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+                            open={mobileOpen}
+                            onClose={handleDrawerToggle}
+                            classes={{
+                                paper: classes.drawerPaperLight,
+                            }}
+                            ModalProps={{
+                                keepMounted: true,
+                            }}
+                        >
+                            {drawer}
+                        </Drawer>
+                    </Hidden>
+                    <Hidden xsDown implementation="css">
+                        <Drawer
+                            classes={{
+                                paper: classes.drawerPaper,
+                            }}
+                            variant="permanent"
+                            open
+                        >
+                            {drawer}
+                        </Drawer>
+                    </Hidden>
+                </nav>
+                <main className={classes.content}>
+                    <div className={classes.action}>
+                        <Button variant="outlined" className={classes.reset}>Reset</Button>
+                        <Button variant="outlined" className={classes.save}>Save</Button>
+                    </div>
+                    <TextField
+                        className={classes.chapterNameTextField}
+                        value={"Chapter 3: Lorem ipsum"}
+                        fullWidth
+                        //   onChange={handleChange}
+                        InputProps={{
+                            className: classes.chapterNameinput,
+                        }}
+                        variant="outlined"
+                    />
+                    <EditorJS
+                        holder="chapter-editor"
+                        // instanceRef={(instance) => (instanceRef.current = instance)}
+                        onChange={(e) => setChapter(data)}
+                        data={data}
+                        placeholder="Once upon a time..."
+                    >
+                        <div
+                            id="chapter-editor"
+                            className={classes.editor}
+                        />
+                    </EditorJS>
+                </main>
             </div>
         </React.Fragment>
     );
 }
 
-export default NewChapter;
+const mapStateToProps = state => ({
+    readModeType: state.toggleReadMode
+});
+
+
+export default connect(mapStateToProps)(NewChapter);
