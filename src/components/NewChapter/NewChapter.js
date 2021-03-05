@@ -10,7 +10,7 @@ import ChevronRightRoundedIcon from "@material-ui/icons/ChevronRightRounded";
 import Drawer from "@material-ui/core/Drawer";
 import Hidden from "@material-ui/core/Hidden";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import { Button, TextField, useMediaQuery } from "@material-ui/core";
+import { TextField, useMediaQuery } from "@material-ui/core";
 
 import NewChapterNavBar from "../NewChapterNavBar/NewChapterNavBar";
 
@@ -188,32 +188,6 @@ const useStyles = makeStyles((theme) => ({
         fontSize: "1.5rem",
         margin: "1.5rem 0",
     },
-    action: {
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "flex-end",
-    },
-    reset: {
-        border: "2px solid " + themeColors.black,
-        color: themeColors.black,
-        fontFamily: "'Poppins', sans-serif",
-        fontWeight: 600,
-        fontSize: "0.8rem",
-        marginRight: "1rem",
-        padding: "0.2rem 1.5rem",
-        width: "6rem",
-        textTransform: "none",
-    },
-    save: {
-        border: "2px solid " + themeColors.red,
-        color: themeColors.red,
-        fontFamily: "'Poppins', sans-serif",
-        fontWeight: 600,
-        fontSize: "0.8rem",
-        padding: "0.2rem 1.5rem",
-        width: "6rem",
-        textTransform: "none",
-    },
 }));
 
 function NewChapter(props) {
@@ -302,10 +276,6 @@ function NewChapter(props) {
                     </Hidden>
                 </nav>
                 <main className={classes.content}>
-                    <div className={classes.action}>
-                        <Button variant="outlined" className={classes.reset}>Reset</Button>
-                        <Button variant="outlined" className={classes.save}>Save</Button>
-                    </div>
                     <TextField
                         className={classes.chapterNameTextField}
                         value={"Chapter 3: Lorem ipsum"}

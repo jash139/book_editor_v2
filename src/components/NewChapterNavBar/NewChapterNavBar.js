@@ -32,13 +32,25 @@ const useStyles = makeStyles(theme => ({
         color: themeColors.red,
         fontSize: "2rem",
     },
-    logoutButton: {
+    reset: {
         border: "2px solid " + themeColors.black,
         color: themeColors.black,
         fontFamily: "'Poppins', sans-serif",
         fontWeight: 600,
         fontSize: "0.8rem",
+        marginRight: "1rem",
         padding: "0.2rem 1.5rem",
+        width: "6rem",
+        textTransform: "none",
+    },
+    save: {
+        border: "2px solid " + themeColors.red,
+        color: themeColors.red,
+        fontFamily: "'Poppins', sans-serif",
+        fontWeight: 600,
+        fontSize: "0.8rem",
+        padding: "0.2rem 1.5rem",
+        width: "6rem",
         textTransform: "none",
     },
 }));
@@ -51,7 +63,10 @@ function NewChapterNavBar() {
                 <IconButton className={classes.backButton}>
                     <ArrowBackIcon className={classes.backIcon} />
                 </IconButton>
-                <Button variant="outlined" className={classes.logoutButton}>Logout</Button>
+                <div className={classes.action}>
+                    <Button variant="outlined" className={classes.reset}>Reset</Button>
+                    <Button variant="outlined" className={classes.save}>Save</Button>
+                </div>
             </nav>
         </header>
     );
