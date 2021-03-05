@@ -1,196 +1,114 @@
-import React, { useState } from 'react';
+import React from "react";
+import { Button, makeStyles, TextField } from "@material-ui/core";
 
-import AddRoundedIcon from '@material-ui/icons/AddRounded';
+import WriteNavBar from "../WriteNavBar/WriteNavBar";
 
-import IconButton from '@material-ui/core/IconButton';
-import { makeStyles } from '@material-ui/core/styles';
-import { Button, Grid, TextField } from '@material-ui/core';
+import themeColors from "../../constants/themeColors";
+import EnterGenresTextField from "../EnterGenresTextField/EnterGenresTextField";
 
-import themeColors from '../../constants/themeColors';
-
-import BigHeading from '../BigHeading/BigHeading';
-import EnterGenresTextField from '../EnterGenresTextField/EnterGenresTextField';
-
-const useStyles = makeStyles((theme) => ({
-
-    newChapter: {
+const useStyles = makeStyles(theme => ({
+    root: {
         display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
         margin: "auto",
-        maxWidth: "1500px",
-        padding: "0 1rem 2rem",
-
+        width: "90%",
     },
-    navBar: {
+    coverUpload: {
+        border: "1px solid " + themeColors.red,
+        height: "13.35rem",
+        width: "10rem",
+        position: "relative",
         display: "flex",
         alignItems: "center",
-        paddingTop: "1rem",
-    },
-    outlineButton: {
-        borderRadius: 0,
-        border: "1.5px solid " + themeColors.black,
-        fontFamily: "'Cormorant', serif",
-        fontSize: "1.2rem",
-        fontWeight: 600,
-        marginLeft: "auto",
-        padding: "0.2px 0",
-        textTransform: "none",
-        width: "8rem",
-    },
-
-    addCover: {
-        display: "flex",
-        alignItems: "center",
-        backgroundColor: themeColors.bgDark,
-        boxShadow: themeColors.boxShadow,
         justifyContent: "center",
-        height: "16rem",
-        margin: "auto",
-        marginBottom: "5rem",
-        width: "11rem",
     },
-    addIcon: {
-        color: themeColors.darkSkin,
-        fontSize: "5rem",
+    border: {
+        border: "4px solid " + themeColors.red,
+        height: "13.35rem",
+        width: "10rem",
+        position: "absolute",
+        top: "0.3rem",
+        left: "0.3rem",
     },
-    textField: {
-        backgroundColor: themeColors.bgDark,
-        marginBottom: "2rem",
+    addButton: {
+        border: "2px solid " + themeColors.red,
+        color: themeColors.red,
+        fontFamily: "'Poppins', sans-serif",
+        fontWeight: 600,
+        fontSize: "0.8rem",
+        padding: "0.2rem 1rem",
+        textTransform: "none",
+    },
+    titleField: {
+        marginTop: "2rem",
         width: "100%",
-        '& label.Mui-focused': {
-            color: themeColors.darkGrey,
-        },
-        '& .MuiOutlinedInput-root': {
-            '& fieldset': {
-                borderColor: themeColors.lightGrey,
+        "& .MuiOutlinedInput-root": {
+            "& fieldset": {
+                border: "1px solid " + themeColors.grey,
             },
-            '&:hover fieldset': {
-                borderColor: themeColors.lightGrey,
+            "&:hover fieldset": {
+                border: "1px solid " + themeColors.black,
             },
-            '&.Mui-focused fieldset': {
-                borderColor: themeColors.lightGrey,
+            "&.Mui-focused fieldset": {
+                border: "1px solid " + themeColors.black,
             },
         },
-        "& .MuiFormLabel-root": {
-            fontFamily: "'Cormorant', serif",
-            fontSize: "1.4rem",
-            fontWeight: 500,
+    },
+    summaryField: {
+        marginTop: "1rem",
+        width: "100%",
+        "& .MuiOutlinedInput-root": {
+            "& fieldset": {
+                border: "1px solid " + themeColors.grey,
+            },
+            "&:hover fieldset": {
+                border: "1px solid " + themeColors.black,
+            },
+            "&.Mui-focused fieldset": {
+                border: "1px solid " + themeColors.black,
+            },
         },
-
     },
     input: {
-        borderRadius: 0,
-        fontFamily: "'Cormorant', serif",
-        fontSize: "1.4rem",
-        fontWeight: 500,
-
-    },
-
-
-    resetButton: {
-        borderRadius: 0,
-        border: "1px solid " + themeColors.black,
         color: themeColors.black,
-        fontFamily: "'Cormorant', serif",
-        fontSize: "1.2rem",
-        fontWeight: 600,
-        marginRight: "1rem",
-        textTransform: "none",
-        width: "6.5rem",
+        fontFamily: "'Poppins', sans-serif",
+        fontSize: "1rem",
+        fontWeight: 400,
     },
-    nextButton: {
-        backgroundColor: themeColors.lightSkin,
-        borderRadius: 0,
-        boxShadow: "none",
-        color: themeColors.black,
-        fontFamily: "'Cormorant', serif",
-        fontSize: "1.2rem",
-        fontWeight: 600,
-        textTransform: "none",
-        width: "6.5rem",
-        "&:hover": {
-            backgroundColor: themeColors.lightSkin,
-            boxShadow: "none",
-        }
-    },
-
 }));
 
 function Write() {
     const classes = useStyles();
-    const [story, setStory] = useState({
-        title: "",
-        summary: ""
-    });
-
-    const handleChange = (prop, value) => {
-        setStory(prevValues => ({
-            ...prevValues,
-            [prop]: value
-        }));
-    };
-
-    const handleReset = () => {
-        setStory({
-            title: "",
-            summary: ""
-        });
-    };
-
-    const handleNext = () => {
-        console.log(story);
-        // save the story in db and redirect to new chapter page
-    };
-
     return (
-        <div className={classes.newChapter}>
-            <Grid container>
-                <Grid item xs={12}>
-                    <div className={classes.navBar}>
-                        <IconButton>
-                        </IconButton>
-                        <Button variant="outlined" className={classes.outlineButton}>Logout</Button>
-                    </div>
-                </Grid>
-                <Grid item xs={12}>
-                    <BigHeading heading="Write" />
-                </Grid>
-                <Grid item xs={12}>
-                    <div className={classes.addCover}><IconButton><AddRoundedIcon className={classes.addIcon} /></IconButton></div>
-
-                    <TextField
-                        variant="outlined"
-                        label="Story Title"
-                        className={classes.textField}
-                        InputProps={{
-                            className: classes.input,
-                        }}
-                        value={story.title}
-                        onChange={(event) => handleChange("title", event.target.value)}
-                    />
-                    <TextField
-                        variant="outlined"
-                        label="Summary"
-                        multiline
-                        rows={10}
-                        className={classes.textField}
-                        InputProps={{
-                            className: classes.input,
-                        }}
-                        value={story.summary}
-                        onChange={(event) => handleChange("summary", event.target.value)}
-                    />
-                    <EnterGenresTextField />
-                </Grid>
-
-                <Grid item xs={12} container justify="flex-end">
-                    <Button variant="outlined" className={classes.resetButton} onClick={handleReset}>Reset</Button>
-                    <Button variant="contained" className={classes.nextButton} onClick={handleNext}>Next</Button>
-                </Grid>
-
-            </Grid>
-
-
-        </div>
+        <React.Fragment>
+            <WriteNavBar />
+            <div className={classes.root}>
+                <div className={classes.coverUpload}>
+                    <div className={classes.border} />
+                    <Button variant="outlined" className={classes.addButton}>Add</Button>
+                </div>
+                <TextField
+                    className={classes.titleField}
+                    variant="outlined"
+                    placeholder="Story Title"
+                    InputProps={{
+                        className: classes.input,
+                    }}
+                />
+                <TextField
+                    className={classes.summaryField}
+                    variant="outlined"
+                    placeholder="Summary"
+                    multiline
+                    rows={12}
+                    InputProps={{
+                        className: classes.input,
+                    }}
+                />
+                <EnterGenresTextField />
+            </div>
+        </React.Fragment>
     );
 }
 

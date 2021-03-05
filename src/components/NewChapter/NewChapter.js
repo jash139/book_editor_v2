@@ -153,7 +153,6 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: "'Poppins', sans-serif",
         fontSize: "1rem",
         fontWeight: 400,
-        lineHeight: 2,
         height: "60vh",
         overflowY: "scroll",
         width: "100%",
@@ -170,7 +169,6 @@ const useStyles = makeStyles((theme) => ({
     },
     chapterNameTextField: {
         "& .MuiOutlinedInput-root": {
-            textAlign: "center",
             "& fieldset": {
                 border: "1px solid " + themeColors.grey,
             },

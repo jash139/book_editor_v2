@@ -55,7 +55,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-function NewChapterNavBar() {
+function WriteNavBar() {
     const classes = useStyles();
     return (
         <header className={classes.header}>
@@ -65,11 +65,11 @@ function NewChapterNavBar() {
                 </IconButton>
                 <div className={classes.action}>
                     <Button variant="outlined" className={classes.reset}>Reset</Button>
-                    <Button variant="outlined" className={classes.save}>Next</Button>
+                    <Button variant="outlined" className={classes.save}>Save</Button>
                 </div>
             </nav>
         </header>
     );
 }
 
-export default NewChapterNavBar;
+export default WriteNavBar;

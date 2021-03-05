@@ -13,22 +13,21 @@ import themeColors from '../../constants/themeColors';
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
-        marginBottom: "2rem",
-        maxWidth: "1500px",
+        margin: "1rem 0 5rem",
         width: "100%",
         '& label.Mui-focused': {
             color: themeColors.black,
         },
         '& .MuiInput-underline:before': {
-            borderBottomColor: themeColors.bgDark,
+            borderBottomColor: themeColors.grey,
         },
         '& .MuiInput-underline:after': {
-            borderBottomColor: themeColors.bgDark,
+            borderBottomColor: themeColors.black,
         },
     },
     label: {
-        fontFamily: "'Cormorant', serif",
-        fontSize: "1.4rem",
+        fontFamily: "'Playfair Display', serif",
+        fontSize: "1.2rem",
         fontWeight: 500,
     },
     chips: {
@@ -36,14 +35,13 @@ const useStyles = makeStyles((theme) => ({
         flexWrap: 'wrap',
     },
     chip: {
-        backgroundColor: themeColors.bgDark,
+        backgroundColor: "transparent",
+        border: "1.5px solid " + themeColors.black,
         color: themeColors.black,
         fontFamily: "'Poppins', sans-serif",
+        fontWeight: 500,
         fontSize: "0.8rem",
-        letterSpacing: "5px",
-        lineHeight: 2,
         margin: 2,
-        textTransform: "uppercase",
     },
     cancelIcon: {
         color: themeColors.darkGrey,
@@ -61,10 +59,11 @@ const ITEM_PADDING_TOP = 8;
 const MenuProps = {
     PaperProps: {
         style: {
+            border: "1.5px solid " + themeColors.black,
             backgroundColor: "white",
-            borderRadius: 0,
-            boxShadow: "none",
-            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+            borderRadius: 3,
+            boxShadow: themeColors.boxShadow,
+            maxHeight: ITEM_HEIGHT * 6 + ITEM_PADDING_TOP,
             width: 250,
         },
     },
@@ -73,15 +72,13 @@ const MenuProps = {
 // styles for menu items in multi select
 function getStyles(name, personName, theme) {
     return {
+        color: themeColors.black,
         fontFamily: "'Poppins', sans-serif",
         fontSize: "0.8rem",
         fontWeight:
             personName.indexOf(name) === -1
                 ? theme.typography.fontWeightRegular
                 : theme.typography.fontWeightMedium,
-        letterSpacing: "5px",
-        lineHeight: 2,
-        textTransform: "uppercase",
     };
 }
 
