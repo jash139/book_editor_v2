@@ -9,6 +9,7 @@ import ScrollIndicator from "../ScrollIndicator/ScrollIndicator";
 import Quotation from "../Quotation/Quotation";
 
 import themeColors from "../../constants/themeColors";
+import homeContent from "../../constants/homeContent";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -76,6 +77,70 @@ const useStyles = makeStyles(theme => ({
         alignItems: "flex-end",
         justifyContent: "space-between",
     },
+    aboutSection: {
+        minHeight: "80vh",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        margin: "auto",
+        width: "90%",
+    },
+    about: {
+        borderRight: "5px solid " + themeColors.red,
+        borderBottom: "5px solid " + themeColors.red,
+        maxWidth: 700,
+        margin: "2rem",
+        padding: "0 2rem 2rem 0",
+        position: "relative",
+        [theme.breakpoints.down("sm")]: {
+            maxWidth: 500,
+            margin: "5rem 0 2rem 2rem",
+        },
+    },
+    aboutHeading: {
+        color: themeColors.red,
+        fontFamily: "'Playfair Display', serif",
+        fontSize: "2.5rem",
+        letterSpacing: "3px",
+        opacity: 0.25,
+        marginTop: 0,
+        marginLeft: "-2rem",
+        textTransform: "lowercase",
+    },
+    aboutUser: {
+        color: themeColors.black,
+        lineHeight: 1.7,
+    },
+    contactSection: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "flex-end",
+        minHeight: "50vh",
+    },
+    contactDiv: {
+        backgroundColor: themeColors.red,
+        width: "100%",
+    },
+    contacts: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-around",
+        margin: "auto",
+        padding: "3rem 0",
+        width: "90%",
+        [theme.breakpoints.down("sm")]: {
+            flexDirection: "column",
+        },
+    },
+    getInTouchHeading: {
+        color: "white",
+        fontFamily: "'Playfair Display', serif",
+        fontSize: "2rem",
+        fontWeight: 600,
+        textTransform: "uppercase",
+    },
 }));
 
 function Home() {
@@ -87,26 +152,49 @@ function Home() {
     };
 
     return (
-        <div className={classes.root}>
-            <HomeNavBar />
-            <HomeIllustration />
-            <div className={classes.content}>
-                <div className={classes.indicatorSection}>
-                    <h2 className={classes.activeIndicator}>01 / <span className={classes.indicator}>03</span></h2>
-                </div>
-                <div className={classes.middleSection}>
-                    <div>
-                        <h2 className={classes.heading}>Share<br /><span className={classes.stories}>Stories</span><br />or find what others have to say</h2>
-                        <Button variant="outlined" className={classes.exploreButton} onClick={handleExplore}>Explore</Button>
+        <React.Fragment>
+            <div className={classes.root} id="home">
+                <HomeNavBar />
+                <HomeIllustration />
+                <div className={classes.content}>
+                    <div className={classes.indicatorSection}>
+                        <h2 className={classes.activeIndicator}>01 / <span className={classes.indicator}>03</span></h2>
                     </div>
-                    <div className={classes.line} />
+                    <div className={classes.middleSection}>
+                        <div>
+                            <h2 className={classes.heading}>Share<br /><span className={classes.stories}>Stories</span><br />or find what others have to say</h2>
+                            <Button variant="outlined" className={classes.exploreButton} onClick={handleExplore}>Explore</Button>
+                        </div>
+                        <div className={classes.line} />
+                    </div>
+                    <div className={classes.footer}>
+                        <ScrollIndicator />
+                        <Quotation />
+                    </div>
                 </div>
-                <div className={classes.footer}>
-                    <ScrollIndicator />
-                    <Quotation />
+                <div className={classes.aboutSection} id="about">
+                    <div className={classes.about}>
+                        <h2 className={classes.aboutHeading}>About us</h2>
+                        <p className={classes.aboutUser}>{homeContent.aboutUs}</p>
+                    </div>
+                </div>
+                <div className={classes.contactSection} id="contact">
+                    <div className={classes.contactDiv}>
+                        <div className={classes.contacts}>
+                            <h2 className={classes.getInTouchHeading}>Get in touch</h2>
+                            <div className={classes.contact}>
+                                <h4>in</h4>
+                                <a>emailldjkfjlasdkl fj;akdfink</a>
+                                <h4>in</h4>
+                                <a>emaillink</a>
+                                <h4>in</h4>
+                                <a>emaillink</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </React.Fragment>
     );
 }
 
