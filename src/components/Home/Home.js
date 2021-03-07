@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router";
 
-import { Button, makeStyles } from "@material-ui/core";
+import { Button, IconButton, makeStyles } from "@material-ui/core";
 
 import HomeNavBar from "../HomeNavBar/HomeNavBar";
 import HomeIllustration from "../HomeIllustration/HomeIllustration";
@@ -10,6 +10,9 @@ import Quotation from "../Quotation/Quotation";
 
 import themeColors from "../../constants/themeColors";
 import homeContent from "../../constants/homeContent";
+import EmailIcon from "../Icons/EmailIcon";
+import GithubIcon from "../Icons/GithubIcon";
+import LinkedinIcon from "../Icons/LinkedInIcon";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -142,6 +145,21 @@ const useStyles = makeStyles(theme => ({
         fontWeight: 600,
         textTransform: "uppercase",
     },
+    contact: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+    },
+    row: {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+    },
+    contactIcon: {
+        height: 45,
+        marginRight: "1rem",
+        width: 45,
+    },
 }));
 
 function Home() {
@@ -184,12 +202,24 @@ function Home() {
                         <div className={classes.contacts}>
                             <h2 className={classes.getInTouchHeading}>Get in touch</h2>
                             <div className={classes.contact}>
-                                <h4>in</h4>
-                                <a>emailldjkfjlasdkl fj;akdfink</a>
-                                <h4>in</h4>
-                                <a>emaillink</a>
-                                <h4>in</h4>
-                                <a>emaillink</a>
+                                <div className={classes.row}>
+                                    <IconButton className={classes.contactIcon}>
+                                        <EmailIcon />
+                                    </IconButton>
+                                    <a>{homeContent.contact.email}</a>
+                                </div>
+                                <div className={classes.row}>
+                                    <IconButton className={classes.contactIcon}>
+                                        <GithubIcon />
+                                    </IconButton>
+                                    <a>{homeContent.contact.github}</a>
+                                </div>
+                                <div className={classes.row}>
+                                    <IconButton className={classes.contactIcon}>
+                                        <LinkedinIcon />
+                                    </IconButton>
+                                    <a>{homeContent.contact.linkedin}</a>
+                                </div>
                             </div>
                         </div>
                     </div>
