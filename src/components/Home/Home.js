@@ -171,61 +171,59 @@ function Home() {
     };
 
     return (
-        <React.Fragment>
-            <div className={classes.root} id="home">
-                <HomeNavBar />
-                <HomeIllustration />
-                <div className={classes.content}>
-                    <div className={classes.indicatorSection}>
-                        <h2 className={classes.activeIndicator}>01 / <span className={classes.indicator}>03</span></h2>
-                    </div>
-                    <div className={classes.middleSection}>
-                        <div>
-                            <h2 className={classes.heading}>Share<br /><span className={classes.stories}>Stories</span><br />or find what others have to say</h2>
-                            <Button variant="outlined" className={classes.exploreButton} onClick={handleExplore}>Explore</Button>
-                        </div>
-                        <div className={classes.line} />
-                    </div>
-                    <div className={classes.footer}>
-                        <ScrollIndicator />
-                        <Quotation />
-                    </div>
+        <div className={classes.root} id="home">
+            <HomeNavBar />
+            <HomeIllustration />
+            <div className={classes.content}>
+                <div className={classes.indicatorSection}>
+                    <h2 className={classes.activeIndicator}>01 / <span className={classes.indicator}>03</span></h2>
                 </div>
-                <div className={classes.aboutSection} id="about">
-                    <div className={classes.about}>
-                        <h2 className={classes.aboutHeading}>About us</h2>
-                        <p className={classes.aboutUser}>{homeContent.aboutUs}</p>
+                <div className={classes.middleSection}>
+                    <div>
+                        <h2 className={classes.heading}>Share<br /><span className={classes.stories}>Stories</span><br />or find what others have to say</h2>
+                        <Button variant="outlined" className={classes.exploreButton} onClick={handleExplore}>Explore</Button>
                     </div>
+                    <div className={classes.line} />
                 </div>
-                <div className={classes.contactSection} id="contact">
-                    <div className={classes.contactDiv}>
-                        <div className={classes.contacts}>
-                            <h2 className={classes.getInTouchHeading}>Get in touch</h2>
-                            <div className={classes.contact}>
-                                <div className={classes.row}>
-                                    <IconButton className={classes.contactIcon}>
-                                        <EmailIcon />
-                                    </IconButton>
-                                    <a>{homeContent.contact.email}</a>
-                                </div>
-                                <div className={classes.row}>
-                                    <IconButton className={classes.contactIcon}>
-                                        <GithubIcon />
-                                    </IconButton>
-                                    <a>{homeContent.contact.github}</a>
-                                </div>
-                                <div className={classes.row}>
-                                    <IconButton className={classes.contactIcon}>
-                                        <LinkedinIcon />
-                                    </IconButton>
-                                    <a>{homeContent.contact.linkedin}</a>
-                                </div>
+                <div className={classes.footer}>
+                    <ScrollIndicator />
+                    <Quotation />
+                </div>
+            </div>
+            <div className={classes.aboutSection} id="about">
+                <div className={classes.about}>
+                    <h2 className={classes.aboutHeading}>About us</h2>
+                    <p className={classes.aboutUser}>{homeContent.aboutUs}</p>
+                </div>
+            </div>
+            <div className={classes.contactSection} id="contact">
+                <div className={classes.contactDiv}>
+                    <div className={classes.contacts}>
+                        <h2 className={classes.getInTouchHeading}>Get in touch</h2>
+                        <div className={classes.contact}>
+                            <div className={classes.row}>
+                                <IconButton className={classes.contactIcon}>
+                                    <EmailIcon />
+                                </IconButton>
+                                <a>{homeContent.contact.email}</a>
+                            </div>
+                            <div className={classes.row}>
+                                <IconButton className={classes.contactIcon}>
+                                    <GithubIcon />
+                                </IconButton>
+                                <a>{homeContent.contact.github}</a>
+                            </div>
+                            <div className={classes.row}>
+                                <IconButton className={classes.contactIcon}>
+                                    <LinkedinIcon />
+                                </IconButton>
+                                <a>{homeContent.contact.linkedin}</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </React.Fragment>
+        </div>
     );
 }
 

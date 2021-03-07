@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
     },
     menu: {
         "& .MuiPaper-root": {
-            background: themeColors.red,
+            background: themeColors.grey,
             borderRadius: 0,
             boxShadow: "none",
         }
