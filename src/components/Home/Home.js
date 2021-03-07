@@ -120,7 +120,8 @@ const useStyles = makeStyles(theme => ({
         minHeight: "50vh",
     },
     contactDiv: {
-        backgroundColor: themeColors.red,
+        backgroundColor: themeColors.grey,
+        color: "white",
         width: "100%",
     },
     contacts: {

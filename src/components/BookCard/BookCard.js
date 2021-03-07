@@ -3,10 +3,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core";
 
 import themeColors from "../../constants/themeColors";
-import coverColors from "../../constants/coverColors";
 import trimString from "../../constants/trimString";
-
-const bookCoverColor = coverColors();
 
 const useStyles = makeStyles(theme => ({
     root: {
