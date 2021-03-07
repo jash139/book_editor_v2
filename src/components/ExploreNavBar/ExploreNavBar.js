@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, makeStyles } from "@material-ui/core";
 
-import BookEdLogo from "../SVGs/BookEdLogo";
+import Logo from "../Logo/Logo";
 
 import themeColors from "../../constants/themeColors";
 
@@ -67,7 +67,7 @@ function ExploreNavBar() {
     return (
         <header className={classes.header}>
             <nav className={classes.nav}>
-                <h1 className={classes.logo}>B<span><BookEdLogo /></span>kEd</h1>
+                <Logo />
                 <Button variant="outlined" className={classes.logoutButton}>Logout</Button>
             </nav>
         </header>

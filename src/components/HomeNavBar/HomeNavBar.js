@@ -2,9 +2,9 @@ import React from "react";
 import { makeStyles } from "@material-ui/core";
 
 import MenuButton from "../MenuButton/MenuButton";
-import BookEdLogo from "../SVGs/BookEdLogo";
 
 import themeColors from "../../constants/themeColors";
+import Logo from "../Logo/Logo";
 
 const useStyles = makeStyles(theme => ({
     header: {
@@ -24,13 +24,6 @@ const useStyles = makeStyles(theme => ({
             minHeight: "10vh",
         },
         width: "90%",
-    },
-    logo: {
-        color: themeColors.red,
-        fontFamily: "'Playfair Display', serif",
-        fontSize: "2rem",
-        fontWeight: 400,
-        margin: 0,
     },
     ul: {
         display: "flex",
@@ -59,7 +52,7 @@ function HomeNavBar() {
     return (
         <header className={classes.header}>
             <nav className={classes.nav}>
-                <h1 className={classes.logo}>B<span><BookEdLogo /></span>kEd</h1>
+                <Logo />
                 <ul className={classes.ul}>
                     <li><a datapage="home" href="#home" className={classes.anchor}>Home</a></li>
                     <li><a datapage="about" href="#about" className={classes.anchor}>About</a></li>
