@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
         position: "relative",
     },
     content: {
-        minHeight: "75vh",
+        minHeight: "80vh",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",

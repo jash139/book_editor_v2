@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
         alignItems: "center",
         justifyContent: "space-between",
         margin: "auto",
-        minHeight: "20vh",
+        minHeight: "15vh",
         [theme.breakpoints.down("sm")]: {
             minHeight: "10vh",
         },
