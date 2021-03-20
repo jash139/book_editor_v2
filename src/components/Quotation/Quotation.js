@@ -2,7 +2,7 @@ import React from "react";
 
 import { makeStyles } from "@material-ui/core";
 
-import getQuotes from "../../constants/getQuotes";
+import getQuotes from "../../functions/getQuotes";
 import themeColors from "../../constants/themeColors";
 
 const useStyles = makeStyles(theme => ({

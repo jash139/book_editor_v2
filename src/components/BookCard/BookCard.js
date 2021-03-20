@@ -3,7 +3,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core";
 
 import themeColors from "../../constants/themeColors";
-import trimString from "../../constants/trimString";
+import trimString from "../../functions/trimString";
 
 const useStyles = makeStyles(theme => ({
     root: {

@@ -5,6 +5,8 @@ import { AuthProvider } from "../../contexts/AuthContext";
 
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Home from "../Home/Home";
+import Signin from "../Signin/Signin";
+import Signup from "../Signup/Signup";
 import ViewBook from "../ViewBook/ViewBook";
 import Explore from "../Explore/Explore";
 import Read from "../Read/Read";
@@ -20,6 +22,8 @@ function App() {
       <Router>
         <AuthProvider>
           <Route exact path="/" component={Home} />
+          <Route exact path="/signin" component={Signin} />
+          <Route exact path="/signup" component={Signup} />
           <Route exact path="/explore" component={Explore} />
 
           {/* <PrivateRoute exact path="/explore" component={Explore} /> */}

@@ -133,11 +133,7 @@ const quotes = [
         quote: "I believe myself that a good writer doesn’t really need to be told anything except to keep at it.",
         author: "Chinua Achebe"
     }
-]
+];
 
-function getQuotes() {
-    const randomIndex = Math.floor(Math.random() * quotes.length);
-    return quotes[randomIndex];
-}
+export default quotes;
 
-export default getQuotes;
