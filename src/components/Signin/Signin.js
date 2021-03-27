@@ -60,7 +60,7 @@ const useStyles = makeStyles(theme => ({
         margin: "1rem 0",
         width: 300,
     },
-    continueButton: {
+    actionButton: {
         backgroundColor: themeColors.red,
         borderRadius: 3,
         boxShadow: "none",
@@ -182,7 +182,7 @@ function Signin() {
                         </form>
                     </FormControl>
                     <Button
-                        className={classes.continueButton}
+                        className={classes.actionButton}
                         onClick={handleSubmit}
                         size="large"
                         variant="contained"
