@@ -67,8 +67,8 @@ function MenuButton() {
         history.push("/profile");
     };
 
-    const openLogin = () => {
-        history.push("/login");
+    const openSignin = () => {
+        history.push("/signin");
     };
 
     const openSignup = () => {
@@ -99,7 +99,7 @@ function MenuButton() {
                         </React.Fragment>
                         :
                         <React.Fragment>
-                            <MenuItem className={classes.menuItem} onClick={openLogin}>Login</MenuItem>
+                            <MenuItem className={classes.menuItem} onClick={openSignin}>Signin</MenuItem>
                             <MenuItem className={classes.menuItem} onClick={openSignup}>Signup</MenuItem>
                         </React.Fragment>
                 }
