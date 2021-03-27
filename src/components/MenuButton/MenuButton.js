@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router";
 
 import { IconButton, makeStyles, Menu, MenuItem } from "@material-ui/core";
+
+import { useAuth } from "../../contexts/AuthContext";
 import themeColors from "../../constants/themeColors";
-import { useHistory } from "react-router";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -12,22 +14,22 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: themeColors.black,
         borderRadius: "2rem",
         height: "0.15rem",
-        margin: "0.4rem 0",
-        width: "2rem",
+        margin: "0.3rem 0",
+        width: "1.8rem",
     },
     line2: {
         backgroundColor: themeColors.black,
         borderRadius: "2rem",
         height: "0.15rem",
-        margin: "0.4rem 0 0.3rem 1rem",
-        width: "1rem",
+        margin: "0.3rem 0 0.3rem 1rem",
+        width: "0.8rem",
     },
     line3: {
         backgroundColor: themeColors.black,
         borderRadius: "2rem",
         height: "0.15rem",
-        margin: "0.4rem 0 0.3rem 0.5rem",
-        width: "1.5rem",
+        margin: "0.3rem 0 0.3rem 0.5rem",
+        width: "1.3rem",
     },
     menu: {
         "& .MuiPaper-root": {
@@ -41,7 +43,7 @@ const useStyles = makeStyles(theme => ({
         fontFamily: "'Poppins', sans-serif",
         fontSize: "0.8rem",
         fontWeight: 600,
-        margin: "0.2rem 1rem",
+        padding: "0.5rem 1.5rem",
         textTransform: "uppercase",
     },
 }));
@@ -50,6 +52,8 @@ function MenuButton() {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(null);
     const history = useHistory();
+
+    const { currentUser } = useAuth();
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -62,6 +66,15 @@ function MenuButton() {
     const openProfile = () => {
         history.push("/profile");
     };
+
+    const openLogin = () => {
+        history.push("/login");
+    };
+
+    const openSignup = () => {
+        history.push("/signup");
+    };
+
     return (
         <React.Fragment>
             <IconButton className={classes.root} onClick={handleClick}>
@@ -78,8 +91,18 @@ function MenuButton() {
                 onClose={handleClose}
                 className={classes.menu}
             >
-                <MenuItem className={classes.menuItem} onClick={openProfile}>Profile</MenuItem>
-                <MenuItem className={classes.menuItem} onClick={handleClose}>Logout</MenuItem>
+                {
+                    currentUser ?
+                        <React.Fragment>
+                            <MenuItem className={classes.menuItem} onClick={openProfile}>Profile</MenuItem>
+                            <MenuItem className={classes.menuItem} onClick={handleClose}>Logout</MenuItem>
+                        </React.Fragment>
+                        :
+                        <React.Fragment>
+                            <MenuItem className={classes.menuItem} onClick={openLogin}>Login</MenuItem>
+                            <MenuItem className={classes.menuItem} onClick={openSignup}>Signup</MenuItem>
+                        </React.Fragment>
+                }
             </Menu>
         </React.Fragment>
     );
