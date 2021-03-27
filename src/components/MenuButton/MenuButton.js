@@ -44,7 +44,6 @@ const useStyles = makeStyles(theme => ({
         fontSize: "0.8rem",
         fontWeight: 600,
         padding: "0.5rem 1.5rem",
-        textTransform: "uppercase",
     },
 }));
 
@@ -99,8 +98,8 @@ function MenuButton() {
                         </React.Fragment>
                         :
                         <React.Fragment>
-                            <MenuItem className={classes.menuItem} onClick={openSignin}>Signin</MenuItem>
-                            <MenuItem className={classes.menuItem} onClick={openSignup}>Signup</MenuItem>
+                            <MenuItem className={classes.menuItem} onClick={openSignin}>Sign in</MenuItem>
+                            <MenuItem className={classes.menuItem} onClick={openSignup}>Sign up</MenuItem>
                         </React.Fragment>
                 }
             </Menu>
