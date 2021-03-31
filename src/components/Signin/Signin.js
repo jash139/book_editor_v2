@@ -105,7 +105,7 @@ function Signin() {
     const [error, setError] = useState(""); // change this to null
     const [loading, setLoading] = useState(false);
 
-    const { login, signInWithGoogle } = useAuth();
+    const { login } = useAuth();
     const history = useHistory();
 
     const handleChange = (prop) => (event) => {
