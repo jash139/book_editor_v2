@@ -47,15 +47,15 @@ const useStyles = makeStyles(theme => ({
     },
     textField: {
         '& label.Mui-focused': {
-            color: themeColors.green,
+            color: themeColors.red,
         },
         '& .MuiInput-underline:after': {
-            borderBottomColor: themeColors.green,
+            borderBottomColor: themeColors.red,
         },
         "& .MuiFormLabel-root": {
-            color: themeColors.black,
-            fontFamily: "'Bree Serif', serif",
-            fontSize: "1.3rem",
+            color: themeColors.grey,
+            fontFamily: "'Poppins', sans-serif",
+            fontSize: "1rem",
         },
         margin: "1rem 0",
         width: 300,
@@ -88,8 +88,8 @@ const useStyles = makeStyles(theme => ({
 const inputProp = {
     style: {
         color: themeColors.black,
-        fontFamily: "'Bree Serif', serif",
-        fontSize: "1.3rem",
+        fontFamily: "'Poppins', sans-serif",
+        fontSize: "1rem",
         margin: 1,
         lineHeight: 2,
     }
