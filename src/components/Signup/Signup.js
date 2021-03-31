@@ -134,6 +134,10 @@ function Signup() {
 
     }
 
+    const openSignin = () => {
+        history.push("/signin");
+    };
+
     return (
         <React.Fragment>
             <EntryNavbar />
@@ -187,7 +191,7 @@ function Signup() {
                  </Button>
                     <p className={classes.message}>
                         Already have an account?
-                <span className={classes.link}> Sign in</span>
+                <span className={classes.link} onClick={openSignin}> Sign in</span>
                     </p>
                 </div>
             </div>

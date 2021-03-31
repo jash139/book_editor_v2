@@ -136,6 +136,13 @@ function Signin() {
 
     }
 
+    const openSignup = () => {
+        history.push("/signup");
+    };
+    const openForgotPassword = () => {
+        history.push("/forgot-password");
+    };
+
     return (
         <React.Fragment>
             <EntryNavbar />
@@ -144,7 +151,7 @@ function Signin() {
                     <Heading heading="Sign in" />
                     <p className={classes.message}>
                         Welcome back! Sign in to continue your journey.<br />Did you
-                <span className={classes.link}> forget your password?</span>
+                <span className={classes.link} onClick={openForgotPassword}> forget your password?</span>
                     </p>
                     <FormControl>
                         {error && <Typography className={classes.error}>{error}</Typography>}
@@ -192,7 +199,7 @@ function Signin() {
                  </Button>
                     <p className={classes.message}>
                         Don't have an account?
-                <span className={classes.link}> Create a new account</span>
+                <span className={classes.link} onClick={openSignup}> Create a new account</span>
                     </p>
                 </div>
             </div>
