@@ -113,7 +113,7 @@ function ForgotPassword() {
             setError("");
             setLoading(true);
             // await login(values.email, values.password);
-            // history.push("/");
+            // history.push("/signin");
         } catch {
             // setError("Failed to log in.");
         }

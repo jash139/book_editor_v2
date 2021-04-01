@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core";
 
 import ChevronLeftRoundedIcon from "@material-ui/icons/ChevronLeftRounded";
 import themeColors from "../../constants/themeColors";
-// import scrollToSection from "../../constants/scrollToSection";
+import scrollToSection from "../../functions/scrollToSection";
 
 const useStyles = makeStyles(theme => ({
     scrollIndicator: {
@@ -30,8 +30,7 @@ const useStyles = makeStyles(theme => ({
 function ScrollIndicator() {
     const classes = useStyles();
     return (
-        // onClick={() => scrollToSection("projects")}
-        <div className={classes.scrollIndicator}>
+        <div className={classes.scrollIndicator} onClick={() => scrollToSection("about")}>
             <ChevronLeftRoundedIcon className={classes.scrollIcon} />
             <h3 className={classes.scroll}>Scroll</h3>
         </div>
