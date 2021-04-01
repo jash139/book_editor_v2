@@ -5,6 +5,7 @@ import MenuButton from "../MenuButton/MenuButton";
 
 import themeColors from "../../constants/themeColors";
 import Logo from "../Logo/Logo";
+import scrollToSection from "../../functions/scrollToSection";
 
 const useStyles = makeStyles(theme => ({
     header: {
@@ -43,7 +44,9 @@ const useStyles = makeStyles(theme => ({
         fontWeight: 600,
         marginRight: "3rem",
         textTransform: "uppercase",
-        textDecoration: "none",
+        "&:hover": {
+            cursor: "pointer",
+        },
     },
 }));
 
@@ -54,9 +57,9 @@ function HomeNavBar() {
             <nav className={classes.nav}>
                 <Logo />
                 <ul className={classes.ul}>
-                    <li><a datapage="home" href="#home" className={classes.anchor}>Home</a></li>
-                    <li><a datapage="about" href="#about" className={classes.anchor}>About</a></li>
-                    <li><a datapage="contact" href="#contact" className={classes.anchor}>Contact</a></li>
+                    <li><p className={classes.anchor} onClick={() => scrollToSection("home")}>Home</p></li>
+                    <li><p className={classes.anchor} onClick={() => scrollToSection("about")}>About</p></li>
+                    <li><p className={classes.anchor} onClick={() => scrollToSection("contact")}>Contact</p></li>
                 </ul>
                 <MenuButton />
             </nav>
