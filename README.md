@@ -1,6 +1,6 @@
 # Bookedv2
 
-Hosted Website: [https://bookedv2-ayush-acharya.netlify.app/]
+Hosted Website: [https://bookedv2-ayush-acharya.netlify.app]
 
 ## Available Scripts
 
