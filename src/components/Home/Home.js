@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router";
 
-import { Button, IconButton, makeStyles } from "@material-ui/core";
+import { Button, IconButton, makeStyles, Snackbar } from "@material-ui/core";
+import CloseIcon from "@material-ui/icons/Close";
 
 import HomeNavBar from "../HomeNavBar/HomeNavBar";
 import HomeIllustration from "../HomeIllustration/HomeIllustration";
@@ -171,11 +172,38 @@ const useStyles = makeStyles(theme => ({
             cursor: "pointer",
         },
     },
+    snackbar: {
+        backgroundColor: themeColors.black,
+        boxShadow: "none",
+        color: "white",
+        fontFamily: "'Poppins', sans-serif",
+        fontSize: "0.9rem",
+        fontWeight: 500,
+    },
+    closeSnackbar: {
+        color: "white",
+    },
 }));
 
 function Home() {
     const classes = useStyles();
     const history = useHistory();
+
+    const [snackbarState, setSnackbarState] = useState({
+        open: false,
+    });
+
+    const handleOpenSnackbar = () => {
+        setSnackbarState({ open: true });
+    };
+
+    const handleCloseSnackbar = () => {
+        setSnackbarState({ open: false });
+    };
+    const handleEmailClick = () => {
+        copyEmail();
+        handleOpenSnackbar();
+    };
 
     const handleExplore = () => {
         history.push("/explore");
@@ -213,10 +241,10 @@ function Home() {
                         <h2 className={classes.getInTouchHeading}>Get in touch</h2>
                         <div className={classes.contact}>
                             <div className={classes.row}>
-                                <IconButton className={classes.contactIcon} onClick={copyEmail}>
+                                <IconButton className={classes.contactIcon} onClick={handleEmailClick}>
                                     <EmailIcon />
                                 </IconButton>
-                                <p className={classes.contactLink} onClick={copyEmail}>{homeContent.contactLinks.email}</p>
+                                <p className={classes.contactLink} onClick={handleEmailClick}>{homeContent.contactLinks.email}</p>
                             </div>
                             <div className={classes.row}>
                                 <IconButton className={classes.contactIcon} onClick={() => openTab(homeContent.contactLinks.github)}>
@@ -234,6 +262,26 @@ function Home() {
                     </div>
                 </div>
             </div>
+            <Snackbar
+                ContentProps={{
+                    classes: {
+                        root: classes.snackbar
+                    }
+                }}
+                anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+                autoHideDuration={2000}
+                open={snackbarState.open}
+                onClose={handleCloseSnackbar}
+                action={
+                    <IconButton
+                        className={classes.closeSnackbar}
+                        onClick={handleCloseSnackbar}
+                    >
+                        <CloseIcon />
+                    </IconButton>
+                }
+                message="Email copied!"
+            />
         </div>
     );
 }
