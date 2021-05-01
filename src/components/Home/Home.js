@@ -164,6 +164,13 @@ const useStyles = makeStyles(theme => ({
         marginRight: "1rem",
         width: 45,
     },
+    contactLink: {
+        fontFamily: "'Poppins', sans-serif",
+        fontSize: "0.9rem",
+        "&:hover": {
+            cursor: "pointer",
+        },
+    },
 }));
 
 function Home() {
@@ -209,19 +216,19 @@ function Home() {
                                 <IconButton className={classes.contactIcon} onClick={copyEmail}>
                                     <EmailIcon />
                                 </IconButton>
-                                <p onClick={copyEmail}>{homeContent.contactLinks.email}</p>
+                                <p className={classes.contactLink} onClick={copyEmail}>{homeContent.contactLinks.email}</p>
                             </div>
                             <div className={classes.row}>
                                 <IconButton className={classes.contactIcon} onClick={() => openTab(homeContent.contactLinks.github)}>
                                     <GithubIcon />
                                 </IconButton>
-                                <p onClick={() => openTab(homeContent.contactLinks.github)}>{homeContent.contactLinks.github}</p>
+                                <p className={classes.contactLink} onClick={() => openTab(homeContent.contactLinks.github)}>{homeContent.contactLinks.github}</p>
                             </div>
                             <div className={classes.row}>
                                 <IconButton className={classes.contactIcon} onClick={() => openTab(homeContent.contactLinks.linkedin)}>
                                     <LinkedinIcon />
                                 </IconButton>
-                                <p onClick={() => openTab(homeContent.contactLinks.linkedin)}>{homeContent.contactLinks.linkedin}</p>
+                                <p className={classes.contactLink} onClick={() => openTab(homeContent.contactLinks.linkedin)}>{homeContent.contactLinks.linkedin}</p>
                             </div>
                         </div>
                     </div>
