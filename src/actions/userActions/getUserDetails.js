@@ -8,7 +8,7 @@ const userDetails = payload => ({
 
 const getUserDetails = (uid) => {
     return dispatch => {
-        axios.get(process.env.REACT_APP_BACKEND_HOST_URL + "/user/uid/" + uid)
+        axios.get(process.env.REACT_APP_BACKEND_HOST_URL + "/users/uid/" + uid)
             .then(user => dispatch(userDetails(user)))
             .catch(error => console.log(error));
     }

@@ -78,7 +78,7 @@ const useStyles = makeStyles(theme => ({
     },
     error: {
         color: "red",
-        fontFamily: "'Bree Serif', serif",
+        fontFamily: "'Poppins', sans-serif",
         fontSize: "1rem",
         marginTop: "0.5rem",
         textAlign: "center",
