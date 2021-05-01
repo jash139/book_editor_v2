@@ -8,11 +8,14 @@ import HomeIllustration from "../HomeIllustration/HomeIllustration";
 import ScrollIndicator from "../ScrollIndicator/ScrollIndicator";
 import Quotation from "../Quotation/Quotation";
 
-import themeColors from "../../constants/themeColors";
-import homeContent from "../../constants/homeContent";
 import EmailIcon from "../Icons/EmailIcon";
 import GithubIcon from "../Icons/GithubIcon";
 import LinkedinIcon from "../Icons/LinkedInIcon";
+
+import themeColors from "../../constants/themeColors";
+import homeContent from "../../constants/homeContent";
+
+import copyEmail from "../../functions/copyEmail";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -202,22 +205,22 @@ function Home() {
                         <h2 className={classes.getInTouchHeading}>Get in touch</h2>
                         <div className={classes.contact}>
                             <div className={classes.row}>
-                                <IconButton className={classes.contactIcon}>
+                                <IconButton className={classes.contactIcon} onClick={copyEmail}>
                                     <EmailIcon />
                                 </IconButton>
-                                <a>{homeContent.contactLinks.email}</a>
+                                <p onClick={copyEmail}>{homeContent.contactLinks.email}</p>
                             </div>
                             <div className={classes.row}>
                                 <IconButton className={classes.contactIcon}>
                                     <GithubIcon />
                                 </IconButton>
-                                <a>{homeContent.contactLinks.github}</a>
+                                <p>{homeContent.contactLinks.github}</p>
                             </div>
                             <div className={classes.row}>
                                 <IconButton className={classes.contactIcon}>
                                     <LinkedinIcon />
                                 </IconButton>
-                                <a>{homeContent.contactLinks.linkedin}</a>
+                                <p>{homeContent.contactLinks.linkedin}</p>
                             </div>
                         </div>
                     </div>

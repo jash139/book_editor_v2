@@ -1,4 +1,6 @@
-import contactLinks from "../constants/contactLinks";
+import homeContent from "../constants/homeContent";
+
+const contactLinks = homeContent.contactLinks;
 
 const copyEmail = () => {
     var tempInput = document.createElement("input");
