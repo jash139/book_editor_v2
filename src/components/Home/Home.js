@@ -205,19 +205,19 @@ function Home() {
                                 <IconButton className={classes.contactIcon}>
                                     <EmailIcon />
                                 </IconButton>
-                                <a>{homeContent.contact.email}</a>
+                                <a>{homeContent.contactLinks.email}</a>
                             </div>
                             <div className={classes.row}>
                                 <IconButton className={classes.contactIcon}>
                                     <GithubIcon />
                                 </IconButton>
-                                <a>{homeContent.contact.github}</a>
+                                <a>{homeContent.contactLinks.github}</a>
                             </div>
                             <div className={classes.row}>
                                 <IconButton className={classes.contactIcon}>
                                     <LinkedinIcon />
                                 </IconButton>
-                                <a>{homeContent.contact.linkedin}</a>
+                                <a>{homeContent.contactLinks.linkedin}</a>
                             </div>
                         </div>
                     </div>
