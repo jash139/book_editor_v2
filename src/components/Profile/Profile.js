@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Button, makeStyles } from "@material-ui/core";
 
 import ProfileNavBar from "../ProfileNavBar/ProfileNavBar";
+import ProfileAbout from "../ProfileAbout/ProfileAbout";
 
 import themeColors from "../../constants/themeColors";
 
@@ -94,32 +95,6 @@ const useStyles = makeStyles(theme => ({
         padding: "0.2rem 2rem",
         textTransform: "none",
     },
-    about: {
-        borderRight: "5px solid " + themeColors.red,
-        borderBottom: "5px solid " + themeColors.red,
-        maxWidth: 300,
-        margin: "2rem",
-        padding: "0 2rem 2rem 0",
-        position: "relative",
-        [theme.breakpoints.down("sm")]: {
-            maxWidth: 500,
-            margin: "5rem 0 2rem 2rem",
-        },
-    },
-    aboutHeading: {
-        color: themeColors.red,
-        fontFamily: "'Playfair Display', serif",
-        fontSize: "2.5rem",
-        letterSpacing: "3px",
-        opacity: 0.25,
-        marginTop: 0,
-        marginLeft: "-2rem",
-        textTransform: "lowercase",
-    },
-    aboutUser: {
-        color: themeColors.black,
-        lineHeight: 1.7,
-    },
 }));
 
 function Profile(props) {
@@ -160,10 +135,7 @@ function Profile(props) {
                         <Button variant="outlined" className={classes.editButton}>Edit Details</Button>
                     </div>
                 </div>
-                <div className={classes.about}>
-                    <h2 className={classes.aboutHeading}>About</h2>
-                    <p className={classes.aboutUser}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod t t amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing elit duis tristique sollicitudin nibh sit. Vulputate ut pharetra sit amet. Massa sed elementum tempus egestas sed sed risus.</p>
-                </div>
+                <ProfileAbout />
             </div>
         </React.Fragment>
     );
