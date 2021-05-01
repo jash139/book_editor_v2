@@ -92,15 +92,15 @@ function MenuButton() {
             >
                 {
                     currentUser ?
-                        <React.Fragment>
+                        <div>
                             <MenuItem className={classes.menuItem} onClick={openProfile}>Profile</MenuItem>
                             <MenuItem className={classes.menuItem} onClick={handleClose}>Logout</MenuItem>
-                        </React.Fragment>
+                        </div>
                         :
-                        <React.Fragment>
+                        <div>
                             <MenuItem className={classes.menuItem} onClick={openSignin}>Sign in</MenuItem>
                             <MenuItem className={classes.menuItem} onClick={openSignup}>Sign up</MenuItem>
-                        </React.Fragment>
+                        </div>
                 }
             </Menu>
         </React.Fragment>
