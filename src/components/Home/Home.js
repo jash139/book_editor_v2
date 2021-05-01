@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
+import { connect } from "react-redux";
 
 import { Button, IconButton, makeStyles, Snackbar } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
@@ -18,6 +19,9 @@ import homeContent from "../../constants/homeContent";
 
 import copyEmail from "../../functions/copyEmail";
 import openTab from "../../functions/openTab";
+
+import getUserDetails from "../../actions/userActions/getUserDetails";
+import { useAuth } from "../../contexts/AuthContext";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -186,13 +190,20 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-function Home() {
+function Home(props) {
     const classes = useStyles();
     const history = useHistory();
 
     const [snackbarState, setSnackbarState] = useState({
         open: false,
     });
+
+    const { currentUser } = useAuth();
+
+    useEffect(() => {
+        props.getUserDetails(currentUser.uid);
+    }, []);
+
 
     const handleOpenSnackbar = () => {
         setSnackbarState({ open: true });
@@ -287,4 +298,11 @@ function Home() {
     );
 }
 
-export default Home;
+const mapStateToProps = state => ({
+});
+
+const mapDispatchToProps = {
+    getUserDetails
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 
 import { Button, makeStyles, Modal, TextField } from "@material-ui/core";
 
@@ -91,15 +92,20 @@ const inputProp = {
     }
 };
 
-function ProfileEditDetails() {
+function ProfileEditDetails(props) {
     const classes = useStyles();
-
-    const [values, setValues] = useState({
-        name: "Umbrella Girl",
-        profilePicture: "picturelink.lalal.com"
-    });
+    const userDetails = Object.keys(props.userDetails).length > 0 ? props.userDetails : {
+        name: "User Name",
+        profilePicture: "",
+        about: "",
+        followers: [],
+        following: [],
+        work: [],
+    };
+    const [values, setValues] = useState(userDetails);
     const [editModalOpen, setEditModalOpen] = useState(false);
 
+    console.log(values.name);
     const toggleModalState = () => {
         setEditModalOpen(prevValue => !prevValue);
     };
@@ -120,14 +126,14 @@ function ProfileEditDetails() {
                 label="Name"
                 inputProps={inputProp}
                 value={values.name}
-                onChange={handleChange}
+                onChange={handleChange("name")}
             />
             <TextField
                 className={classes.textField}
                 label="Profile picture(link)"
                 inputProps={inputProp}
                 value={values.profilePicture}
-                onChange={handleChange}
+                onChange={handleChange("profilePicture")}
             />
             <div className={classes.action}>
                 <Button variant="outlined" className={classes.cancelButton} onClick={toggleModalState}>Cancel</Button>
@@ -149,4 +155,12 @@ function ProfileEditDetails() {
     );
 }
 
-export default ProfileEditDetails;
+const mapStateToProps = state => ({
+    userDetails: state.getUserDetails
+});
+
+const mapDispatchToProps = {
+
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileEditDetails);

@@ -115,7 +115,7 @@ function Profile(props) {
             <div className={classes.profile}>
                 <div className={classes.details}>
                     <div className={classes.picDiv}>
-                        <img className={classes.profilPic} src="https://images.unsplash.com/photo-1516368694098-47836cebec97?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=646&q=80" alt="" />
+                        <img className={classes.profilPic} src={userDetails.profilePicture} alt="" />
                         <div className={classes.picBorder} />
                     </div>
                     <div className={classes.userDetails}>
@@ -134,7 +134,7 @@ function Profile(props) {
                                 <p className={classes.number}>{userDetails.work.length}</p>
                             </div>
                         </div>
-                        <ProfileEditDetails />
+                        <ProfileEditDetails userDetails={userDetails} />
                     </div>
                 </div>
                 <ProfileAbout about={userDetails.about} />
