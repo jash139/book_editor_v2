@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core";
 
@@ -9,7 +8,6 @@ import Carousel from "../Carousel/Carousel";
 import GenreSelectionTabs from "../GenreSelectionTabs/GenreSelectionTabs";
 import ExploreNavBar from "../ExploreNavBar/ExploreNavBar";
 
-import themeColors from "../../constants/themeColors";
 import genres from "../../constants/genres";
 
 const useStyles = makeStyles(theme => ({
@@ -45,7 +43,6 @@ const useStyles = makeStyles(theme => ({
 
 function Explore() {
     const classes = useStyles();
-    const history = useHistory();
 
     const [selectedGenre, setSelectedGenre] = useState({
         isSelected: false,
@@ -81,10 +78,6 @@ function Explore() {
             <Carousel id={"carousel-" + selectedGenre.genre} />
         </div>
     );
-
-    const redirectHome = () => {
-        history.push("/");
-    };
 
     return (
         <React.Fragment>
