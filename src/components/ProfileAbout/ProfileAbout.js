@@ -111,9 +111,10 @@ const inputProp = {
     }
 }
 
-function ProfileAbout() {
+function ProfileAbout(props) {
     const classes = useStyles();
-    const [about, setAbout] = useState("");
+    const aboutUser = props.about;
+    const [about, setAbout] = useState(aboutUser);
     const [editModalOpen, setEditModalOpen] = useState(false);
 
     const toggleModalState = () => {
@@ -142,10 +143,18 @@ function ProfileAbout() {
         </div>
     );
 
+    const getAboutUser = () => {
+        if (aboutUser === "") {
+            return "Add a short description about yourself.";
+        } else {
+            return aboutUser;
+        }
+    };
+
     return (
         <div className={classes.root}>
             <h2 className={classes.heading}>About <IconButton className={classes.editIcon} onClick={toggleModalState}><EditIcon /></IconButton></h2>
-            <p className={classes.about}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod t t amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing elit duis tristique sollicitudin nibh sit. Vulputate ut pharetra sit amet. Massa sed elementum tempus egestas sed sed risus.</p>
+            <p className={classes.about}>{getAboutUser()}</p>
             <Modal
                 open={editModalOpen}
                 onClose={toggleModalState}

@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
-import { Button, makeStyles } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 
 import ProfileNavBar from "../ProfileNavBar/ProfileNavBar";
 import ProfileAbout from "../ProfileAbout/ProfileAbout";
 import ProfileEditDetails from "../ProfileEditDetails/ProfileEditDetails";
 
 import themeColors from "../../constants/themeColors";
+import { useAuth } from "../../contexts/AuthContext";
+import getUserDetails from "../../actions/userActions/getUserDetails";
 
 const useStyles = makeStyles(theme => ({
     profile: {
@@ -71,6 +73,7 @@ const useStyles = makeStyles(theme => ({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        margin: "0 0.5rem",
     },
     numberHeading: {
         color: themeColors.grey,
@@ -91,14 +94,21 @@ const useStyles = makeStyles(theme => ({
 
 function Profile(props) {
     const classes = useStyles();
+    const { currentUser } = useAuth();
+
+    useEffect(() => {
+        props.getUserDetails(currentUser.uid);
+    }, []);
+
     const userDetails = Object.keys(props.userDetails).length > 0 ? props.userDetails : {
-        name: "",
+        name: "User Name",
+        profilePicture: "",
+        about: "",
         followers: [],
         following: [],
         work: [],
-        about: "",
-        profilePicture: "",
     };
+
     return (
         <React.Fragment>
             <ProfileNavBar />
@@ -109,25 +119,25 @@ function Profile(props) {
                         <div className={classes.picBorder} />
                     </div>
                     <div className={classes.userDetails}>
-                        <h1 className={classes.name}>Umbrella Girl</h1>
+                        <h1 className={classes.name}>{userDetails.name}</h1>
                         <div className={classes.numbers}>
                             <div className={classes.column}>
                                 <h5 className={classes.numberHeading}>Followers</h5>
-                                <p className={classes.number}>240</p>
+                                <p className={classes.number}>{userDetails.followers.length}</p>
                             </div>
                             <div className={classes.column}>
                                 <h5 className={classes.numberHeading}>Following</h5>
-                                <p className={classes.number}>150</p>
+                                <p className={classes.number}>{userDetails.following.length}</p>
                             </div>
                             <div className={classes.column}>
                                 <h5 className={classes.numberHeading}>Work</h5>
-                                <p className={classes.number}>13</p>
+                                <p className={classes.number}>{userDetails.work.length}</p>
                             </div>
                         </div>
                         <ProfileEditDetails />
                     </div>
                 </div>
-                <ProfileAbout />
+                <ProfileAbout about={userDetails.about} />
             </div>
         </React.Fragment>
     );
@@ -137,4 +147,8 @@ const mapStateToProps = state => ({
     userDetails: state.getUserDetails
 });
 
-export default connect(mapStateToProps)(Profile);
+const mapDispatchToProps = {
+    getUserDetails
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);
