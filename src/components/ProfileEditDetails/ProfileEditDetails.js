@@ -105,7 +105,6 @@ function ProfileEditDetails(props) {
     const [values, setValues] = useState(userDetails);
     const [editModalOpen, setEditModalOpen] = useState(false);
 
-    console.log(values.name);
     const toggleModalState = () => {
         setEditModalOpen(prevValue => !prevValue);
     };

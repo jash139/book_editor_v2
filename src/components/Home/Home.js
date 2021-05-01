@@ -202,7 +202,7 @@ function Home(props) {
 
     useEffect(() => {
         props.getUserDetails(currentUser.uid);
-    }, []);
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
 
     const handleOpenSnackbar = () => {

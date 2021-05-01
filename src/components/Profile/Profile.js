@@ -98,7 +98,7 @@ function Profile(props) {
 
     useEffect(() => {
         props.getUserDetails(currentUser.uid);
-    }, []);
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     const userDetails = Object.keys(props.userDetails).length > 0 ? props.userDetails : {
         name: "User Name",
