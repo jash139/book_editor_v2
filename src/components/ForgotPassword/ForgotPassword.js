@@ -1,13 +1,8 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+
 import { makeStyles } from "@material-ui/core/styles";
-import IconButton from "@material-ui/core/IconButton";
-import Input from "@material-ui/core/Input";
-import InputLabel from "@material-ui/core/InputLabel";
-import InputAdornment from "@material-ui/core/InputAdornment";
 import FormControl from "@material-ui/core/FormControl";
-import Visibility from "@material-ui/icons/Visibility";
-import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import { Button, TextField, Typography } from "@material-ui/core";
 
 import Heading from "../Heading/Heading";
@@ -72,9 +67,15 @@ const useStyles = makeStyles(theme => ({
             boxShadow: "none",
         },
     },
+    message: {
+        fontFamily: "'Poppins', sans-serif",
+        fontSize: "1rem",
+        marginTop: "0.5rem",
+        textAlign: "center",
+    },
     error: {
         color: "red",
-        fontFamily: "'Bree Serif', serif",
+        fontFamily: "'Poppins', sans-serif",
         fontSize: "1rem",
         marginTop: "0.5rem",
         textAlign: "center",
@@ -98,24 +99,30 @@ function ForgotPassword() {
     });
     const [error, setError] = useState(""); // change this to null
     const [loading, setLoading] = useState(false);
+    const [message, setMessage] = useState("");
 
-    const { login } = useAuth();
+    const { resetPassword } = useAuth();
     const history = useHistory();
 
     const handleChange = (prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
     };
 
-    async function handleSubmit(e) {
+    async function handlePasswordReset(e) {
         e.preventDefault();
 
+        if (values.email === "") {
+            setError("Please enter valid email.");
+            return;
+        }
         try {
+            setMessage("");
             setError("");
             setLoading(true);
-            // await login(values.email, values.password);
-            // history.push("/signin");
+            await resetPassword(values.email);
+            setMessage("Check your inbox for further instructions.");
         } catch {
-            // setError("Failed to log in.");
+            setError("Failed to reset password.");
         }
 
         setLoading(false);
@@ -133,6 +140,7 @@ function ForgotPassword() {
                 <div className={classes.card}>
                     <Heading heading="Forgot Password" />
                     <FormControl>
+                        {message && <Typography className={classes.message}>{message}</Typography>}
                         {error && <Typography className={classes.error}>{error}</Typography>}
                         <TextField
                             className={classes.textField}
@@ -145,7 +153,7 @@ function ForgotPassword() {
                     </FormControl>
                     <Button
                         className={classes.actionButton}
-                        onClick={handleSubmit}
+                        onClick={handlePasswordReset}
                         size="large"
                         variant="contained"
                         disabled={loading}
