@@ -170,6 +170,7 @@ const useStyles = makeStyles(theme => ({
         fontSize: "0.9rem",
         "&:hover": {
             cursor: "pointer",
+            textDecoration: "underline",
         },
     },
     snackbar: {
