@@ -136,7 +136,7 @@ function ProfileAbout() {
                 onChange={handleChange}
             />
             <div className={classes.action}>
-                <Button variant="outlined" className={classes.cancelButton}>Cancel</Button>
+                <Button variant="outlined" className={classes.cancelButton} onClick={toggleModalState}>Cancel</Button>
                 <Button variant="contained" className={classes.saveButton}>Save</Button>
             </div>
         </div>
