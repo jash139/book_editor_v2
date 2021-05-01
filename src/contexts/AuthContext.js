@@ -49,8 +49,8 @@ export function AuthProvider({ children }) {
         const profileObj = {
             uid,
             email
-        }
-        axios.post(process.env.REACT_APP_BACKEND_HOST_URL + "/user", profileObj)
+        };
+        axios.post(process.env.REACT_APP_BACKEND_HOST_URL + "/users", profileObj)
             .then((res) => {
                 return res.data;
             })

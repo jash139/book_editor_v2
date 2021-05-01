@@ -89,7 +89,7 @@ const inputProp = {
     style: {
         color: themeColors.black,
         fontFamily: "'Poppins', sans-serif",
-        fontSize: "1.3rem",
+        fontSize: "1rem",
         margin: 1,
         lineHeight: 2,
     }
@@ -121,17 +121,22 @@ function Signup() {
     };
 
     async function handleSignup() {
-        try {
+        if (values.email === "" || values.password === "") {
+            setError("Enter email and password.");
+            return;
+        } else {
             setError("");
-            setLoading(true);
-            await signup(values.email, values.password);
-            history.push("/");
-        } catch {
-            setError("Failed to create an account");
+            try {
+                setError("");
+                setLoading(true);
+                await signup(values.email, values.password);
+                history.push("/");
+            } catch {
+                setError("Failed to create an account");
+            }
+
+            setLoading(false);
         }
-
-        setLoading(false);
-
     }
 
     const openSignin = () => {
