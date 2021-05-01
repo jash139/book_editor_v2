@@ -5,6 +5,7 @@ import { Button, makeStyles } from "@material-ui/core";
 
 import ProfileNavBar from "../ProfileNavBar/ProfileNavBar";
 import ProfileAbout from "../ProfileAbout/ProfileAbout";
+import ProfileEditDetails from "../ProfileEditDetails/ProfileEditDetails";
 
 import themeColors from "../../constants/themeColors";
 
@@ -86,15 +87,6 @@ const useStyles = makeStyles(theme => ({
         fontWeight: 600,
         marginTop: "0.5rem",
     },
-    editButton: {
-        border: "2px solid " + themeColors.red,
-        color: themeColors.red,
-        fontFamily: "'Poppins', sans-serif",
-        fontWeight: 600,
-        fontSize: "0.8rem",
-        padding: "0.2rem 2rem",
-        textTransform: "none",
-    },
 }));
 
 function Profile(props) {
@@ -132,7 +124,7 @@ function Profile(props) {
                                 <p className={classes.number}>13</p>
                             </div>
                         </div>
-                        <Button variant="outlined" className={classes.editButton}>Edit Details</Button>
+                        <ProfileEditDetails />
                     </div>
                 </div>
                 <ProfileAbout />
