@@ -15,8 +15,6 @@ import NewChapter from "../NewChapter/NewChapter";
 import Profile from "../Profile/Profile";
 import Write from "../Write/Write";
 
-import TestComponent from "../Testcomponent/TestComponent";
-
 function App() {
   return (
     <React.Fragment>
@@ -37,8 +35,6 @@ function App() {
           <Route exact path="/write/new-chapter" component={NewChapter} />
 
           <Route exact path="/profile" component={Profile} />
-
-          <Route exact path="/test" component={TestComponent} />
 
           {/* Add ^^ book id in the path  */}
 
