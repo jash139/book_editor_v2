@@ -16,6 +16,7 @@ import themeColors from "../../constants/themeColors";
 import homeContent from "../../constants/homeContent";
 
 import copyEmail from "../../functions/copyEmail";
+import openTab from "../../functions/openTab";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -211,16 +212,16 @@ function Home() {
                                 <p onClick={copyEmail}>{homeContent.contactLinks.email}</p>
                             </div>
                             <div className={classes.row}>
-                                <IconButton className={classes.contactIcon}>
+                                <IconButton className={classes.contactIcon} onClick={() => openTab(homeContent.contactLinks.github)}>
                                     <GithubIcon />
                                 </IconButton>
-                                <p>{homeContent.contactLinks.github}</p>
+                                <p onClick={() => openTab(homeContent.contactLinks.github)}>{homeContent.contactLinks.github}</p>
                             </div>
                             <div className={classes.row}>
-                                <IconButton className={classes.contactIcon}>
+                                <IconButton className={classes.contactIcon} onClick={() => openTab(homeContent.contactLinks.linkedin)}>
                                     <LinkedinIcon />
                                 </IconButton>
-                                <p>{homeContent.contactLinks.linkedin}</p>
+                                <p onClick={() => openTab(homeContent.contactLinks.linkedin)}>{homeContent.contactLinks.linkedin}</p>
                             </div>
                         </div>
                     </div>
