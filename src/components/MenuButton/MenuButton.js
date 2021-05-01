@@ -52,7 +52,7 @@ function MenuButton() {
     const [anchorEl, setAnchorEl] = useState(null);
     const history = useHistory();
 
-    const { currentUser } = useAuth();
+    const { currentUser, logout } = useAuth();
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -65,6 +65,15 @@ function MenuButton() {
     const openProfile = () => {
         history.push("/profile");
     };
+
+    async function handleLogout() {
+        try {
+            await logout();
+            history.push("/signin");
+        } catch {
+            // handleSnackBarClick();
+        }
+    }
 
     const openSignin = () => {
         history.push("/signin");
@@ -94,7 +103,7 @@ function MenuButton() {
                     currentUser ?
                         <div>
                             <MenuItem className={classes.menuItem} onClick={openProfile}>Profile</MenuItem>
-                            <MenuItem className={classes.menuItem} onClick={handleClose}>Logout</MenuItem>
+                            <MenuItem className={classes.menuItem} onClick={handleLogout}>Logout</MenuItem>
                         </div>
                         :
                         <div>
