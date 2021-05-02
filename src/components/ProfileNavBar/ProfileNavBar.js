@@ -4,6 +4,7 @@ import { Button, makeStyles } from "@material-ui/core";
 import Logo from "../Logo/Logo";
 
 import themeColors from "../../constants/themeColors";
+import scrollToSection from "../../functions/scrollToSection";
 
 const useStyles = makeStyles(theme => ({
     header: {
@@ -42,7 +43,9 @@ const useStyles = makeStyles(theme => ({
         fontWeight: 600,
         marginRight: "3rem",
         textTransform: "uppercase",
-        textDecoration: "none",
+        "&:hover": {
+            cursor: "pointer",
+        },
     },
     logoutButton: {
         border: "2px solid " + themeColors.black,
@@ -62,9 +65,9 @@ function ProfileNavBar() {
             <nav className={classes.nav}>
                 <Logo />
                 <ul className={classes.ul}>
-                    <li><a datapage="profile" href="#profile" className={classes.anchor}>Profile</a></li>
-                    <li><a datapage="library" href="#library" className={classes.anchor}>Library</a></li>
-                    <li><a datapage="work" href="#work" className={classes.anchor}>Work</a></li>
+                    <li><p className={classes.anchor} onClick={() => scrollToSection("profile-home")}>Profile</p></li>
+                    <li><p className={classes.anchor} onClick={() => scrollToSection("profile-library")}>Library</p></li>
+                    <li><p className={classes.anchor} onClick={() => scrollToSection("profile-work")}>Work</p></li>
                 </ul>
                 <Button variant="outlined" className={classes.logoutButton}>Logout</Button>
             </nav>

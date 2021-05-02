@@ -119,7 +119,7 @@ function Profile(props) {
     return (
         <React.Fragment>
             <ProfileNavBar />
-            <div className={classes.profile}>
+            <div className={classes.profile} id="profile-home">
                 <div className={classes.details}>
                     <div className={classes.picDiv}>
                         <img className={classes.profilPic} src={userDetails.profilePicture} alt="" />

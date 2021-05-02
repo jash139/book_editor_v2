@@ -20,7 +20,7 @@ function ProfileWork() {
     const classes = useStyles();
 
     return (
-        <div className={classes.carousel}>
+        <div className={classes.carousel} id="profile-work">
             <Heading heading="Work" />
             <Carousel id="carousel-work" />
         </div>

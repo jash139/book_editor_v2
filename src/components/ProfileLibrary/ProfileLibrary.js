@@ -20,7 +20,7 @@ function ProfileLibrary() {
     const classes = useStyles();
 
     return (
-        <div className={classes.carousel}>
+        <div className={classes.carousel} id="profile-library">
             <Heading heading="Library" />
             <Carousel id="carousel-library" />
         </div>
