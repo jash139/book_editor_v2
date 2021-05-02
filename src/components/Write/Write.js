@@ -1,10 +1,12 @@
-import React from "react";
-import { Button, makeStyles, TextField } from "@material-ui/core";
+import React, { useState } from "react";
+import { connect } from "react-redux";
+
+import { Button, makeStyles, Modal, TextField } from "@material-ui/core";
 
 import WriteNavBar from "../WriteNavBar/WriteNavBar";
+import EnterGenresTextField from "../EnterGenresTextField/EnterGenresTextField";
 
 import themeColors from "../../constants/themeColors";
-import EnterGenresTextField from "../EnterGenresTextField/EnterGenresTextField";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -76,17 +78,116 @@ const useStyles = makeStyles(theme => ({
         fontSize: "1rem",
         fontWeight: 400,
     },
+    modal: {
+        backgroundColor: "white",
+        outline: "none",
+        padding: "1.5rem",
+        position: 'absolute',
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        width: 400,
+        [theme.breakpoints.down("xs")]: {
+            width: 300,
+        },
+    },
+    modalHeading: {
+        color: themeColors.red,
+        fontFamily: "'Playfair Display', serif",
+        fontSize: "2rem",
+        marginTop: 0,
+    },
+    textField: {
+        '& label.Mui-focused': {
+            color: themeColors.red,
+        },
+        '& .MuiInput-underline:after': {
+            borderBottomColor: themeColors.red,
+        },
+        "& .MuiFormLabel-root": {
+            color: themeColors.grey,
+            fontFamily: "'Poppins', sans-serif",
+            fontSize: "1rem",
+        },
+        margin: "1rem 0",
+        width: "100%",
+    },
+    action: {
+        display: "flex",
+        justifyContent: "flex-end",
+    },
+    addCoverButton: {
+        backgroundColor: themeColors.red,
+        boxShadow: "none",
+        color: "white",
+        fontFamily: "'Poppins', sans-serif",
+        fontWeight: 600,
+        fontSize: "0.8rem",
+        padding: "5.2px 1rem",
+        textTransform: "none",
+        width: "5rem",
+        "&:hover": {
+            backgroundColor: themeColors.red,
+            boxShadow: "none",
+        },
+    },
 }));
 
-function Write() {
+const inputProp = {
+    style: {
+        color: themeColors.black,
+        fontFamily: "'Poppins', sans-serif",
+        fontSize: "1rem",
+        margin: 1,
+        lineHeight: 2,
+    }
+};
+
+function Write(props) {
     const classes = useStyles();
+    const [editModalOpen, setEditModalOpen] = useState(false);
+    const userDetails = props.userDetails;
+    const [values, setValues] = useState({
+        userId: userDetails._id,
+        bookCoverUrl: "",
+        title: "",
+        summary: "",
+        genres: []
+    });
+
+    const toggleModalState = () => {
+        setEditModalOpen(prevValue => !prevValue);
+    };
+
+    const handleChange = (prop) => (event) => {
+        setValues({ ...values, [prop]: event.target.value });
+    };
+
+    const modalBody = (
+        <div className={classes.modal}>
+            <h2 className={classes.modalHeading}>Add Cover</h2>
+            <TextField
+                className={classes.textField}
+                label="Book Cover(link)"
+                multiline
+                rowsMax={6}
+                inputProps={inputProp}
+                value={values.bookCoverUrl}
+                onChange={handleChange}
+            />
+            <div className={classes.action}>
+                <Button variant="contained" className={classes.addCoverButton} onClick={toggleModalState}>Add</Button>
+            </div>
+        </div>
+    );
+
     return (
         <React.Fragment>
             <WriteNavBar />
             <div className={classes.root}>
                 <div className={classes.coverUpload}>
                     <div className={classes.border} />
-                    <Button variant="outlined" className={classes.addButton}>Add</Button>
+                    <Button variant="outlined" className={classes.addButton} onClick={toggleModalState}>Add</Button>
                 </div>
                 <TextField
                     className={classes.titleField}
@@ -107,9 +208,22 @@ function Write() {
                     }}
                 />
                 <EnterGenresTextField />
+                <Modal
+                    open={editModalOpen}
+                    onClose={toggleModalState}
+                >
+                    {modalBody}
+                </Modal>
             </div>
         </React.Fragment>
     );
 }
+const mapStateToProps = state => ({
+    userDetails: state.getUserDetails
+});
 
-export default Write;
+const mapDispatchToProps = {
+
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Write);
