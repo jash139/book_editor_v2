@@ -82,15 +82,9 @@ function getStyles(name, personName, theme) {
     };
 }
 
-function EnterGenresTextField() {
+function EnterGenresTextField(props) {
     const classes = useStyles();
     const theme = useTheme();
-
-    const [selectedGenres, setSelectedGenres] = useState([]); // change this to use redux instead of component state
-
-    const handleChange = (event) => {
-        setSelectedGenres(event.target.value);
-    };
 
     return (
         <FormControl className={classes.formControl}>
@@ -98,8 +92,8 @@ function EnterGenresTextField() {
             <Select
                 labelId="genres-field-label"
                 multiple
-                value={selectedGenres}
-                onChange={handleChange}
+                value={props.genres}
+                onChange={props.handleGenresChange}
                 input={<Input />}
                 renderValue={(selected) => (
                     <div className={classes.chips}>
@@ -115,7 +109,7 @@ function EnterGenresTextField() {
                 MenuProps={MenuProps}
             >
                 {genres.map((genre) => (
-                    <MenuItem key={genre} value={genre} style={getStyles(genre, selectedGenres, theme)}>
+                    <MenuItem key={genre} value={genre} style={getStyles(genre, props.genres, theme)}>
                         {genre}
                     </MenuItem>
                 ))}

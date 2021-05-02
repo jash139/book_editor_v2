@@ -161,6 +161,15 @@ function Write(props) {
 
     const handleChange = (prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
+        console.log(values);
+    };
+
+    const handleGenresChange = (event) => {
+        setValues({ ...values, genres: event.target.value });
+    };
+
+    const handleSaveNewBook = () => {
+
     };
 
     const modalBody = (
@@ -173,7 +182,7 @@ function Write(props) {
                 rowsMax={6}
                 inputProps={inputProp}
                 value={values.bookCoverUrl}
-                onChange={handleChange}
+                onChange={handleChange("bookCoverUrl")}
             />
             <div className={classes.action}>
                 <Button variant="contained" className={classes.addCoverButton} onClick={toggleModalState}>Add</Button>
@@ -196,6 +205,8 @@ function Write(props) {
                     InputProps={{
                         className: classes.input,
                     }}
+                    value={values.title}
+                    onChange={handleChange("title")}
                 />
                 <TextField
                     className={classes.summaryField}
@@ -206,8 +217,10 @@ function Write(props) {
                     InputProps={{
                         className: classes.input,
                     }}
+                    value={values.summary}
+                    onChange={handleChange("summary")}
                 />
-                <EnterGenresTextField />
+                <EnterGenresTextField genres={values.genres} handleGenresChange={handleGenresChange} />
                 <Modal
                     open={editModalOpen}
                     onClose={toggleModalState}
