@@ -2,6 +2,7 @@ import React from "react";
 
 import { Button, makeStyles } from "@material-ui/core";
 import themeColors from "../../constants/themeColors";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles(theme => ({
     newBookButton: {
@@ -27,9 +28,21 @@ const useStyles = makeStyles(theme => ({
 
 function WriteButton() {
     const classes = useStyles();
+    const history = useHistory();
+
+    const handleNewBook = () => {
+        history.push("/write");
+    };
+
     return (
         <React.Fragment>
-            <Button variant="contained" className={classes.newBookButton}>New Book</Button>
+            <Button
+                variant="contained"
+                className={classes.newBookButton}
+                onClick={handleNewBook}
+            >
+                New Book
+             </Button>
         </React.Fragment>
     );
 }
