@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 
 import { makeStyles } from "@material-ui/core";
@@ -95,10 +95,15 @@ const useStyles = makeStyles(theme => ({
 function Profile(props) {
     const classes = useStyles();
     const { currentUser } = useAuth();
+    const [update, setUpdate] = useState(false);
 
     useEffect(() => {
         props.getUserDetails(currentUser.uid);
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    }, [update]); // eslint-disable-line react-hooks/exhaustive-deps
+
+    const updateState = () => {
+        setUpdate(prevValue => !prevValue);
+    };
 
     const userDetails = Object.keys(props.userDetails).length > 0 ? props.userDetails : {
         name: "User Name",
@@ -134,10 +139,10 @@ function Profile(props) {
                                 <p className={classes.number}>{userDetails.work.length}</p>
                             </div>
                         </div>
-                        <ProfileEditDetails userDetails={userDetails} />
+                        <ProfileEditDetails updateState={updateState} />
                     </div>
                 </div>
-                <ProfileAbout />
+                <ProfileAbout updateState={updateState} />
             </div>
         </React.Fragment>
     );

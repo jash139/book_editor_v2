@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { Button, IconButton, makeStyles, Modal, TextField } from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
 
-import getUserDetails from "../../actions/userActions/getUserDetails";
 import patchUserDetails from "../../actions/userActions/patchUserDetails";
 
 import themeColors from "../../constants/themeColors";
@@ -133,8 +132,8 @@ function ProfileAbout(props) {
             about
         };
         props.patchUserDetails(userDetails._id, patchObj);
-        props.getUserDetails(userDetails.uid);
         toggleModalState();
+        props.updateState();
     };
 
     const modalBody = (
@@ -182,7 +181,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-    getUserDetails,
     patchUserDetails
 };
 

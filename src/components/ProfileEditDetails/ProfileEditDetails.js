@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 
 import { Button, makeStyles, Modal, TextField } from "@material-ui/core";
 
-import getUserDetails from "../../actions/userActions/getUserDetails";
 import patchUserDetails from "../../actions/userActions/patchUserDetails";
 
 import themeColors from "../../constants/themeColors";
@@ -122,8 +121,8 @@ function ProfileEditDetails(props) {
             profilePicture: values.profilePicture
         };
         props.patchUserDetails(userDetails._id, patchObj);
-        props.getUserDetails(userDetails.uid);
         toggleModalState();
+        props.updateState();
     };
 
     const modalBody = (
@@ -168,7 +167,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-    getUserDetails,
     patchUserDetails
 };
 
