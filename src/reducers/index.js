@@ -5,6 +5,7 @@ import toggleReadMode from "./toggleReadMode";
 import getAllBooks from "./bookReducers/getAllBooks";
 
 import getUserDetails from "./userReducers/getUserDetails";
+import patchUserDetails from "./userReducers/patchUserDetails";
 
 const rootReducer = combineReducers({
 
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
     getAllBooks,
 
     getUserDetails,
+    patchUserDetails,
 
 });
 

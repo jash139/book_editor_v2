@@ -125,6 +125,10 @@ function ProfileAbout(props) {
         setAbout(event.target.value);
     };
 
+    const handleSaveAbout = () => {
+
+    };
+
     const modalBody = (
         <div className={classes.modal}>
             <h2 className={classes.modalHeading}>Edit About</h2>
@@ -138,7 +142,7 @@ function ProfileAbout(props) {
             />
             <div className={classes.action}>
                 <Button variant="outlined" className={classes.cancelButton} onClick={toggleModalState}>Cancel</Button>
-                <Button variant="contained" className={classes.saveButton}>Save</Button>
+                <Button variant="contained" className={classes.saveButton} onClick={handleSaveAbout}>Save</Button>
             </div>
         </div>
     );
@@ -169,4 +173,8 @@ const mapStateToProps = state => ({
     userDetails: state.getUserDetails
 });
 
-export default connect(mapStateToProps)(ProfileAbout);
+const mapDispatchToProps = {
+
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileAbout);

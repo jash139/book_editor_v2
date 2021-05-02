@@ -15,3 +15,4 @@ export const GET_ALL_BOOKS = "GET_ALL_BOOKS";
 // USER
 
 export const GET_USER_DETAILS = "GET_USER_DETAILS";
+export const PATCH_USER_DETAILS = "PATCH_USER_DETAILS";
