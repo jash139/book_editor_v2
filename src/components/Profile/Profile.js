@@ -137,7 +137,7 @@ function Profile(props) {
                         <ProfileEditDetails userDetails={userDetails} />
                     </div>
                 </div>
-                <ProfileAbout about={userDetails.about} />
+                <ProfileAbout />
             </div>
         </React.Fragment>
     );

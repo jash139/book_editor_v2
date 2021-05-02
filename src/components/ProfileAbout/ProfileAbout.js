@@ -5,6 +5,8 @@ import { Button, IconButton, makeStyles, Modal, TextField } from "@material-ui/c
 import EditIcon from "@material-ui/icons/Edit";
 
 import themeColors from "../../constants/themeColors";
+import getUserDetails from "../../actions/userActions/getUserDetails";
+import patchUserDetails from "../../actions/userActions/patchUserDetails";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -113,8 +115,8 @@ const inputProp = {
 
 function ProfileAbout(props) {
     const classes = useStyles();
-    const aboutUser = props.about;
-    const [about, setAbout] = useState(aboutUser);
+    const userDetails = props.userDetails;
+    const [about, setAbout] = useState(userDetails.about);
     const [editModalOpen, setEditModalOpen] = useState(false);
 
     const toggleModalState = () => {
@@ -126,7 +128,12 @@ function ProfileAbout(props) {
     };
 
     const handleSaveAbout = () => {
-
+        const patchObj = {
+            about
+        };
+        props.patchUserDetails(userDetails._id, patchObj);
+        props.getUserDetails(userDetails.uid);
+        toggleModalState();
     };
 
     const modalBody = (
@@ -148,10 +155,10 @@ function ProfileAbout(props) {
     );
 
     const getAboutUser = () => {
-        if (aboutUser === "") {
+        if (userDetails.about === "") {
             return "Add a short description about yourself.";
         } else {
-            return aboutUser;
+            return userDetails.about;
         }
     };
 
@@ -174,7 +181,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-
+    getUserDetails,
+    patchUserDetails
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileAbout);
