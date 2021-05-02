@@ -8,8 +8,8 @@ const response = payload => ({
 
 const patchUserDetails = (id, patchObj) => {
     return dispatch => {
-        axios.patch(process.env.REACT_APP_BACKEND_HOST_URL + "/users/" + id)
-            .then(res => console.log(res))
+        axios.patch(process.env.REACT_APP_BACKEND_HOST_URL + "/users/" + id, patchObj)
+            .then(res => dispatch(response(res)))
             .catch(error => console.log(error));
     }
 }
