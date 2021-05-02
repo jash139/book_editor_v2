@@ -4,9 +4,10 @@ import { connect } from "react-redux";
 import { Button, IconButton, makeStyles, Modal, TextField } from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
 
-import themeColors from "../../constants/themeColors";
 import getUserDetails from "../../actions/userActions/getUserDetails";
 import patchUserDetails from "../../actions/userActions/patchUserDetails";
+
+import themeColors from "../../constants/themeColors";
 
 const useStyles = makeStyles(theme => ({
     root: {

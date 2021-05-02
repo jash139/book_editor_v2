@@ -3,6 +3,9 @@ import { connect } from "react-redux";
 
 import { Button, makeStyles, Modal, TextField } from "@material-ui/core";
 
+import getUserDetails from "../../actions/userActions/getUserDetails";
+import patchUserDetails from "../../actions/userActions/patchUserDetails";
+
 import themeColors from "../../constants/themeColors";
 
 const useStyles = makeStyles(theme => ({
@@ -114,7 +117,13 @@ function ProfileEditDetails(props) {
     };
 
     const handleSave = () => {
-        console.log("Save changes");
+        const patchObj = {
+            name: values.name,
+            profilePicture: values.profilePicture
+        };
+        props.patchUserDetails(userDetails._id, patchObj);
+        props.getUserDetails(userDetails.uid);
+        toggleModalState();
     };
 
     const modalBody = (
@@ -159,7 +168,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-
+    getUserDetails,
+    patchUserDetails
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileEditDetails);
