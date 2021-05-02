@@ -73,7 +73,7 @@ function Explore() {
     );
 
     const specificGenre = (
-        <div className={classes.carouselDark}>
+        <div className={classes.carousel}>
             <Heading heading={selectedGenre.genre} />
             <Carousel id={"carousel-" + selectedGenre.genre} />
         </div>

@@ -3,12 +3,13 @@ import React from "react";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 
+import { IconButton } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import GridList from "@material-ui/core/GridList";
 
 import BookCard from "../BookCard/BookCard";
+
 import themeColors from "../../constants/themeColors";
-import { IconButton } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
     carousel: {
@@ -60,9 +61,9 @@ function Carousel(props) {
 
     const handleScroll = (direction) => {
         if (direction === "left") {
-            document.getElementById(id).scrollLeft -= 200;
+            document.getElementById(id).scrollLeft -= 300;
         } else if (direction === "right") {
-            document.getElementById(id).scrollLeft += 200;
+            document.getElementById(id).scrollLeft += 300;
         }
     };
 

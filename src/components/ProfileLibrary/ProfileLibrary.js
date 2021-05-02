@@ -1,8 +1,28 @@
 import React from "react";
 
+import Heading from "../Heading/Heading";
+import Carousel from "../Carousel/Carousel";
+import { makeStyles } from "@material-ui/core";
+
+const useStyles = makeStyles(theme => ({
+    carousel: {
+        padding: "3rem 0",
+        margin: "auto",
+        width: "90%",
+        [theme.breakpoints.down("md")]: {
+            padding: "2rem 0",
+        },
+    },
+}));
+
 function ProfileLibrary() {
+    const classes = useStyles();
+
     return (
-        "lib"
+        <div className={classes.carousel}>
+            <Heading heading="Library" />
+            <Carousel id="carousel-library" />
+        </div>
     );
 }
 

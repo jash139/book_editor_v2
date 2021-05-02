@@ -10,6 +10,8 @@ import ProfileEditDetails from "../ProfileEditDetails/ProfileEditDetails";
 import themeColors from "../../constants/themeColors";
 import { useAuth } from "../../contexts/AuthContext";
 import getUserDetails from "../../actions/userActions/getUserDetails";
+import ProfileLibrary from "../ProfileLibrary/ProfileLibrary";
+import ProfileWork from "../ProfileWork/ProfileWork";
 
 const useStyles = makeStyles(theme => ({
     profile: {
@@ -144,6 +146,8 @@ function Profile(props) {
                 </div>
                 <ProfileAbout updateState={updateState} />
             </div>
+            <ProfileLibrary />
+            <ProfileWork />
         </React.Fragment>
     );
 }
