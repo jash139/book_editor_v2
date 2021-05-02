@@ -1,8 +1,9 @@
 import React from "react";
 
+import { makeStyles } from "@material-ui/core";
+
 import Heading from "../Heading/Heading";
 import Carousel from "../Carousel/Carousel";
-import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
     carousel: {
