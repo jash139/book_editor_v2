@@ -12,6 +12,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import getUserDetails from "../../actions/userActions/getUserDetails";
 import ProfileLibrary from "../ProfileLibrary/ProfileLibrary";
 import ProfileWork from "../ProfileWork/ProfileWork";
+import WriteButton from "../WriteButton/WriteButton";
 
 const useStyles = makeStyles(theme => ({
     profile: {
@@ -142,6 +143,7 @@ function Profile(props) {
                             </div>
                         </div>
                         <ProfileEditDetails updateState={updateState} />
+                        <WriteButton />
                     </div>
                 </div>
                 <ProfileAbout updateState={updateState} />
