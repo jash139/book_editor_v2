@@ -147,13 +147,14 @@ function Write(props) {
     const classes = useStyles();
     const [editModalOpen, setEditModalOpen] = useState(false);
     const userDetails = props.userDetails;
-    const [values, setValues] = useState({
+    const defaultValues = {
         userId: userDetails._id,
         bookCoverUrl: "",
         title: "",
         summary: "",
         genres: []
-    });
+    };
+    const [values, setValues] = useState(defaultValues);
 
     const toggleModalState = () => {
         setEditModalOpen(prevValue => !prevValue);
@@ -161,15 +162,19 @@ function Write(props) {
 
     const handleChange = (prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
-        console.log(values);
     };
 
     const handleGenresChange = (event) => {
         setValues({ ...values, genres: event.target.value });
     };
 
-    const handleSaveNewBook = () => {
+    const handleReset = () => {
+        setValues(defaultValues);
+    };
 
+    const handleSaveNewBook = () => {
+        console.log("Save book");
+        console.log(values);
     };
 
     const modalBody = (
@@ -192,7 +197,7 @@ function Write(props) {
 
     return (
         <React.Fragment>
-            <WriteNavBar />
+            <WriteNavBar onReset={handleReset} onSave={handleSaveNewBook} />
             <div className={classes.root}>
                 <div className={classes.coverUpload}>
                     <div className={classes.border} />

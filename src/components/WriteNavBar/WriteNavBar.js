@@ -55,7 +55,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-function WriteNavBar() {
+function WriteNavBar(props) {
     const classes = useStyles();
     return (
         <header className={classes.header}>
@@ -64,8 +64,8 @@ function WriteNavBar() {
                     <ArrowBackIcon className={classes.backIcon} />
                 </IconButton>
                 <div className={classes.action}>
-                    <Button variant="outlined" className={classes.reset}>Reset</Button>
-                    <Button variant="outlined" className={classes.save}>Save</Button>
+                    <Button variant="outlined" className={classes.reset} onClick={props.onReset}>Reset</Button>
+                    <Button variant="outlined" className={classes.save} onClick={props.onSave}>Save</Button>
                 </div>
             </nav>
         </header>
