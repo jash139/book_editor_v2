@@ -11,6 +11,7 @@ export const SET_REGISTER_MODAL_CLOSE = "SET_REGISTER_MODAL_CLOSE";
 // BOOKS
 
 export const GET_ALL_BOOKS = "GET_ALL_BOOKS";
+export const SAVE_NEW_BOOK = "SAVE_NEW_BOOK";
 
 // USER
 

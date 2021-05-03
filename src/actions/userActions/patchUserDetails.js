@@ -12,6 +12,6 @@ const patchUserDetails = (id, patchObj) => {
             .then(res => dispatch(response(res)))
             .catch(error => console.log(error));
     }
-}
+};
 
 export default patchUserDetails;
