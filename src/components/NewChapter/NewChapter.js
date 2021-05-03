@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { connect } from "react-redux";
 import EditorJS from "react-editor-js";
 
@@ -202,8 +202,10 @@ function NewChapter(props) {
     const bookId = props.match.params.bookId;
     const chapterNumber = props.match.params.chapterNumber;
 
-
-
+    useEffect(() => {
+        props.getActiveEditBook(props.match.params.bookId);
+    }, [props.match.params.bookId]);
+    console.log(props.activeEditBook);
     console.log(bookId, chapterNumber);
     async function handleSave() {
         const savedData = await instanceRef.current.save()
@@ -309,7 +311,8 @@ function NewChapter(props) {
 }
 
 const mapStateToProps = state => ({
-    readModeType: state.toggleReadMode
+    readModeType: state.toggleReadMode,
+    activeEditBook: state.getActiveEditBook
 });
 
 const mapDispatchToProps = {
