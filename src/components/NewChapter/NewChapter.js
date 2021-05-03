@@ -16,6 +16,8 @@ import NewChapterNavBar from "../NewChapterNavBar/NewChapterNavBar";
 
 import themeColors from "../../constants/themeColors";
 
+import getActiveEditBook from "../../actions/bookActions/getActiveEditBook";
+
 const drawerWidth = 260;
 
 const useStyles = makeStyles((theme) => ({
@@ -200,6 +202,8 @@ function NewChapter(props) {
     const bookId = props.match.params.bookId;
     const chapterNumber = props.match.params.chapterNumber;
 
+
+
     console.log(bookId, chapterNumber);
     async function handleSave() {
         const savedData = await instanceRef.current.save()
@@ -308,5 +312,8 @@ const mapStateToProps = state => ({
     readModeType: state.toggleReadMode
 });
 
+const mapDispatchToProps = {
+    getActiveEditBook
+};
 
-export default connect(mapStateToProps)(NewChapter);
+export default connect(mapStateToProps, mapDispatchToProps)(NewChapter);

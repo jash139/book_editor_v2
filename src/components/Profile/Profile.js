@@ -6,13 +6,13 @@ import { makeStyles } from "@material-ui/core";
 import ProfileNavBar from "../ProfileNavBar/ProfileNavBar";
 import ProfileAbout from "../ProfileAbout/ProfileAbout";
 import ProfileEditDetails from "../ProfileEditDetails/ProfileEditDetails";
+import ProfileLibrary from "../ProfileLibrary/ProfileLibrary";
+import ProfileWork from "../ProfileWork/ProfileWork";
+import WriteButton from "../WriteButton/WriteButton";
 
 import themeColors from "../../constants/themeColors";
 import { useAuth } from "../../contexts/AuthContext";
 import getUserDetails from "../../actions/userActions/getUserDetails";
-import ProfileLibrary from "../ProfileLibrary/ProfileLibrary";
-import ProfileWork from "../ProfileWork/ProfileWork";
-import WriteButton from "../WriteButton/WriteButton";
 
 const useStyles = makeStyles(theme => ({
     profile: {
