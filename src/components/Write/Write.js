@@ -178,7 +178,7 @@ function Write(props) {
 
     const openNewChapter = () => {
         if (props.newBook._id !== undefined) {
-            history.push("/write/new-chapter/" + props.newBook._id);
+            history.push("/write/new-chapter/" + props.newBook._id + "/1");
         }
     };
 
