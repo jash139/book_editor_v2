@@ -176,9 +176,15 @@ function Write(props) {
         setValues(defaultValues);
     };
 
+    const openNewChapter = () => {
+        if (props.newBook._id !== undefined) {
+            history.push("/write/new-chapter/" + props.newBook._id);
+        }
+    };
+
     const handleSaveNewBook = () => {
         props.saveNewBook(values);
-        history.push("/write/new-chapter");
+        setTimeout(openNewChapter, 3000);
     };
 
     const modalBody = (
@@ -241,7 +247,8 @@ function Write(props) {
     );
 }
 const mapStateToProps = state => ({
-    userDetails: state.getUserDetails
+    userDetails: state.getUserDetails,
+    newBook: state.saveNewBook
 });
 
 const mapDispatchToProps = {

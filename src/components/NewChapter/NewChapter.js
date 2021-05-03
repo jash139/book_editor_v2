@@ -192,7 +192,7 @@ function NewChapter(props) {
     const instanceRef = useRef(null);
     let data;
     const [chapter, setChapter] = useState();
-
+    const bookId = props.match.params.bookId;
     async function handleSave() {
         const savedData = await instanceRef.current.save()
     }
