@@ -189,23 +189,23 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function NewChapter(props) {
+    const classes = useStyles();
+    const theme = useTheme();
+    const lgView = useMediaQuery(theme.breakpoints.up("sm"));
+    const [mobileOpen, setMobileOpen] = useState(false);
     const instanceRef = useRef(null);
     let data;
     const [chapter, setChapter] = useState();
+
     const bookId = props.match.params.bookId;
     const chapterNumber = props.match.params.chapterNumber;
+
     console.log(bookId, chapterNumber);
     async function handleSave() {
         const savedData = await instanceRef.current.save()
     }
 
     const { window } = props;
-
-    const classes = useStyles();
-    const theme = useTheme();
-    const lgView = useMediaQuery(theme.breakpoints.up("sm"));
-
-    const [mobileOpen, setMobileOpen] = useState(false);
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);

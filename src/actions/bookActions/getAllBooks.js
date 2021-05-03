@@ -12,6 +12,6 @@ const getAllBooks = () => {
             .then(bookList => dispatch(books(bookList)))
             .catch(error => console.log(error));
     }
-}
+};
 
 export default getAllBooks;
