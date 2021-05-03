@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { useHistory } from "react-router";
 
 import { Button, makeStyles, Modal, TextField } from "@material-ui/core";
 
@@ -7,6 +8,8 @@ import WriteNavBar from "../WriteNavBar/WriteNavBar";
 import EnterGenresTextField from "../EnterGenresTextField/EnterGenresTextField";
 
 import themeColors from "../../constants/themeColors";
+
+import saveNewBook from "../../actions/bookActions/saveNewBook";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -155,6 +158,7 @@ function Write(props) {
         genres: []
     };
     const [values, setValues] = useState(defaultValues);
+    const history = useHistory();
 
     const toggleModalState = () => {
         setEditModalOpen(prevValue => !prevValue);
@@ -173,8 +177,8 @@ function Write(props) {
     };
 
     const handleSaveNewBook = () => {
-        console.log("Save book");
-        console.log(values);
+        props.saveNewBook(values);
+        history.push("/write/new-chapter");
     };
 
     const modalBody = (
@@ -241,7 +245,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-
+    saveNewBook
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Write);

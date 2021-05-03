@@ -32,7 +32,7 @@ function App() {
           <Route exact path="/read/" component={Read} />
 
           <Route exact path="/write" component={Write} />
-          <Route exact path="/write/new-chapter" component={NewChapter} />
+          <Route exact path="/write/new-chapter/:bookId" component={NewChapter} />
 
           <Route exact path="/profile" component={Profile} />
 
