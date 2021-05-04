@@ -1,10 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import EditorJS from "react-editor-js";
 
 import "./NewChapter.css";
 
-import StarRateIcon from "@material-ui/icons/StarRate";
 import ChevronRightRoundedIcon from "@material-ui/icons/ChevronRightRounded";
 
 import Drawer from "@material-ui/core/Drawer";
@@ -175,22 +174,23 @@ function NewChapter(props) {
     const theme = useTheme();
     const lgView = useMediaQuery(theme.breakpoints.up("sm"));
     const [mobileOpen, setMobileOpen] = useState(false);
-    const instanceRef = useRef(null);
-    let data;
-    const [chapter, setChapter] = useState();
+    const instanceRef = React.useRef(null);
 
     const bookId = props.match.params.bookId;
     const chapterNumber = props.match.params.chapterNumber;
 
+    const [chapter, setChapter] = useState({
+        bookId,
+        chapterNumber,
+        title: "",
+        chapter: []
+    });
+
     useEffect(() => {
         props.getActiveEditBook(props.match.params.bookId);
-    }, [props.match.params.bookId]);
+    }, [props.match.params.bookId]);     // eslint-disable-line react-hooks/exhaustive-deps
 
     const activeBook = props.activeEditBook;
-
-    async function handleSave() {
-        const savedData = await instanceRef.current.save()
-    }
 
     const { window } = props;
 
@@ -211,9 +211,21 @@ function NewChapter(props) {
         </div>
     );
 
-    const handleChange = (event) => {
-
+    const handleTitleChange = (event) => {
+        setChapter(prevValues => ({
+            ...prevValues,
+            title: event.target.value
+        }));
     };
+
+
+    async function handleSave() {
+        const savedData = await instanceRef.current.save();
+        setChapter(prevValues => ({
+            ...prevValues,
+            chapter: savedData.blocks
+        }));
+    }
 
     const container = window !== undefined ? () => window().document.body : undefined;
 
@@ -260,9 +272,9 @@ function NewChapter(props) {
                 <main className={classes.content}>
                     <TextField
                         className={classes.chapterNameTextField}
-                        value={"Chapter 3: Lorem ipsum"}
+                        value={chapter.title}
                         fullWidth
-                        //   onChange={handleChange}
+                        onChange={handleTitleChange}
                         InputProps={{
                             className: classes.chapterNameinput,
                         }}
@@ -270,9 +282,11 @@ function NewChapter(props) {
                     />
                     <EditorJS
                         holder="chapter-editor"
-                        // instanceRef={(instance) => (instanceRef.current = instance)}
-                        onChange={(e) => setChapter(data)}
-                        data={data}
+                        instanceRef={instance => (instanceRef.current = instance)}
+                        i18n={{
+                            messages: {}
+                        }}
+                        data={{}}
                         placeholder="Once upon a time..."
                     >
                         <div
