@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router";
+import axios from "axios";
 
 import { Button, makeStyles, Modal, TextField } from "@material-ui/core";
 
@@ -174,13 +175,14 @@ function Write(props) {
         setValues(defaultValues);
     };
 
-    const openNewChapter = () => {
-        history.push("/write/new-chapter/" + props.newBook._id + "/1");
+    const openNewChapter = (newBookId) => {
+        history.push("/write/new-chapter/" + newBookId + "/1");
     };
 
     const handleSaveNewBook = () => {
-        // props.saveNewBook(values);
-        // openNewChapter();
+        axios.post(process.env.REACT_APP_BACKEND_HOST_URL + "/books", values)
+            .then(newBook => openNewChapter(newBook.data._id))
+            .catch(error => console.log(error));
     };
 
     const modalBody = (
@@ -243,8 +245,7 @@ function Write(props) {
     );
 }
 const mapStateToProps = state => ({
-    userDetails: state.getUserDetails,
-    newBook: state.saveNewBook
+    userDetails: state.getUserDetails
 });
 
 const mapDispatchToProps = {
