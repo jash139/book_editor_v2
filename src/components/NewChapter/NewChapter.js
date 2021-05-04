@@ -278,6 +278,7 @@ function NewChapter(props) {
                         InputProps={{
                             className: classes.chapterNameinput,
                         }}
+                        placeholder={`Chapter ${chapterNumber}: Title`}
                         variant="outlined"
                     />
                     <EditorJS
