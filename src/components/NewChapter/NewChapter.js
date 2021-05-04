@@ -105,26 +105,6 @@ const useStyles = makeStyles((theme) => ({
         height: "1px",
         width: "8rem",
     },
-    separator2: {
-        backgroundColor: themeColors.grey,
-        height: "1px",
-        margin: "0.3rem 0",
-        width: "4rem",
-    },
-    ratingDiv: {
-        display: "flex",
-        alignItems: "center",
-    },
-    rating: {
-        color: themeColors.black,
-        fontFamily: "'Playfair Display', serif",
-        fontSize: "0.9rem",
-        fontWeight: 600,
-        margin: 0,
-    },
-    rateIcon: {
-        color: themeColors.red,
-    },
     genre: {
         color: themeColors.black,
         fontFamily: "'Playfair Display', serif",
@@ -205,8 +185,9 @@ function NewChapter(props) {
     useEffect(() => {
         props.getActiveEditBook(props.match.params.bookId);
     }, [props.match.params.bookId]);
-    console.log(props.activeEditBook);
-    console.log(bookId, chapterNumber);
+
+    const activeBook = props.activeEditBook;
+
     async function handleSave() {
         const savedData = await instanceRef.current.save()
     }
@@ -223,14 +204,9 @@ function NewChapter(props) {
                 <img className={classes.cover} src="https://images.unsplash.com/photo-1545239351-cefa43af60f3?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mjl8fGJvb2slMjBjb3ZlcnxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="" />
                 <div className={classes.coverBorder} />
             </div>
-            <h1 className={classes.bookName}>Coffee a Day</h1>
+            <h1 className={classes.bookName}>{activeBook.title}</h1>
             <div className={classes.separator1} />
             <h2 className={classes.author}>J. K. Bowling</h2>
-            <div className={classes.ratingDiv}>
-                <h3 className={classes.rating}>8.5 / 10</h3>
-                <StarRateIcon className={classes.rateIcon} />
-            </div>
-            <div className={classes.separator2} />
             <h3 className={classes.genre}>Fiction</h3>
         </div>
     );
