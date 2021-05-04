@@ -10,6 +10,7 @@ import EnterGenresTextField from "../EnterGenresTextField/EnterGenresTextField";
 import themeColors from "../../constants/themeColors";
 
 import saveNewBook from "../../actions/bookActions/saveNewBook";
+import store from "../../store";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -177,14 +178,13 @@ function Write(props) {
     };
 
     const openNewChapter = () => {
-        if (props.newBook._id !== undefined) {
-            history.push("/write/new-chapter/" + props.newBook._id + "/1");
-        }
+        store.getState();
+        history.push("/write/new-chapter/" + props.newBook._id + "/1");
     };
 
     const handleSaveNewBook = () => {
         props.saveNewBook(values);
-        setTimeout(openNewChapter, 3000);
+        openNewChapter();
     };
 
     const modalBody = (
