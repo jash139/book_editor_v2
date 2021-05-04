@@ -178,6 +178,7 @@ function NewChapter(props) {
 
     const bookId = props.match.params.bookId;
     const chapterNumber = props.match.params.chapterNumber;
+    const userDetails = props.userDetails;
 
     const [chapter, setChapter] = useState({
         bookId,
@@ -206,7 +207,7 @@ function NewChapter(props) {
             </div>
             <h1 className={classes.bookName}>{activeBook.title}</h1>
             <div className={classes.separator1} />
-            <h2 className={classes.author}>J. K. Bowling</h2>
+            <h2 className={classes.author}>{userDetails.name}</h2>
             <h3 className={classes.genre}>Fiction</h3>
         </div>
     );
@@ -303,7 +304,8 @@ function NewChapter(props) {
 
 const mapStateToProps = state => ({
     readModeType: state.toggleReadMode,
-    activeEditBook: state.getActiveEditBook
+    activeEditBook: state.getActiveEditBook,
+    userDetails: state.getUserDetails
 });
 
 const mapDispatchToProps = {
