@@ -1,5 +1,5 @@
-import React from "react";
-import { connect } from "react-redux";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 import StarRateIcon from '@material-ui/icons/StarRate';
 import { Button, makeStyles } from "@material-ui/core";
@@ -138,6 +138,28 @@ const useStyles = makeStyles(theme => ({
 
 function ViewBook(props) {
     const classes = useStyles();
+    const bookId = props.match.params.bookId;
+    let defaultValues = {
+        bookCoverUrl: "",
+        genres: [],
+        summary: "",
+        title: "",
+        userId: ""
+    };
+    const [book, setBook] = useState(defaultValues);
+    useEffect(() => {
+        axios.get(process.env.REACT_APP_BACKEND_HOST_URL + "/books/" + bookId)
+            .then(res => setBook(res.data))
+            .catch(error => console.log(error));
+    }, [props.match.params.bookId]);        // eslint-disable-line react-hooks/exhaustive-deps
+
+    const getGenres = () => {
+        if (book.genres.length) {
+            return book.genres[0];
+        } else {
+            return "-";
+        }
+    };
 
     return (
         <React.Fragment>
@@ -145,14 +167,14 @@ function ViewBook(props) {
             <div className={classes.root}>
                 <div className={classes.details}>
                     <div className={classes.coverDiv}>
-                        <img className={classes.cover} src="https://images.unsplash.com/photo-1545239351-cefa43af60f3?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mjl8fGJvb2slMjBjb3ZlcnxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="" />
+                        <img className={classes.cover} src={book.bookCoverUrl} alt="" />
                         <div className={classes.coverBorder} />
                     </div>
                     <div className={classes.bookDetails}>
                         <div>
-                            <h1 className={classes.bookName}>Coffee a Day</h1>
+                            <h1 className={classes.bookName}>{book.title}</h1>
                             <div className={classes.separator1} />
-                            <h2 className={classes.author}>J. K. Bowling</h2>
+                            <h2 className={classes.author}>Save author when creating new book</h2>
                         </div>
                         <div>
                             <div className={classes.ratingDiv}>
@@ -160,7 +182,7 @@ function ViewBook(props) {
                                 <StarRateIcon className={classes.rateIcon} />
                             </div>
                             <div className={classes.separator2} />
-                            <h3 className={classes.genre}>Fiction</h3>
+                            <h3 className={classes.genre}>{getGenres()}</h3>
                         </div>
                         <Button variant="outlined" className={classes.readButton}>Read</Button>
                     </div>
@@ -174,8 +196,4 @@ function ViewBook(props) {
     );
 }
 
-const mapStateToProps = state => ({
-
-});
-
-export default connect(mapStateToProps)(ViewBook);
+export default ViewBook;
