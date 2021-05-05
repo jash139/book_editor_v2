@@ -96,7 +96,7 @@ function BookCard(props) {
     return (
         <div className={classes.root}>
             <div className={classes.coverDiv}>
-                <img className={classes.cover} src={book.bookCoverUrl} alt="" />
+                <img className={classes.cover} src={book.bookCoverUrl} alt={book.title} />
                 <div className={classes.coverBorder} />
             </div>
             <div className={classes.bookDetails}>
