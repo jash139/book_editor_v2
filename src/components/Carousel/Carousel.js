@@ -57,7 +57,8 @@ const useStyles = makeStyles((theme) => ({
 
 function Carousel(props) {
     const classes = useStyles();
-    const id = props.id;
+    const genre = props.genre;
+    const id = "carousel-" + genre;
 
     const handleScroll = (direction) => {
         if (direction === "left") {

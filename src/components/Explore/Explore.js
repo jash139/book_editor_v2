@@ -73,7 +73,7 @@ function Explore(props) {
         genres.map((genre, id) =>
             <div className={classes.carousel} key={genre}>
                 <Heading heading={genre} />
-                <Carousel id={"carousel-" + genre} />
+                <Carousel genre={genre} />
             </div>
         )
     );
@@ -81,7 +81,7 @@ function Explore(props) {
     const specificGenre = (
         <div className={classes.carousel}>
             <Heading heading={selectedGenre.genre} />
-            <Carousel id={"carousel-" + selectedGenre.genre} />
+            <Carousel genre={selectedGenre.genre} />
         </div>
     );
 
