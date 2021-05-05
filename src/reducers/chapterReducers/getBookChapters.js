@@ -1,10 +1,10 @@
-import { GET_ALL_CHAPTERS } from "../../actions/types";
+import { GET_BOOK_CHAPTERS } from "../../actions/types";
 
 const initialState = [];
 
-function getAllChapters(state = initialState, action) {
+function getBookChapters(state = initialState, action) {
     switch (action.type) {
-        case GET_ALL_CHAPTERS:
+        case GET_BOOK_CHAPTERS:
             const results = action.payload.data;
             return [
                 ...results
@@ -14,4 +14,4 @@ function getAllChapters(state = initialState, action) {
     }
 }
 
-export default getAllChapters;
+export default getBookChapters;
