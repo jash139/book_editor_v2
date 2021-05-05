@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import axios from "axios";
 
 import StarRateIcon from "@material-ui/icons/StarRate";
 import ChevronRightRoundedIcon from "@material-ui/icons/ChevronRightRounded";
@@ -168,10 +169,35 @@ function Read(props) {
     const theme = useTheme();
     const lgView = useMediaQuery(theme.breakpoints.up("sm"));
 
-    const [mobileOpen, setMobileOpen] = React.useState(false);
+    const [mobileOpen, setMobileOpen] = useState(false);
+    const chapterNumber = props.match.params.chapterNumber;
+    const bookId = props.match.params.bookId;
+
+    const defaultValues = {
+        bookCoverUrl: "",
+        genres: [],
+        summary: "",
+        title: "",
+        userId: ""
+    };
+    const [book, setBook] = useState(defaultValues);
+
+    useEffect(() => {
+        axios.get(process.env.REACT_APP_BACKEND_HOST_URL + "/books/" + bookId)
+            .then(res => setBook(res.data))
+            .catch(error => console.log(error));
+    }, []);
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
+    };
+
+    const getGenres = () => {
+        if (book.genres.length) {
+            return book.genres[0];
+        } else {
+            return "-";
+        }
     };
 
     const drawer = (
@@ -180,7 +206,7 @@ function Read(props) {
                 <img className={classes.cover} src="https://images.unsplash.com/photo-1545239351-cefa43af60f3?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mjl8fGJvb2slMjBjb3ZlcnxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="" />
                 <div className={classes.coverBorder} />
             </div>
-            <h1 className={classes.bookName}>Coffee a Day</h1>
+            <h1 className={classes.bookName}>{book.title}</h1>
             <div className={classes.separator1} />
             <h2 className={classes.author}>J. K. Bowling</h2>
             <div className={classes.ratingDiv}>
@@ -188,7 +214,7 @@ function Read(props) {
                 <StarRateIcon className={classes.rateIcon} />
             </div>
             <div className={classes.separator2} />
-            <h3 className={classes.genre}>Fiction</h3>
+            <h3 className={classes.genre}>{getGenres()}</h3>
         </div>
     );
 
@@ -236,7 +262,7 @@ function Read(props) {
                     </Hidden>
                 </nav>
                 <main className={classes.content}>
-                    <h2 className={classes.chapterHeading}>Chapter 3: Lorem ipsum</h2>
+                    <h2 className={classes.chapterHeading}>{`Chapter ${chapterNumber}: Add Title`}</h2>
                     <p className={classes.chapter}>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
                         ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
