@@ -6,9 +6,9 @@ const chapters = payload => ({
     payload
 });
 
-const getBookChapters = () => {
+const getBookChapters = (id) => {
     return dispatch => {
-        axios.get(process.env.REACT_APP_BACKEND_HOST_URL + "/chapters/")
+        axios.get(process.env.REACT_APP_BACKEND_HOST_URL + "/chapters/book/" + id)
             .then(response => dispatch(chapters(response)))
             .catch(error => console.log(error));
     }
