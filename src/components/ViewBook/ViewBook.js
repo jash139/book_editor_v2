@@ -161,6 +161,14 @@ function ViewBook(props) {
         }
     };
 
+    const getSummary = () => {
+        if (book.summary !== "") {
+            return book.summary;
+        } else {
+            return "Summary for the book " + book.title + " not provided by the author.";
+        }
+    };
+
     return (
         <React.Fragment>
             <ViewBookNavBar />
@@ -189,7 +197,7 @@ function ViewBook(props) {
                 </div>
                 <div className={classes.bookSummary}>
                     <h2 className={classes.summaryHeading}>summary</h2>
-                    <p className={classes.summary}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod t t amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing elit duis tristique sollicitudin nibh sit. Vulputate ut pharetra sit amet. Massa sed elementum tempus egestas sed sed risus.</p>
+                    <p className={classes.summary}>{getSummary()}</p>
                 </div>
             </div>
         </React.Fragment>
