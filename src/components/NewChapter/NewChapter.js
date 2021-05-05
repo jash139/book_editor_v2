@@ -187,7 +187,7 @@ function NewChapter(props) {
         bookId,
         chapterNumber,
         title: "",
-        chapter: []
+        content: [{}]
     };
     const [chapter, setChapter] = useState(defaultValues);
 
@@ -237,10 +237,15 @@ function NewChapter(props) {
         const savedData = await instanceRef.current.save();
         setChapter(prevValues => ({
             ...prevValues,
-            chapter: savedData.blocks
+            content: savedData.blocks
         }));
 
-        axios.post(process.env.REACT_APP_BACKEND_HOST_URL + "/chapters", chapter)
+        const postChapter = {
+            ...chapter,
+            content: savedData.blocks
+        };
+
+        axios.post(process.env.REACT_APP_BACKEND_HOST_URL + "/chapters", postChapter)
             .then(res => openNextChapter())
             .catch(error => console.log(error));
     }
