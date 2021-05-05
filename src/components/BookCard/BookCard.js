@@ -73,8 +73,8 @@ const useStyles = makeStyles(theme => ({
 
 function BookCard(props) {
     const classes = useStyles();
-    const id = props.id;
-    // write const function to trim string to required length
+    const book = props.book;
+    const id = book._id;
 
     const reduceLineWidth = () => {
         if (id) {
@@ -96,14 +96,12 @@ function BookCard(props) {
     return (
         <div className={classes.root}>
             <div className={classes.coverDiv}>
-                <img className={classes.cover} src="https://images.unsplash.com/photo-1516368694098-47836cebec97?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=646&q=80" alt="" />
+                <img className={classes.cover} src={book.bookCoverUrl} alt="" />
                 <div className={classes.coverBorder} />
             </div>
             <div className={classes.bookDetails}>
-                <h2 className={classes.name}>{trimString("Harry Potter", 25)}</h2>
+                <h2 className={classes.name}>{trimString(book.title, 25)}</h2>
                 <div className={classes.viewDiv} onMouseOver={reduceLineWidth} onMouseOut={restoreLineWidth} onClick={handleViewBook}>
-
-                    {/* change this to individual unique ids when using carousel */}
                     <div className={classes.bubble} />
                     <div className={classes.line} id={id} />
                     <h3 className={classes.view}>View</h3>
