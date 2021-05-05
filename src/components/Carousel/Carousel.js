@@ -11,6 +11,7 @@ import BookCard from "../BookCard/BookCard";
 
 import themeColors from "../../constants/themeColors";
 import { connect } from "react-redux";
+import filterBooksByGenre from "../../functions/filterBooksByGenre";
 
 const useStyles = makeStyles((theme) => ({
     carousel: {
@@ -68,8 +69,8 @@ function Carousel(props) {
             document.getElementById(id).scrollLeft += 300;
         }
     };
-
     console.log(props.books);
+    console.log(filterBooksByGenre(props.books, genre));
     const bookCards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((book, index) => <BookCard key={index} id={index} />); // change this to actual book id to make it unique 
 
     return (
