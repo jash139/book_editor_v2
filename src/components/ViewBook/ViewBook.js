@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router";
 import axios from "axios";
 
 import StarRateIcon from '@material-ui/icons/StarRate';
@@ -147,6 +148,8 @@ function ViewBook(props) {
         userId: ""
     };
     const [book, setBook] = useState(defaultValues);
+    const history = useHistory();
+
     useEffect(() => {
         axios.get(process.env.REACT_APP_BACKEND_HOST_URL + "/books/" + bookId)
             .then(res => setBook(res.data))
@@ -167,6 +170,10 @@ function ViewBook(props) {
         } else {
             return "Summary for the book " + book.title + " not provided by the author.";
         }
+    };
+
+    const handleRead = () => {
+        history.push("/read/" + bookId + "/1");
     };
 
     return (
@@ -192,7 +199,7 @@ function ViewBook(props) {
                             <div className={classes.separator2} />
                             <h3 className={classes.genre}>{getGenres()}</h3>
                         </div>
-                        <Button variant="outlined" className={classes.readButton}>Read</Button>
+                        <Button variant="outlined" className={classes.readButton} onClick={handleRead}>Read</Button>
                     </div>
                 </div>
                 <div className={classes.bookSummary}>
