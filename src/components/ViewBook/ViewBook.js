@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
+import { connect } from "react-redux";
 import axios from "axios";
 
 import StarRateIcon from '@material-ui/icons/StarRate';
@@ -8,6 +9,7 @@ import { Button, makeStyles } from "@material-ui/core";
 import ViewBookNavBar from "../ViewBookNavBar/ViewBookNavBar";
 
 import themeColors from "../../constants/themeColors";
+import getBookChapters from "../../actions/chapterActions/getBookChapters";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -151,6 +153,7 @@ function ViewBook(props) {
     const history = useHistory();
 
     useEffect(() => {
+        props.getBookChapters(props.match.params.bookId);
         axios.get(process.env.REACT_APP_BACKEND_HOST_URL + "/books/" + bookId)
             .then(res => setBook(res.data))
             .catch(error => console.log(error));
@@ -211,4 +214,12 @@ function ViewBook(props) {
     );
 }
 
-export default ViewBook;
+const mapStateToProps = state => ({
+
+});
+
+const mapDispatchToProps = {
+    getBookChapters
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ViewBook);
