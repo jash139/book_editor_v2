@@ -74,7 +74,7 @@ function Carousel(props) {
     const books = filterBooksByGenre(props.books, genre);
 
     if (books.length > 0) {
-        bookCards = books.map(book => <BookCard key={book._id} book={book} />); // change this to actual book id to make it unique 
+        bookCards = books.map(book => <BookCard key={book._id} book={book} id={genre + book._id} />); // change this to actual book id to make it unique 
     }
     else {
         bookCards = <h1>No Books in {genre}</h1>

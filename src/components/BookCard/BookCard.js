@@ -74,7 +74,7 @@ const useStyles = makeStyles(theme => ({
 function BookCard(props) {
     const classes = useStyles();
     const book = props.book;
-    const id = book._id;
+    const id = props.id;
 
     const reduceLineWidth = () => {
         if (id) {
@@ -90,7 +90,7 @@ function BookCard(props) {
     };
 
     const handleViewBook = () => {
-        console.log(id);
+        console.log(book._id);
     };
 
     return (
