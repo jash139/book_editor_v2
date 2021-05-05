@@ -10,6 +10,7 @@ import GridList from "@material-ui/core/GridList";
 import BookCard from "../BookCard/BookCard";
 
 import themeColors from "../../constants/themeColors";
+import { connect } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
     carousel: {
@@ -68,6 +69,7 @@ function Carousel(props) {
         }
     };
 
+    console.log(props.books);
     const bookCards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((book, index) => <BookCard key={index} id={index} />); // change this to actual book id to make it unique 
 
     return (
@@ -90,4 +92,8 @@ function Carousel(props) {
     );
 }
 
-export default Carousel;
+const mapStateToProps = state => ({
+    books: state.getAllBooks
+});
+
+export default connect(mapStateToProps)(Carousel);
