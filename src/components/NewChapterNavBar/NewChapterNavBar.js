@@ -1,7 +1,8 @@
 import React from "react";
-import { Button, IconButton, makeStyles } from "@material-ui/core";
+import { useHistory } from "react-router";
 
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import { Button, IconButton, makeStyles } from "@material-ui/core";
 
 import themeColors from "../../constants/themeColors";
 
@@ -32,7 +33,7 @@ const useStyles = makeStyles(theme => ({
         color: themeColors.red,
         fontSize: "2rem",
     },
-    reset: {
+    cancel: {
         border: "2px solid " + themeColors.black,
         color: themeColors.black,
         fontFamily: "'Poppins', sans-serif",
@@ -55,8 +56,9 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-function NewChapterNavBar() {
+function NewChapterNavBar(props) {
     const classes = useStyles();
+    const history = useHistory();
     return (
         <header className={classes.header}>
             <nav className={classes.nav}>
@@ -64,8 +66,8 @@ function NewChapterNavBar() {
                     <ArrowBackIcon className={classes.backIcon} />
                 </IconButton>
                 <div className={classes.action}>
-                    <Button variant="outlined" className={classes.reset}>Reset</Button>
-                    <Button variant="outlined" className={classes.save}>Next</Button>
+                    <Button variant="outlined" className={classes.cancel} onClick={() => history.push("/profile")}>Cancel</Button>
+                    <Button variant="outlined" className={classes.save} onClick={props.onNext}>Next</Button>
                 </div>
             </nav>
         </header>

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import EditorJS from "react-editor-js";
+import axios from "axios";
+import { useHistory } from "react-router";
 
 import "./NewChapter.css";
 
@@ -175,17 +177,19 @@ function NewChapter(props) {
     const lgView = useMediaQuery(theme.breakpoints.up("sm"));
     const [mobileOpen, setMobileOpen] = useState(false);
     const instanceRef = React.useRef(null);
+    const history = useHistory();
 
     const bookId = props.match.params.bookId;
     const chapterNumber = props.match.params.chapterNumber;
     const userDetails = props.userDetails;
 
-    const [chapter, setChapter] = useState({
+    const defaultValues = {
         bookId,
         chapterNumber,
         title: "",
         chapter: []
-    });
+    };
+    const [chapter, setChapter] = useState(defaultValues);
 
     useEffect(() => {
         props.getActiveEditBook(props.match.params.bookId);
@@ -219,20 +223,33 @@ function NewChapter(props) {
         }));
     };
 
+    const openNextChapter = () => {
+        const nextChapterNumber = parseInt(chapterNumber) + 1;
+        setChapter({
+            ...defaultValues,
+            chapterNumber: nextChapterNumber
+        });
+        instanceRef.current.clear();
+        history.push("/write/new-chapter/" + bookId + "/" + nextChapterNumber);
+    };
 
-    async function handleSave() {
+    async function handleNext() {
         const savedData = await instanceRef.current.save();
         setChapter(prevValues => ({
             ...prevValues,
             chapter: savedData.blocks
         }));
+
+        axios.post(process.env.REACT_APP_BACKEND_HOST_URL + "/chapters", chapter)
+            .then(res => openNextChapter())
+            .catch(error => console.log(error));
     }
 
     const container = window !== undefined ? () => window().document.body : undefined;
 
     return (
         <React.Fragment>
-            <NewChapterNavBar />
+            <NewChapterNavBar onNext={handleNext} />
             {
                 !lgView && !mobileOpen &&
                 <div className={classes.rightToggleDiv} onClick={handleDrawerToggle}>
