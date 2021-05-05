@@ -181,8 +181,15 @@ function Read(props) {
         userId: ""
     };
     const [book, setBook] = useState(defaultValues);
+    const [chapter, setChapter] = useState({
+        chapterNumber: "",
+        content: [],
+        title: ""
+    });
+
 
     useEffect(() => {
+        setChapter(props.chapters[parseInt(chapterNumber) - 1]);
         axios.get(process.env.REACT_APP_BACKEND_HOST_URL + "/books/" + bookId)
             .then(res => setBook(res.data))
             .catch(error => console.log(error));
@@ -331,7 +338,8 @@ function Read(props) {
 }
 
 const mapStateToProps = state => ({
-    readModeType: state.toggleReadMode
+    readModeType: state.toggleReadMode,
+    chapters: state.getBookChapters
 });
 
 
