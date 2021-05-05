@@ -201,7 +201,9 @@ function Home(props) {
     const { currentUser } = useAuth();
 
     useEffect(() => {
-        props.getUserDetails(currentUser.uid);
+        if (currentUser) {
+            props.getUserDetails(currentUser.uid);
+        }
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
 
