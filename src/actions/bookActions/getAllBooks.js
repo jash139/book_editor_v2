@@ -8,7 +8,7 @@ const books = payload => ({
 
 const getAllBooks = () => {
     return dispatch => {
-        axios.get(process.env.REACT_APP_BACKEND_HOST_URL + "/")
+        axios.get(process.env.REACT_APP_BACKEND_HOST_URL + "/books/")
             .then(bookList => dispatch(books(bookList)))
             .catch(error => console.log(error));
     }
