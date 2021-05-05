@@ -72,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
         margin: "3rem 0",
     },
     cover: {
-        height: "13.35rem",
+        minHeight: "13.35rem",
         width: "10rem",
     },
     coverBorder: {
@@ -210,7 +210,7 @@ function Read(props) {
     const drawer = (
         <div style={{ margin: lgView ? 0 : "0 2rem" }}>
             <div className={classes.coverDiv}>
-                <img className={classes.cover} src="https://images.unsplash.com/photo-1545239351-cefa43af60f3?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mjl8fGJvb2slMjBjb3ZlcnxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="" />
+                <img className={classes.cover} src={book.bookCoverUrl} alt={book.title} />
                 <div className={classes.coverBorder} />
             </div>
             <h1 className={classes.bookName}>{book.title}</h1>
