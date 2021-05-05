@@ -61,6 +61,7 @@ function Carousel(props) {
     const classes = useStyles();
     const genre = props.genre;
     const id = "carousel-" + genre;
+    let bookCards;
 
     const handleScroll = (direction) => {
         if (direction === "left") {
@@ -69,9 +70,15 @@ function Carousel(props) {
             document.getElementById(id).scrollLeft += 300;
         }
     };
-    console.log(props.books);
-    console.log(filterBooksByGenre(props.books, genre));
-    const bookCards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((book, index) => <BookCard key={index} id={index} />); // change this to actual book id to make it unique 
+
+    const books = filterBooksByGenre(props.books, genre);
+
+    if (books.length > 0) {
+        bookCards = books.map(book => <BookCard key={book._id} book={book} />); // change this to actual book id to make it unique 
+    }
+    else {
+        bookCards = <h1>No Books in {genre}</h1>
+    }
 
     return (
         <div className={classes.carousel}>
