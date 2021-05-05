@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router";
 
 import { makeStyles } from "@material-ui/core";
 
@@ -75,6 +76,7 @@ function BookCard(props) {
     const classes = useStyles();
     const book = props.book;
     const id = props.id;
+    const history = useHistory();
 
     const reduceLineWidth = () => {
         if (id) {
@@ -90,7 +92,7 @@ function BookCard(props) {
     };
 
     const handleViewBook = () => {
-        console.log(book._id);
+        history.push("/view-book/" + book._id);
     };
 
     return (

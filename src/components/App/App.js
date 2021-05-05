@@ -26,7 +26,7 @@ function App() {
           <Route exact path="/forgot-password" component={ForgotPassword} />
 
           <PrivateRoute exact path="/explore" component={Explore} />
-          <PrivateRoute exact path="/view-book/" component={ViewBook} />
+          <PrivateRoute exact path="/view-book/:bookId" component={ViewBook} />
 
           <PrivateRoute exact path="/read/" component={Read} />
 
