@@ -181,7 +181,7 @@ function ViewBook(props) {
 
     return (
         <React.Fragment>
-            <ViewBookNavBar />
+            <ViewBookNavBar bookId={bookId} />
             <div className={classes.root}>
                 <div className={classes.details}>
                     <div className={classes.coverDiv}>
