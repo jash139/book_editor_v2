@@ -5,6 +5,8 @@ import { makeStyles } from "@material-ui/core";
 import Heading from "../Heading/Heading";
 import Carousel from "../Carousel/Carousel";
 
+import fetchBooksById from "../../functions/fetchBooksById";
+
 const useStyles = makeStyles(theme => ({
     carousel: {
         padding: "3rem 0 10rem",
@@ -18,8 +20,8 @@ const useStyles = makeStyles(theme => ({
 
 function ProfileWork(props) {
     const classes = useStyles();
-    console.log(props.work);
-
+    const work = fetchBooksById(props.work);
+    console.log('work', work);
     return (
         <div className={classes.carousel} id="profile-work">
             <Heading heading="Work" />
