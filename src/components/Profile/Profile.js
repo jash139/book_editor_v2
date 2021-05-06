@@ -115,6 +115,7 @@ function Profile(props) {
         followers: [],
         following: [],
         work: [],
+        library: [],
     };
 
     return (
