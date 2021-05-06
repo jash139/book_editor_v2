@@ -16,8 +16,9 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-function ProfileLibrary() {
+function ProfileLibrary(props) {
     const classes = useStyles();
+    console.log(props.library);
 
     return (
         <div className={classes.carousel} id="profile-library">

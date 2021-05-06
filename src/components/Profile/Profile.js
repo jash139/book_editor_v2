@@ -148,8 +148,8 @@ function Profile(props) {
                 </div>
                 <ProfileAbout updateState={updateState} />
             </div>
-            <ProfileLibrary />
-            <ProfileWork />
+            <ProfileLibrary library={userDetails.library} />
+            <ProfileWork work={userDetails.work} />
         </React.Fragment>
     );
 }

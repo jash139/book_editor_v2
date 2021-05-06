@@ -16,8 +16,9 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-function ProfileWork() {
+function ProfileWork(props) {
     const classes = useStyles();
+    console.log(props.work);
 
     return (
         <div className={classes.carousel} id="profile-work">
