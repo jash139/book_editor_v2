@@ -199,7 +199,7 @@ function Read(props) {
         setMobileOpen(!mobileOpen);
     };
 
-    const getGenres = () => {
+    const getGenre = () => {
         if (book.genres.length) {
             return book.genres[0];
         } else {
@@ -221,7 +221,7 @@ function Read(props) {
                 <StarRateIcon className={classes.rateIcon} />
             </div>
             <div className={classes.separator2} />
-            <h3 className={classes.genre}>{getGenres()}</h3>
+            <h3 className={classes.genre}>{getGenre()}</h3>
         </div>
     );
 
@@ -232,15 +232,10 @@ function Read(props) {
             return doc.body.innerHTML;
         };
         const blocks = chapter.content;
-        document.getElementById("id").innerHTML = "";
-        blocks.forEach(block => document.getElementById("id").innerHTML += `<p class=${classes.chapter}>${stringToHtml(block.data.text)}</p>`);
-        // const str = "Once upon a time in the <b>ani<i>me world.</i></b>";
-        // var parser = new DOMParser();
-        // var doc = parser.parseFromString(str, 'text/html');
-        // if (document.getElementById("id")) {
-        //     [1, 2, 3, 4, 5].forEach((block, index) => document.getElementById("id").innerHTML += `<p class=${classes.chapter}>${doc.body.innerHTML}</p>`);
-        // }
-
+        if (document.getElementById("id")) {
+            document.getElementById("id").innerHTML = "";
+            blocks.forEach(block => document.getElementById("id").innerHTML += `<p class=${classes.chapter}>${stringToHtml(block.data.text)}</p>`);
+        }
     };
 
     const container = window !== undefined ? () => window().document.body : undefined;
@@ -287,7 +282,7 @@ function Read(props) {
                 </nav>
                 <main className={classes.content}>
                     <h2 className={classes.chapterHeading}>{`Chapter ${chapterNumber}: Add Title`}</h2>
-                    <p id="id" />
+                    <div id="id" />
                     {getChapterContent()}
                 </main>
             </div>
