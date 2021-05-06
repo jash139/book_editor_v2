@@ -228,18 +228,18 @@ function Read(props) {
     const getChapterContent = () => {
         const stringToHtml = (originalStr) => {
             const parser = new DOMParser();
-            const doc = parser.parseFromString(str, 'text/html');
+            const doc = parser.parseFromString(originalStr, 'text/html');
             return doc.body.innerHTML;
         };
         const blocks = chapter.content;
-        console.log(blocks);
-        blocks.forEach((block, index) => console.log(block.data.text));
-        const str = "Once upon a time in the <b>ani<i>me world.</i></b>";
-        var parser = new DOMParser();
-        var doc = parser.parseFromString(str, 'text/html');
-        if (document.getElementById("id")) {
-            [1, 2, 3, 4, 5].forEach((block, index) => document.getElementById("id").innerHTML += `<p class=${classes.chapter}>${doc.body.innerHTML}</p>`);
-        }
+        document.getElementById("id").innerHTML = "";
+        blocks.forEach(block => document.getElementById("id").innerHTML += `<p class=${classes.chapter}>${stringToHtml(block.data.text)}</p>`);
+        // const str = "Once upon a time in the <b>ani<i>me world.</i></b>";
+        // var parser = new DOMParser();
+        // var doc = parser.parseFromString(str, 'text/html');
+        // if (document.getElementById("id")) {
+        //     [1, 2, 3, 4, 5].forEach((block, index) => document.getElementById("id").innerHTML += `<p class=${classes.chapter}>${doc.body.innerHTML}</p>`);
+        // }
 
     };
 
@@ -287,11 +287,7 @@ function Read(props) {
                 </nav>
                 <main className={classes.content}>
                     <h2 className={classes.chapterHeading}>{`Chapter ${chapterNumber}: Add Title`}</h2>
-                    <p className={classes.chapter}><b>hell<i>o</i></b></p>
-                    <p className={classes.chapter}>
-                        paragraph.
-                        </p>
-                    <p id="id">Hey there</p>
+                    <p id="id" />
                     {getChapterContent()}
                 </main>
             </div>
