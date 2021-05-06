@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
+import { useHistory } from "react-router";
 
 import StarRateIcon from "@material-ui/icons/StarRate";
 import ChevronRightRoundedIcon from "@material-ui/icons/ChevronRightRounded";
@@ -193,6 +194,7 @@ function Read(props) {
     const [mobileOpen, setMobileOpen] = useState(false);
     const chapterNumber = props.match.params.chapterNumber;
     const bookId = props.match.params.bookId;
+    const history = useHistory();
 
     const defaultValues = {
         bookCoverUrl: "",
@@ -228,9 +230,13 @@ function Read(props) {
         }
     };
 
+    const handleChangeChapter = (chNumber) => {
+        history.push("/read/" + bookId + "/" + chNumber);
+    };
+
     const getChapterList = () => {
         const chapterList = props.chapters.map((chapter) =>
-            <ListItem button style={{ borderRadius: "3px" }} key={chapter._id}>
+            <ListItem button style={{ borderRadius: "3px" }} key={chapter._id} onClick={() => handleChangeChapter(chapter.chapterNumber)}>
                 <p
                     className={chapter.chapterNumber == chapterNumber ? classes.activeChapter : classes.chapter}>
                     {`Chapter ${chapter.chapterNumber}: ${chapter.title}`}
