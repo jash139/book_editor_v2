@@ -22,7 +22,7 @@ function ProfileLibrary() {
     return (
         <div className={classes.carousel} id="profile-library">
             <Heading heading="Library" />
-            <Carousel id="carousel-library" />
+            <Carousel genre="library" />
         </div>
     );
 }

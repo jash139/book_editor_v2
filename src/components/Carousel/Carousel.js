@@ -55,13 +55,21 @@ const useStyles = makeStyles((theme) => ({
             borderRadius: "1rem",
         }
     },
+    message: {
+        color: themeColors.grey,
+        fontFamily: "'Poppins', sans-serif",
+        fontSize: "1.2rem",
+        fontWeight: 400,
+        margin: "3rem 0",
+        opacity: 0.5,
+        textAlign: "center",
+    },
 }));
 
 function Carousel(props) {
     const classes = useStyles();
     const genre = props.genre;
     const id = "carousel-" + genre;
-    let bookCards;
 
     const handleScroll = (direction) => {
         if (direction === "left") {
@@ -73,30 +81,26 @@ function Carousel(props) {
 
     const books = filterBooksByGenre(props.books, genre);
 
-    if (books.length > 0) {
-        bookCards = books.map(book => <BookCard key={book._id} book={book} id={genre + book._id} />); // change this to actual book id to make it unique 
-    }
-    else {
-        bookCards = <h1>No Books in {genre}</h1>
-    }
+    const bookCards = books.map(book => <BookCard key={book._id} book={book} id={genre + book._id} />); // change this to actual book id to make it unique 
+    const noBooksMessage = () => <h3 className={classes.message}>No books available in {genre}</h3>;
 
     return (
-        <div className={classes.carousel}>
-            <IconButton className={classes.scrollIcon} onClick={() => handleScroll("left")}>
-                <ChevronLeftIcon className={classes.icon} />
-            </IconButton>
-
-            {/* change this id to be unique */}
-
-            <div className={classes.root}>
-                <GridList className={classes.gridList} id={id} cols={2.5}>
-                    {bookCards}
-                </GridList>
+        books.length > 0 ?
+            <div className={classes.carousel}>
+                <IconButton className={classes.scrollIcon} onClick={() => handleScroll("left")}>
+                    <ChevronLeftIcon className={classes.icon} />
+                </IconButton>
+                <div className={classes.root}>
+                    <GridList className={classes.gridList} id={id} cols={2.5}>
+                        {bookCards}
+                    </GridList>
+                </div>
+                <IconButton className={classes.scrollIcon} onClick={() => handleScroll("right")}>
+                    <ChevronRightIcon className={classes.icon} />
+                </IconButton>
             </div>
-            <IconButton className={classes.scrollIcon} onClick={() => handleScroll("right")}>
-                <ChevronRightIcon className={classes.icon} />
-            </IconButton>
-        </div>
+            :
+            noBooksMessage()
     );
 }
 

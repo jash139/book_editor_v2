@@ -26,16 +26,14 @@ function App() {
           <Route exact path="/forgot-password" component={ForgotPassword} />
 
           <PrivateRoute exact path="/explore" component={Explore} />
-          <PrivateRoute exact path="/view-book/:bookId" component={ViewBook} />
 
+          <PrivateRoute exact path="/view-book/:bookId" component={ViewBook} />
           <PrivateRoute exact path="/read/:bookId/:chapterNumber" component={Read} />
 
           <PrivateRoute exact path="/write" component={Write} />
           <PrivateRoute exact path="/write/new-chapter/:bookId/:chapterNumber" component={NewChapter} />
 
           <PrivateRoute exact path="/profile" component={Profile} />
-
-          {/* Add ^^ book id in the path  */}
 
         </AuthProvider>
       </Router>
