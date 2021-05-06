@@ -238,7 +238,7 @@ function Read(props) {
         const chapterList = props.chapters.map((chapter) =>
             <ListItem button style={{ borderRadius: "3px" }} key={chapter._id} onClick={() => handleChangeChapter(chapter.chapterNumber)}>
                 <p
-                    className={chapter.chapterNumber == chapterNumber ? classes.activeChapter : classes.chapter}>
+                    className={parseInt(chapter.chapterNumber) === parseInt(chapterNumber) ? classes.activeChapter : classes.chapter}>
                     {`Chapter ${chapter.chapterNumber}: ${chapter.title}`}
                 </p>
             </ListItem>
