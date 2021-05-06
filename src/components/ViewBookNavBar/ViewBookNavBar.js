@@ -1,4 +1,6 @@
 import React from "react";
+import { useHistory } from "react-router";
+
 import { IconButton, makeStyles } from "@material-ui/core";
 
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
@@ -47,10 +49,11 @@ const useStyles = makeStyles(theme => ({
 
 function ViewBookNavBar() {
     const classes = useStyles();
+    const history = useHistory();
     return (
         <header className={classes.header}>
             <nav className={classes.nav}>
-                <IconButton className={classes.backButton}>
+                <IconButton className={classes.backButton} onClick={() => history.goBack()}>
                     <ArrowBackIcon className={classes.backIcon} />
                 </IconButton>
                 <IconButton className={classes.addButton}>
