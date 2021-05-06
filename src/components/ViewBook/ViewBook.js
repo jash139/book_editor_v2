@@ -192,11 +192,11 @@ function ViewBook(props) {
                         <div>
                             <h1 className={classes.bookName}>{book.title}</h1>
                             <div className={classes.separator1} />
-                            <h2 className={classes.author}>Save author when creating new book</h2>
+                            <h2 className={classes.author}>{book.userName}</h2>
                         </div>
                         <div>
                             <div className={classes.ratingDiv}>
-                                <h3 className={classes.rating}>8.5 / 10</h3>
+                                <h3 className={classes.rating}>{book.rating} / 10</h3>
                                 <StarRateIcon className={classes.rateIcon} />
                             </div>
                             <div className={classes.separator2} />
