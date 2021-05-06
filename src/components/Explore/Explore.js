@@ -10,7 +10,6 @@ import GenreSelectionTabs from "../GenreSelectionTabs/GenreSelectionTabs";
 import ExploreNavBar from "../ExploreNavBar/ExploreNavBar";
 
 import genres from "../../constants/genres";
-import getAllBooks from "../../actions/bookActions/getAllBooks";
 
 const useStyles = makeStyles(theme => ({
     exploreNav: {
@@ -50,10 +49,6 @@ function Explore(props) {
         isSelected: false,
         genre: "",
     });
-
-    useEffect(() => {
-        props.getAllBooks();
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     const selectGenre = (genre) => {
         setSelectedGenre({
@@ -97,12 +92,4 @@ function Explore(props) {
     );
 }
 
-const mapStateToProps = state => ({
-
-});
-
-const mapDispatchToProps = {
-    getAllBooks
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Explore);
+export default Explore;

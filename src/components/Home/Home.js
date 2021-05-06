@@ -21,6 +21,7 @@ import copyEmail from "../../functions/copyEmail";
 import openTab from "../../functions/openTab";
 
 import getUserDetails from "../../actions/userActions/getUserDetails";
+import getAllBooks from "../../actions/bookActions/getAllBooks";
 import { useAuth } from "../../contexts/AuthContext";
 
 const useStyles = makeStyles(theme => ({
@@ -204,6 +205,7 @@ function Home(props) {
         if (currentUser) {
             props.getUserDetails(currentUser.uid);
         }
+        props.getAllBooks();
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
 
@@ -304,7 +306,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-    getUserDetails
+    getUserDetails,
+    getAllBooks
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
