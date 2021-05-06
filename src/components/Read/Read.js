@@ -216,7 +216,7 @@ function Read(props) {
         axios.get(process.env.REACT_APP_BACKEND_HOST_URL + "/books/" + bookId)
             .then(res => setBook(res.data))
             .catch(error => console.log(error));
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    }, [props.match.params.chapterNumber]); // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
