@@ -8,7 +8,7 @@ import ChevronRightRoundedIcon from "@material-ui/icons/ChevronRightRounded";
 import Drawer from "@material-ui/core/Drawer";
 import Hidden from "@material-ui/core/Hidden";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import { useMediaQuery } from "@material-ui/core";
+import { List, ListItem, useMediaQuery } from "@material-ui/core";
 
 import ReadNavBar from "../ReadNavBar/ReadNavBar";
 
@@ -152,12 +152,19 @@ const useStyles = makeStyles((theme) => ({
         margin: "1.5rem 0",
         textAlign: "center",
     },
+    chapterListHeading: {
+        color: themeColors.black,
+        fontFamily: "'Playfair Display', serif",
+        fontSize: "1.5rem",
+        margin: "3rem 0 0.5rem 0",
+    },
     activeChapter: {
         color: themeColors.red,
         fontFamily: "'Poppins', sans-serif",
         fontSize: "1rem",
         fontWeight: 600,
         lineHeight: 1.5,
+        margin: "0.2rem 0",
     },
     chapter: {
         color: themeColors.black,
@@ -165,6 +172,7 @@ const useStyles = makeStyles((theme) => ({
         fontSize: "1rem",
         fontWeight: 400,
         lineHeight: 1.5,
+        margin: "0.2rem 0",
     },
     chapterContent: {
         color: themeColors.black,
@@ -221,8 +229,19 @@ function Read(props) {
     };
 
     const getChapterList = () => {
-        const chapterList = props.chapters.map((chapter) => <p key={chapter._id} className={chapter.chapterNumber == chapterNumber ? classes.activeChapter : classes.chapter}>{chapter.title}</p>);
-        return chapterList;
+        const chapterList = props.chapters.map((chapter) =>
+            <ListItem button style={{ borderRadius: "3px" }} key={chapter._id}>
+                <p
+                    className={chapter.chapterNumber == chapterNumber ? classes.activeChapter : classes.chapter}>
+                    {`Chapter ${chapter.chapterNumber}: ${chapter.title}`}
+                </p>
+            </ListItem>
+        );
+        return (
+            <List>
+                {chapterList}
+            </List>
+        );
     };
 
     const getChapterContent = () => {
@@ -253,6 +272,8 @@ function Read(props) {
             </div>
             <div className={classes.separator2} />
             <h3 className={classes.genre}>{getGenre()}</h3>
+            <h1 className={classes.chapterListHeading}>Chapters</h1>
+
             {getChapterList()}
         </div>
     );
