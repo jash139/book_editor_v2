@@ -66,10 +66,9 @@ const useStyles = makeStyles((theme) => ({
 
 function ProfileCarousel(props) {
     const classes = useStyles();
-    const genre = props.genre;
-    const id = "carousel-" + genre;
+    const type = props.type;
+    const id = "carousel-" + type;
     const books = props.books;
-    console.log(books);
 
     const handleScroll = (direction) => {
         if (direction === "left") {
@@ -79,8 +78,8 @@ function ProfileCarousel(props) {
         }
     };
 
-    const bookCards = books.map(book => <BookCard key={book._id} book={book} id={genre + book._id} />);
-    const noBooksMessage = () => <h3 className={classes.message}>No books available in {genre}</h3>;
+    const bookCards = books.map(book => <BookCard key={book._id} book={book} id={type + book._id} />);
+    const noBooksMessage = () => <h3 className={classes.message}>No books available in {type}</h3>;
 
     return (
         books.length > 0 ?
