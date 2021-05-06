@@ -152,14 +152,27 @@ const useStyles = makeStyles((theme) => ({
         margin: "1.5rem 0",
         textAlign: "center",
     },
+    activeChapter: {
+        color: themeColors.red,
+        fontFamily: "'Poppins', sans-serif",
+        fontSize: "1rem",
+        fontWeight: 600,
+        lineHeight: 1.5,
+    },
     chapter: {
+        color: themeColors.black,
+        fontFamily: "'Poppins', sans-serif",
+        fontSize: "1rem",
+        fontWeight: 400,
+        lineHeight: 1.5,
+    },
+    chapterContent: {
         color: themeColors.black,
         fontFamily: "'Poppins', sans-serif",
         fontSize: "1rem",
         fontWeight: 400,
         lineHeight: 2,
     },
-
 }));
 
 function Read(props) {
@@ -207,6 +220,24 @@ function Read(props) {
         }
     };
 
+    const getChapterList = () => {
+        const chapterList = props.chapters.map((chapter) => <p key={chapter._id} className={chapter.chapterNumber == chapterNumber ? classes.activeChapter : classes.chapter}>{chapter.title}</p>);
+        return chapterList;
+    };
+
+    const getChapterContent = () => {
+        const stringToHtml = (originalStr) => {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(originalStr, 'text/html');
+            return doc.body.innerHTML;
+        };
+        const blocks = chapter.content;
+        if (document.getElementById("id")) {
+            document.getElementById("id").innerHTML = "";
+            blocks.forEach(block => document.getElementById("id").innerHTML += `<p class=${classes.chapterContent}>${stringToHtml(block.data.text)}</p>`);
+        }
+    };
+
     const drawer = (
         <div style={{ margin: lgView ? 0 : "0 2rem" }}>
             <div className={classes.coverDiv}>
@@ -222,21 +253,9 @@ function Read(props) {
             </div>
             <div className={classes.separator2} />
             <h3 className={classes.genre}>{getGenre()}</h3>
+            {getChapterList()}
         </div>
     );
-
-    const getChapterContent = () => {
-        const stringToHtml = (originalStr) => {
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(originalStr, 'text/html');
-            return doc.body.innerHTML;
-        };
-        const blocks = chapter.content;
-        if (document.getElementById("id")) {
-            document.getElementById("id").innerHTML = "";
-            blocks.forEach(block => document.getElementById("id").innerHTML += `<p class=${classes.chapter}>${stringToHtml(block.data.text)}</p>`);
-        }
-    };
 
     const container = window !== undefined ? () => window().document.body : undefined;
 
