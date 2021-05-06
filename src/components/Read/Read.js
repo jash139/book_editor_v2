@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
     drawerPaper: {
         position: "relative",
         color: themeColors.black,
-        backgroundColor: "transparent",
+        backgroundColor: "white",
         [theme.breakpoints.up("sm")]: {
             height: "80vh",
         },
@@ -299,7 +299,7 @@ function Read(props) {
                             open={mobileOpen}
                             onClose={handleDrawerToggle}
                             classes={{
-                                paper: classes.drawerPaperLight,
+                                paper: classes.drawerPaper,
                             }}
                             ModalProps={{
                                 keepMounted: true,
