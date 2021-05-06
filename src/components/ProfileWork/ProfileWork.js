@@ -3,7 +3,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core";
 
 import Heading from "../Heading/Heading";
-import Carousel from "../Carousel/Carousel";
+import ProfileCarousel from "../ProfileCarousel/ProfileCarousel";
 
 import fetchBooksById from "../../functions/fetchBooksById";
 
@@ -21,11 +21,10 @@ const useStyles = makeStyles(theme => ({
 function ProfileWork(props) {
     const classes = useStyles();
     const work = fetchBooksById(props.work);
-    console.log('work', work);
     return (
         <div className={classes.carousel} id="profile-work">
             <Heading heading="Work" />
-            <Carousel genre="work" />
+            <ProfileCarousel books={work} />
         </div>
     );
 }
