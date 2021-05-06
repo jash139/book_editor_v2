@@ -257,9 +257,9 @@ function Read(props) {
             return doc.body.innerHTML;
         };
         const blocks = chapter.content;
-        if (document.getElementById("id")) {
-            document.getElementById("id").innerHTML = "";
-            blocks.forEach(block => document.getElementById("id").innerHTML += `<p class=${classes.chapterContent}>${stringToHtml(block.data.text)}</p>`);
+        if (document.getElementById("chapter-content")) {
+            document.getElementById("chapter-content").innerHTML = "";
+            blocks.forEach(block => document.getElementById("chapter-content").innerHTML += `<p class=${classes.chapterContent}>${stringToHtml(block.data.text)}</p>`);
         }
     };
 
@@ -271,7 +271,7 @@ function Read(props) {
             </div>
             <h1 className={classes.bookName}>{book.title}</h1>
             <div className={classes.separator1} />
-            <h2 className={classes.author}>J. K. Bowling</h2>
+            <h2 className={classes.author}>Author name</h2>
             <div className={classes.ratingDiv}>
                 <h3 className={classes.rating}>8.5 / 10</h3>
                 <StarRateIcon className={classes.rateIcon} />
@@ -327,8 +327,8 @@ function Read(props) {
                     </Hidden>
                 </nav>
                 <main className={classes.content}>
-                    <h2 className={classes.chapterHeading}>{`Chapter ${chapterNumber}: Add Title`}</h2>
-                    <div id="id" />
+                    <h2 className={classes.chapterHeading}>{`Chapter ${chapterNumber}: ${chapter.title}`}</h2>
+                    <div id="chapter-content" />
                     {getChapterContent()}
                 </main>
             </div>
