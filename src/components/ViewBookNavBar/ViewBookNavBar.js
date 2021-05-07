@@ -67,6 +67,7 @@ function ViewBookNavBar(props) {
             props.patchUserDetails(props.userDetails._id, patchObj);
             props.getUserDetails(props.userDetails.uid);
         }
+        props.toggleSnackbar();
     };
 
     return (

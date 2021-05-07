@@ -5,6 +5,7 @@ import axios from "axios";
 
 import StarRateIcon from '@material-ui/icons/StarRate';
 import { Button, makeStyles } from "@material-ui/core";
+import Snackbar from "@material-ui/core/Snackbar";
 
 import ViewBookNavBar from "../ViewBookNavBar/ViewBookNavBar";
 
@@ -151,6 +152,11 @@ function ViewBook(props) {
     };
     const [book, setBook] = useState(defaultValues);
     const history = useHistory();
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+
+    const toggleSnackbar = () => {
+        setSnackbarOpen(prevValue => !prevValue);
+    };
 
     useEffect(() => {
         props.getBookChapters(props.match.params.bookId);
@@ -181,7 +187,7 @@ function ViewBook(props) {
 
     return (
         <React.Fragment>
-            <ViewBookNavBar bookId={bookId} />
+            <ViewBookNavBar bookId={bookId} toggleSnackbar={toggleSnackbar} />
             <div className={classes.root}>
                 <div className={classes.details}>
                     <div className={classes.coverDiv}>
@@ -209,6 +215,14 @@ function ViewBook(props) {
                     <h2 className={classes.summaryHeading}>summary</h2>
                     <p className={classes.summary}>{getSummary()}</p>
                 </div>
+                <Snackbar
+                    className={classes.snackbar}
+                    anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+                    open={snackbarOpen}
+                    onClose={toggleSnackbar}
+                    autoHideDuration={3000}
+                    message="Book added to library!"
+                />
             </div>
         </React.Fragment>
     );
