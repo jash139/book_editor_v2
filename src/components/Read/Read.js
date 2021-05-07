@@ -271,7 +271,7 @@ function Read(props) {
             </div>
             <h1 className={classes.bookName}>{book.title}</h1>
             <div className={classes.separator1} />
-            <h2 className={classes.author}>Author name</h2>
+            <h2 className={classes.author}>{book.userName}</h2>
             <div className={classes.ratingDiv}>
                 <h3 className={classes.rating}>8.5 / 10</h3>
                 <StarRateIcon className={classes.rateIcon} />
