@@ -192,11 +192,11 @@ function Signup() {
                         variant="contained"
                         disabled={loading}
                     >
-                        Creat Account
-                 </Button>
+                        Create Account
+                    </Button>
                     <p className={classes.message}>
                         Already have an account?
-                <span className={classes.link} onClick={openSignin}> Sign in</span>
+                        <span className={classes.link} onClick={openSignin}> Sign in</span>
                     </p>
                 </div>
             </div>
